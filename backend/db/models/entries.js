@@ -15,11 +15,11 @@ module.exports = (sequelize, DataTypes) => {
   };
   Entry.init({
     service_id: {
-      type: Sequelize.INTEGER,
+      type: DataTypes.INTEGER,
       allowNull: false,
     },
     master_id: {
-      type: Sequelize.INTEGER,
+      type: DataTypes.INTEGER,
       allowNull: false,
     },
   }, {
