@@ -8,6 +8,12 @@ const FileStore = require('session-file-store')(session);
 const cors = require('cors');
 const { app, serverStart } = require('./server');
 const { connect } = require('./db');
+const signupRouter = require('./routes/user/signup');
+const signinRouter = require('./routes/user/signin');
+const logoutRouter = require('./routes/user/logout');
+const mastersignupRouter = require('./routes/master/signup');
+const mastersigninRouter = require('./routes/master/signin');
+const masterlogoutRouter = require('./routes/master/logout');
 
 
 serverStart().then(connect);
@@ -28,9 +34,24 @@ const sessionConfig = {
 app.use(logger('dev'));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(cors({ credentials: true, origin: '*' }));
-// app.use(cookieParser());
-// app.use(session(sessionConfig));
+app.use(
+  cors({
+    // credentials: true,
+    // origin: 'http://localhost:3000',
+    origin: true,
+    credentials: true,
+  }),
+);
+
+app.use(cookieParser());
+app.use(session(sessionConfig));
+
+app.use('/signup', signupRouter);
+app.use('/signin', signinRouter);
+app.use('/logout', logoutRouter);
+app.use('/mastersignup', mastersignupRouter);
+app.use('/mastersignin', mastersigninRouter);
+app.use('/masterlogout', masterlogoutRouter);
 
 // const indexRouter = require('./routes/index');
 // const addTask = require('./routes/addTask');
@@ -51,3 +72,4 @@ app.use(cors({ credentials: true, origin: '*' }));
 // app.use('/change', changeRouter);
 // app.use('/important', importantRouter);
 // // app.use('/logout', logoutRouter);
+module.exports = app;
