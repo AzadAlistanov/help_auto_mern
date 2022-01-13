@@ -6,11 +6,11 @@ import * as actions from '../../store/actions/task'
 export default function MasterSignup() {
   const dispatch = useDispatch();
   const navigate = useNavigate()
-  const [value, setValue] = useState({ name: "", email: "", password: "",phone:"", address:"", photo:"", about:"", rating:"" })
-  
+  const [value, setValue] = useState({ name: "", email: "", password: "", phone: "", address: "", photo: "", about: "", rating: "" })
+
   async function signUp() {
-    
-    dispatch(actions.getSignInSagaMaster(value)) 
+    console.log(value)
+    // dispatch(actions.getSignInSagaMaster(value))
     // console.log(`value`, value)
     // const options: any = {
     //   method: 'POST',
@@ -69,13 +69,30 @@ export default function MasterSignup() {
                       <label className="form-label" htmlFor="form3Example4cg">photo</label>
                     </div>
 
-                    <div className="form-outline mb-4">
+                    {/* <div className="form-outline mb-4">
                       <input onChange={(event) => setValue({ ...value, about: event.target.value })} value={value.about} type="about" id="form3Example4cg" className="form-control form-control-lg" />
                       <label className="form-label" htmlFor="form3Example4cg">about</label>
+                    </div> */}
+
+                    <div className="form-floating">
+                      <select onChange={(event) => setValue({ ...value, about: event.target.value })} className="form-select" id="floatingSelect" aria-label="Floating label select example">
+                        <option selected>Откройте это меню выбора</option>
+                        <option value='Двигатель'>Двигатель</option>
+                        <option value='Кузовной ремонт'>Кузовной ремонт</option>
+                        <option value='Обслуживание ходовой части'>Обслуживание ходовой части</option>
+                        <option value='Шиномонтаж'>Шиномонтаж</option>
+                        <option value='Трансмиссия'>Трансмиссия</option>
+                        <option value='Рулевое управление'>Рулевое управление</option>
+                        <option value='Тормозная система'>Тормозная система</option>
+                        <option value='Иные услуги'>Иные услуги</option>
+                        <option value='Компьютерная диагностика'>Компьютерная диагностика</option>
+                        <option value='Сход-развал'>Сход-развал</option>
+                      </select>
+                      <label htmlFor="floatingSelect">Работает с элементом выбора</label>
                     </div>
 
-                    <div className="d-flex justify-content-center">
 
+                    <div className="d-flex justify-content-center">
                       <button onClick={signUp} type="button" className="btn btn-info">Register</button>
                     </div>
 
