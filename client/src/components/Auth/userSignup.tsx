@@ -1,24 +1,29 @@
 import React, { useState } from 'react'
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import * as actions from '../../store/actions/task'
 
 
 export default function UserSignup() {
+  const dispatch = useDispatch();
+  // getSignInSaga
   
   const navigate = useNavigate()
   const [value, setValue] = useState({ name: "", email: "", password: "", nickName: "", firstName: "", lastName: "", city: "", brand: "", carModel: "", carYear: "", phone: "" })
 
   async function signUp() {
-    console.log(`value`, value)
-    const options: any = {
-      method: 'POST',
-      body: JSON.stringify({ value }),
-      credentials: 'include',
-      headers: { 'Accept': 'application/json', 'Content-Type': 'application/json', },
-    };
-    const response = await fetch('http://localhost:5000/signup', options);
+    dispatch(actions.getSignInSagaUser(value)) 
+    // console.log(`value`, value)
+    // const options: any = {
+    //   method: 'POST',
+    //   body: JSON.stringify({ value }),
+    //   credentials: 'include',
+    //   headers: { 'Accept': 'application/json', 'Content-Type': 'application/json', },
+    // };
+    // const response = await fetch('http://localhost:5000/signup', options);
 
-    const user = await response.json();
-    console.log(`user`, user)
+    // const user = await response.json();
+    // console.log(`user`, user)
     navigate('/')
   }
 

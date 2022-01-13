@@ -20,9 +20,9 @@ router.post('/', async (req, res) => {
       carModel,
       carYear,
       phone
-    } = req.body.value;
+    } = req.body.checkUser;
     const cryptPass = await bcrypt.hash(password, 10);
-    const newUser = await User.create({
+    const checkUser = await User.create({
       nickName,
       firstName,
       password: cryptPass,
@@ -35,11 +35,11 @@ router.post('/', async (req, res) => {
       carModel,
       carYear
     });
-    console.log(newUser)
-    if (newUser) {
-      req.session.username = newUser.nickName;
-      req.session.userId = newUser.id;      
-      res.json({ newUser });
+    console.log(checkUser)
+    if (checkUser) {
+      req.session.username = checkUser.nickName;
+      req.session.userId = checkUser.id;      
+      res.json({ checkUser });
     }
   } catch (error) {
     console.log('Новый пользователь не создан');

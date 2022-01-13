@@ -6,11 +6,10 @@ import rootSaga from './saga';
 const sagaMiddleware = createSagaMiddleware();
 
 const initialState = {
-  auth: {
-    user: '',
+  auth: {    
     userId: '',
     email: '',
-    error: null,
+    auth: false,
   },
   post: {
     isLoading: false,

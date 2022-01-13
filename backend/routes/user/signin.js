@@ -3,15 +3,16 @@ const bcrypt = require('bcrypt');
 const { User } = require('../../db/models');
 
 router.post('/', async (req, res) => {
-  console.log(req.body.value);
-  const { nickName, password } = req.body.value;
-  console.log(`nickName`, nickName)
+  
+  const { nickName, password } = req.body.checkUser;  
   const checkUser = await User.findOne({ where: { nickName } });
-  console.log('checkUser', checkUser.dataValues.nickName);
+  console.log(checkUser)
+  
 
   if (checkUser && bcrypt.compare(password, checkUser.dataValues.password)) {
+    console.log(`123`, 123)
     req.session.username = checkUser.nickName;
-    req.session.userId = checkUser.id;      
+    req.session.userId = checkUser.id;         
     res.json({ checkUser });
   }
 });
