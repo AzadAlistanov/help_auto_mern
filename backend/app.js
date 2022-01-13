@@ -31,6 +31,8 @@ const sessionConfig = {
   },
 };
 
+const home = require('./routes/home');
+
 app.use(logger('dev'));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -52,6 +54,14 @@ app.use('/logout', logoutRouter);
 app.use('/mastersignup', mastersignupRouter);
 app.use('/mastersignin', mastersigninRouter);
 app.use('/masterlogout', masterlogoutRouter);
+app.use(cors({ credentials: true, origin: '*' }));
+
+
+app.use('/', home);
+
+
+// app.use(cookieParser());
+// app.use(session(sessionConfig));
 
 // const indexRouter = require('./routes/index');
 // const addTask = require('./routes/addTask');

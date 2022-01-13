@@ -1,0 +1,14 @@
+export const AUTH_INIT = 'AUTH_INIT';
+export const AUTH_SUCCESS = 'AUTH_SUCCESS';
+export const AUTH_ERROR = 'AUTH_ERROR';
+
+export const INIT_POST = 'INIT_POST';
+export const INIT_POST_SUCCESS = 'INIT_POST_SUCCESS';
+export const INIT_POST_ERROR = 'INIT_POST_ERROR';
+
+export const CREATE_POST = 'CREATE_POST';
+export const CREATE_POST_SUCCESS = 'CREATE_POST_SUCCESS';
+export const CREATE_POST_ERROR = 'CREATE_POST_ERROR';
+
+export const ADD_ORDER_SUCCESS = 'ADD_ORDER_SUCCESS';
+export const ADD_ORDER_ERROR = 'ADD_ORDER_ERROR';
