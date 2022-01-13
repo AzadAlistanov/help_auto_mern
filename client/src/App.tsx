@@ -31,7 +31,7 @@ export default function App() {
           <Route path='/expirience/:brandcar' element={<Expirience/>} />
 
           <Route path='/servicelist' element={<ServiceList/>} />
-          <Route path='/servicelist/orderslist' element={<OrderList/>} />
+          <Route path='/servicelist/orderslist/:id' element={<OrderList/>} />
           <Route path='/servicelist/neworder' element={<NewOrder/>} />
 
           <Route path='/master/:masterid' element={<MasterProfile />}/>
