@@ -32,6 +32,8 @@ const sessionConfig = {
 };
 
 const home = require('./routes/home');
+const serviceList = require('./routes/serviceList');
+
 
 app.use(logger('dev'));
 app.use(express.urlencoded({ extended: true }));
@@ -58,6 +60,7 @@ app.use(cors({ credentials: true, origin: '*' }));
 
 
 app.use('/', home);
+app.use('/servicelist', serviceList);
 
 
 // app.use(cookieParser());
