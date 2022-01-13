@@ -15,7 +15,7 @@ export default function UserSignup() {
       credentials: 'include',
       headers: { 'Accept': 'application/json', 'Content-Type': 'application/json', },
     };
-    const response = await fetch('http://localhost:5000/auth', options);
+    const response = await fetch('http://localhost:5000/signup', options);
 
     const user = await response.json();
     console.log(`user`, user)
