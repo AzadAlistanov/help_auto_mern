@@ -17,7 +17,7 @@ export default function App() {
   return (
     <>
       <Header />
-      <main className="container-sm">
+      <main className="container-sm pt-5">
         <Routes>
           <Route path='/' element={<Home/>} />
           <Route path='/'>

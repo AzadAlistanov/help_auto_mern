@@ -11,7 +11,7 @@ export default function ServiceList() {
 
   useEffect(() => {
     (async function() {
-      const { data } = await axios.get('http://localhost:5000/services');
+      const { data } = await axios.get('http://localhost:5000/servicelist');
       setService(data);
     }());
   }, []);
@@ -28,7 +28,9 @@ export default function ServiceList() {
   return (
     <div className="container">
       <div className="mb-4 p-4">
-        <button className="btn btn-info">Add order</button>
+        <Link to='/servicelist/neworder'>
+          <button className="btn btn-info">Создать заявку</button>
+        </Link>
       </div>
       {view}
     </div>

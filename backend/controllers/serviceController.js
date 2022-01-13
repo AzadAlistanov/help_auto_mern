@@ -4,7 +4,7 @@ exports.getServices = async (req, res) => {
   try {
     const services = await Service.findAll(
       { attributes: ['name'] });
-    res.send( services );
+    res.json( services );
   } catch (error) {
     console.log(error.message);
   }
