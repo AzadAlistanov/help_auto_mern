@@ -55,7 +55,7 @@ app.use('/signin', signinRouter);
 app.use('/logout', logoutRouter);
 app.use('/mastersignup', mastersignupRouter);
 app.use('/mastersignin', mastersigninRouter);
-app.use('/masterlogout', masterlogoutRouter);
+
 app.use(cors({ credentials: true, origin: '*' }));
 
 

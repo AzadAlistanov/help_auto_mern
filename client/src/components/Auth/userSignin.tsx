@@ -1,39 +1,42 @@
 
 import React, { useState } from 'react'
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import * as actions from '../../store/actions/task'
 
 
 export default function ToSignIn() {
+  const dispatch = useDispatch();
 
   const [value, setValue] = useState({ nickName: "",  password: "" })
   const navigate = useNavigate()
 
   async function signIn() {
-    console.log(`value`, value)
-    const options: any = {
-      method: 'POST',
-      body: JSON.stringify({ value }),
-      credentials: 'include',
-      headers: { 'Accept': 'application/json', 'Content-Type': 'application/json', },
-    };
-    const response = await fetch('http://localhost:5000/signin', options);
-
-    const user = await response.json();
-    console.log(`user`, user)
-    // navigate('/')
+    // console.log('signin')    
+    // const options: any = {
+    //   method: 'POST',
+    //   body: JSON.stringify({ value }),
+    //   credentials: 'include',
+    //   headers: { 'Accept': 'application/json', 'Content-Type': 'application/json', },
+    // };
+    // const response = await fetch('http://localhost:5000/signin', options);    
+    // const user = await response.json();
+    
+    dispatch(actions.getInitAuthSaga(value))  
+    navigate('/')
   }
 
   async function logout() {
-    
-    const options: any = {
-      method: 'POST',      
-      credentials: 'include',
-      headers: { 'Accept': 'application/json', 'Content-Type': 'application/json', },
-    };
-    const response = await fetch('http://localhost:5000/logout', options);
+    dispatch(actions.logOutSaga(value)) 
+    // const options: any = {
+    //   method: 'POST',      
+    //   credentials: 'include',
+    //   headers: { 'Accept': 'application/json', 'Content-Type': 'application/json', },
+    // };
+    // const response = await fetch('http://localhost:5000/logout', options);
 
-    const user = await response.json();
-    console.log(`user`, user)
+    // const user = await response.json();
+    
     // navigate('/')
   }
 

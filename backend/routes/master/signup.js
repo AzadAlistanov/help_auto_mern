@@ -15,9 +15,9 @@ router.post('/', async (req, res) => {
       phone,
       address,
       about,      
-    } = req.body.value;
+    } = req.body.checkUser;
     const cryptPass = await bcrypt.hash(password, 10);
-    const newMaster = await Master.create({
+    const checkUser = await Master.create({
       name,
       email,
       password:cryptPass,
@@ -27,11 +27,11 @@ router.post('/', async (req, res) => {
       rating: 0,
       photo: 'https://media.istockphoto.com/photos/man-covering-his-face-with-a-question-mark-sign-picture-id177110242',
     });
-    console.log(newMaster)
-    if (newMaster) {
-      req.session.username = newMaster.name;
-      req.session.userId = newMaster.id;
-      res.json({ newMaster });
+    console.log(checkUser)
+    if (checkUser) {
+      req.session.username = checkUser.name;
+      req.session.userId = checkUser.id;
+      res.json({ checkUser });
     }
   } catch (error) {
     console.log('Новый master не создан');

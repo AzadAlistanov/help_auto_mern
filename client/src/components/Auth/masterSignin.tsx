@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import * as actions from '../../store/actions/task'
 
 
 export default function MasterSignin() {
@@ -7,32 +9,37 @@ export default function MasterSignin() {
   const [value, setValue] = useState({  email: "", password: "" })
   const navigate = useNavigate()
 
+  const dispatch = useDispatch();
   async function signIn() {
-    console.log(`value`, value)
-    const options: any = {
-      method: 'POST',
-      body: JSON.stringify({ value }),
-      credentials: 'include',
-      headers: { 'Accept': 'application/json', 'Content-Type': 'application/json', },
-    };
-    const response = await fetch('http://localhost:5000/mastersignin', options);
+    
+    dispatch(actions.getInitAuthSagaMaster(value))      
+    // console.log(`value`, value)
+    // const options: any = {
+    //   method: 'POST',
+    //   body: JSON.stringify({ value }),
+    //   credentials: 'include',
+    //   headers: { 'Accept': 'application/json', 'Content-Type': 'application/json', },
+    // };
+    // const response = await fetch('http://localhost:5000/mastersignin', options);
 
-    const user = await response.json();
-    console.log(`user`, user)
-    // navigate('/')
+    // const user = await response.json();
+    // console.log(`user`, user)
+    navigate('/')
   }
 
   async function logout() {
-    
-    const options: any = {
-      method: 'POST',      
-      credentials: 'include',
-      headers: { 'Accept': 'application/json', 'Content-Type': 'application/json', },
-    };
-    const response = await fetch('http://localhost:5000/masterlogout', options);
 
-    const master = await response.json();
-    console.log(`master`, master)
+    dispatch(actions.logOutSaga(value)) 
+    
+    // const options: any = {
+    //   method: 'POST',      
+    //   credentials: 'include',
+    //   headers: { 'Accept': 'application/json', 'Content-Type': 'application/json', },
+    // };
+    // const response = await fetch('http://localhost:5000/masterlogout', options);
+
+    // const master = await response.json();
+    // console.log(`master`, master)
     // navigate('/')
   }
   return (
