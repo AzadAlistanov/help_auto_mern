@@ -7,6 +7,7 @@ import UserSignup from './components/Auth/userSignup';
 import Expirience from './components/Expirience';
 import Footer from './components/Footer';
 import Header from './components/Header';
+import Home from './components/Home';
 import MasterProfile from './components/MasterProfile';
 import NewOrder from './components/NewOrder';
 import OrderList from './components/OrderList';
@@ -16,8 +17,9 @@ export default function App() {
   return (
     <>
       <Header />
-      <main>
+      <main className="container-sm">
         <Routes>
+          <Route path='/' element={<Home/>} />
           <Route path='/'>
             <Route path='auth' element={<Auth/>} />
             <Route path='auth/usersignin' element={<UserSignin/>} />
@@ -26,7 +28,7 @@ export default function App() {
             <Route path='auth/mastersignup' element={<MasterSignup/>} />
           </Route>
 
-          <Route path='/expirience' element={<Expirience/>} />
+          <Route path='/expirience/:brandcar' element={<Expirience/>} />
 
           <Route path='/servicelist' element={<ServiceList/>} />
           <Route path='/servicelist/orderslist' element={<OrderList/>} />
