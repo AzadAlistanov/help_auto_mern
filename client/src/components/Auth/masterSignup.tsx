@@ -9,8 +9,8 @@ export default function MasterSignup() {
   const [value, setValue] = useState({ name: "", email: "", password: "", phone: "", address: "", photo: "", about: "", rating: "" })
 
   async function signUp() {
-    console.log(value)
-    // dispatch(actions.getSignInSagaMaster(value))
+    // console.log(value)
+    dispatch(actions.getSignInSagaMaster(value))
     // console.log(`value`, value)
     // const options: any = {
     //   method: 'POST',
@@ -22,7 +22,7 @@ export default function MasterSignup() {
 
     // const user = await response.json();
     // console.log(`user`, user)
-    navigate('/')
+    // navigate('/')
   }
 
   return (
