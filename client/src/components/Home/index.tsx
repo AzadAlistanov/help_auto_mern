@@ -18,7 +18,6 @@ export default function Home() {
   useEffect (() => {
     getBrandCar()
   }, [])
-  console.log(brandCars);
   
   return (
     <div className="">
