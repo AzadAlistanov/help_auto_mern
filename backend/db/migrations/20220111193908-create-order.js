@@ -18,14 +18,12 @@ module.exports = {
       },
       service_id: {
         type: Sequelize.INTEGER,
-        allowNull: false,
         references: {
           model: 'Services',
         },
       },
       user_id: {
         type: Sequelize.INTEGER,
-        allowNull: false,
         references: {
           model: 'Users',
         },
