@@ -11,17 +11,17 @@ export default function ServiceList() {
 
   useEffect(() => {
     (async function() {
-      const { data } = await axios.get('http://localhost:5000/services');
+      const { data } = await axios.get('http://localhost:5000/servicelist');
       setService(data);
     }());
   }, []);
 
-  const view = service.map(({ name }) => {
+  const view = service.map(({ name, id }) => {
     return <
       Link
-      to={`/servicelist/orderslist/${name}`}
-      className="col m-3 p-5 bg-secondary rounded-3 d-inline-block text-light text-decoration-none text-center fs-2"
-      style={{width: '200px'}}
+      to={`/servicelist/orderslist/${id}`}
+      className="col m-3 p-5 bg-secondary rounded-3 d-inline-block text-light text-decoration-none text-center fs-6"
+      style={{width: '200px', height: '200px'}}
     >{name}</Link>
   });
 
