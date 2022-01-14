@@ -3,13 +3,14 @@ import createSagaMiddleware from 'redux-saga';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import rootReducer from './reducers';
 import rootSaga from './saga';
+import { State } from '../typeTS/initialState';
 const sagaMiddleware = createSagaMiddleware();
 
-const initialState = {
+const initialState: State = {
   auth: {    
-    userId: '',
+    userId: null,
     email: '',
-    auth: false,
+    isAuth: false,
   },
   post: {
     isLoading: false,
@@ -18,8 +19,10 @@ const initialState = {
   },
   order: {
     name: '',
-    serviceId: null,
     status: false,
+    service_id: null,
+    user_id: null,
+    master_id: null,
     error: null,
   }
 };

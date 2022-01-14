@@ -1,4 +1,5 @@
 import { takeEvery, call, put } from 'redux-saga/effects';
+import axios from "axios";
 import * as actions from '../actions/task'
 
 
@@ -15,7 +16,6 @@ export function* getInitAuth(payload) {
       };
       const response = await fetch('http://localhost:5000/signin', options);
       const user = await response.json();
-      console.log(`user`, user)
       return user
     })
   );
@@ -93,7 +93,7 @@ export function* getSignInUser(payload) {
 
 export function* getSignInMaster(payload) {
   const checkUser = payload.payload
-  console.log(checkUser)
+  
   const data = yield call(
     (async function () {
       console.log(`value`, checkUser)
@@ -104,15 +104,20 @@ export function* getSignInMaster(payload) {
         headers: { 'Accept': 'application/json', 'Content-Type': 'application/json', },
       };
       const response = await fetch('http://localhost:5000/mastersignup', options);
-
       const user = await response.json();
-      console.log(`user`, user)
       return user
 
     })
   );
-  console.log(`data`, data)
   yield put(actions.getInitAuthAC(data));
 }
 
-
+export function* addOrderSuccess(payload) {
+  const order = payload.payload
+  yield call(
+    (async function () {
+      await axios.post('http://localhost:5000/servicelist/neworder', order)
+    })
+  ) 
+  yield put(actions.addOrderSuccessAC(order));
+}

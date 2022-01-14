@@ -1,7 +1,7 @@
 {
   "development": {
-    "username": "nvgertiy",
-    "password": 123,
+    "username": "postgres",
+    "password": 1,
     "database": "help_auto",
     "host": "127.0.0.1",
     "dialect": "postgres"
