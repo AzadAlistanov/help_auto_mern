@@ -14,6 +14,7 @@ const logoutRouter = require('./routes/user/logout');
 const mastersignupRouter = require('./routes/master/signup');
 const mastersigninRouter = require('./routes/master/signin');
 const masterlogoutRouter = require('./routes/master/logout');
+const userprofileRouter = require('./routes/user/userprofile');
 
 
 serverStart().then(connect);
@@ -49,15 +50,16 @@ app.use(
 app.use(cookieParser());
 app.use(session(sessionConfig));
 
+
+app.use(cors({ credentials: true, origin: '*' }));
+
+
 app.use('/signup', signupRouter);
 app.use('/signin', signinRouter);
 app.use('/logout', logoutRouter);
 app.use('/mastersignup', mastersignupRouter);
 app.use('/mastersignin', mastersigninRouter);
-
-app.use(cors({ credentials: true, origin: '*' }));
-
-
+app.use('/userprofile/:id', userprofileRouter);
 app.use('/', home);
 app.use('/servicelist', serviceList);
 app.use('/orderlist/:id', orderList);
