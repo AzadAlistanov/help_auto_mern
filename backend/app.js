@@ -33,6 +33,7 @@ const sessionConfig = {
 
 const home = require('./routes/home');
 const serviceList = require('./routes/serviceList');
+const orderList = require('./routes/orderList');
 
 
 app.use(logger('dev'));
@@ -40,8 +41,6 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(
   cors({
-    // credentials: true,
-    // origin: 'http://localhost:3000',
     origin: true,
     credentials: true,
   }),
@@ -61,28 +60,6 @@ app.use(cors({ credentials: true, origin: '*' }));
 
 app.use('/', home);
 app.use('/servicelist', serviceList);
+app.use('/orderlist/:id', orderList);
 
-
-// app.use(cookieParser());
-// app.use(session(sessionConfig));
-
-// const indexRouter = require('./routes/index');
-// const addTask = require('./routes/addTask');
-// const deleteRouter = require('./routes/delete');
-// const changeRouter = require('./routes/change');
-// const importantRouter = require('./routes/important');
-// const logoutRouter = require('./routes/logout');
-
-// app.use((req, res, next) => {
-//   res.locals.name = req.session.user;
-//   res.locals.id = req.session.userid;
-//   next();
-// });
-
-// app.use('/api', indexRouter);
-// app.use('/addTask', addTask);
-// app.use('/delete', deleteRouter);
-// app.use('/change', changeRouter);
-// app.use('/important', importantRouter);
-// // app.use('/logout', logoutRouter);
 module.exports = app;
