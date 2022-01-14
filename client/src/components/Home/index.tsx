@@ -21,7 +21,7 @@ export default function Home() {
   
   return (
     <div className="">
-      <form className="mt-5 mb-5 hstack gap-3">
+      <form className="mb-5 hstack gap-3">
         <input className="form-control me-auto" 
           type="text" 
           placeholder="Поиск ответов..."/>
