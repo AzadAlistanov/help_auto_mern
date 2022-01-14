@@ -1,3 +1,4 @@
+import { useSelector } from 'react-redux';
 import { Routes, Route } from 'react-router-dom';
 import Auth from './components/Auth';
 import MasterSignin from './components/Auth/masterSignin';
@@ -12,8 +13,15 @@ import MasterProfile from './components/MasterProfile';
 import NewOrder from './components/NewOrder';
 import OrderList from './components/OrderList';
 import ServiceList from './components/ServiceList';
+import { State } from './typeTS/initialState';
 
 export default function App() {
+
+  const {auth} = useSelector((state: State) => state);
+
+  // console.log('auth', auth);
+  
+
   return (
     <>
       <Header />

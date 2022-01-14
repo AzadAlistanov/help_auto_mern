@@ -114,6 +114,7 @@ export function* getSignInMaster(payload) {
 
 export function* addOrderSuccess(payload) {
   const order = payload.payload
+  console.log('payload', order);
   yield call(
     (async function () {
       await axios.post('http://localhost:5000/servicelist/neworder', order)

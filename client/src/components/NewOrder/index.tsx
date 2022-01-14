@@ -6,19 +6,27 @@ import { addOrderSuccessAC } from "../../store/actions/task";
 
 export default function NewOrder() {
   const [services, setServices] = useState([]);
-  const {auth, order} = useSelector((state: State) => state);
-  const [orderState, setOrderState] = useState(order);
+  const {auth} = useSelector((state: State) => state);
+  const [orderState, setOrderState] = useState({
+    name: '',
+    status: false,
+    service_id: 8,
+    user_id: auth.userId,
+    master_id: null,
+    error: null,
+  });
   const dispatch = useDispatch();
   
-  const addNewOrder = async (event: { preventDefault: () => void; }) => {
-    event.preventDefault()    
-    setOrderState({
-      ...orderState,
-      name: orderState.name,
-      service_id: orderState.service_id,
-      user_id: auth.userId,
-    })
-    dispatch(addOrderSuccessAC(orderState))
+  const addNewOrder = (event: { preventDefault: () => void; }) => {
+    event.preventDefault();
+      setOrderState(
+        {...orderState,
+        name: orderState.name,
+        service_id: orderState.service_id,
+        user_id: auth.userId,
+      });
+      setOrderState({...orderState, name: ''});
+    dispatch(addOrderSuccessAC(orderState));
   }
 
   useEffect(() => {
@@ -39,7 +47,7 @@ export default function NewOrder() {
           <option value="DEFAULT" disabled>Выберите услугу</option>
           {services.map((service: { id: number; name: string }) => (
               <option 
-                key={service.id} 
+                key={service.id}
                 value={service.id}>{service.name}</option>))}
         </select>
 

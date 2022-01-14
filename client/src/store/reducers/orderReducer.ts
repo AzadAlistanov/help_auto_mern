@@ -13,11 +13,11 @@ const initialState: OrderType = {
 const postReducer = (state = initialState, action: { type: any; payload: any; }) => {
   const {type, payload} = action;
   const newState = {...state};
-  console.log(state);
   
   switch (type) {
     case types.ADD_ORDER_SUCCESS: {
-
+      // console.log('{...newState, ...payload }', {...newState, ...payload });
+      
       return {...newState, ...payload };
     }
     case types.ADD_ORDER_ERROR: {
