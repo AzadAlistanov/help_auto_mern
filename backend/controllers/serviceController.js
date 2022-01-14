@@ -14,7 +14,6 @@ exports.addOrder = async (req, res) => {
     const { 
       name, user_id, service_id, status, master_id 
     } = req.body;
-    console.log(user_id);
     await Order.create({
       name, user_id, service_id, status, master_id,
     });
