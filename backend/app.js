@@ -15,6 +15,7 @@ const mastersignupRouter = require('./routes/master/signup');
 const mastersigninRouter = require('./routes/master/signin');
 const masterlogoutRouter = require('./routes/master/logout');
 const userprofileRouter = require('./routes/user/userprofile');
+const userprofilecomponentsRouter = require('./routes/user/userprofilecomponents');
 
 
 serverStart().then(connect);
@@ -60,6 +61,7 @@ app.use('/logout', logoutRouter);
 app.use('/mastersignup', mastersignupRouter);
 app.use('/mastersignin', mastersigninRouter);
 app.use('/userprofile/:id', userprofileRouter);
+app.use('/userprofilecomponents/:id', userprofilecomponentsRouter);
 app.use('/', home);
 app.use('/servicelist', serviceList);
 app.use('/orderlist/:id', orderList);
