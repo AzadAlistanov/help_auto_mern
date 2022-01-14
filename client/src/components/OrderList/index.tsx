@@ -13,6 +13,7 @@ export default function OrderList() {
   }, []);
 
   const cards = orders.map((order) => {
+
     return (
       <div className="d-inline-block">
         <section className="mx-auto my-5" style={{ maxWidth: '23rem' }}>
