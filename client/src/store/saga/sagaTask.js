@@ -2,7 +2,10 @@ import { takeEvery, call, put } from 'redux-saga/effects';
 import axios from 'axios';
 import * as types from '../actionTypes';
 import * as actions from '../actions/task';
-import { getInitAuth, getInitAuthMaster,getSignInUser ,getSignInMaster,logout} from './workers'
+import { 
+  getInitAuth, getInitAuthMaster,getSignInUser,
+  getSignInMaster,logout, addOrderSuccess
+} from './workers'
 
 function* initAuth() {
   try {
@@ -15,7 +18,6 @@ function* initAuth() {
 }
 
 
-
 export default function* tasksSaga() {
   yield takeEvery(types.AUTH_INIT, initAuth);
   yield takeEvery(types.GET_AUTH_SAGA_USER, getInitAuth);
@@ -23,6 +25,7 @@ export default function* tasksSaga() {
   yield takeEvery(types.GET_SIGNIN_SAGA_USER, getSignInUser);
   yield takeEvery(types.GET_SIGNIN_SAGA_MASTER, getSignInMaster);
   yield takeEvery(types.LOGOUT_SAGA, logout);
+  yield takeEvery(types.ADD_ORDER_SUCCESS, addOrderSuccess);
 }
 
 
