@@ -8,7 +8,29 @@ module.exports = {
         status: false,
         service_id: 1,
         user_id: 1,
-        master_id: 1,        
+        master_id: 1,
+        order_number: 123,
+        location: 'some address...',
+        createdAt: new Date(), updatedAt: new Date()
+      },
+      {
+        name: 'карбюратор не сосает',
+        status: true,
+        service_id: 1,
+        user_id: 2,
+        order_number: 124,
+        location: 'some address...',
+        master_id: null,
+        createdAt: new Date(), updatedAt: new Date()
+      },
+      {
+        name: 'маховик земля бросает',
+        status: true,
+        service_id: 1,
+        user_id: 3,
+        master_id: null,
+        order_number: 125,
+        location: 'some address...',
         createdAt: new Date(), updatedAt: new Date()
       },
       {
@@ -16,7 +38,9 @@ module.exports = {
         status: false,
         service_id: 4,
         user_id: 2,
-        master_id: 2,        
+        master_id: 2,
+        order_number: 126,
+        location: 'some address...',
         createdAt: new Date(), updatedAt: new Date()
       },
       {
@@ -24,7 +48,9 @@ module.exports = {
         status: false,
         service_id: 7,
         user_id: 3,
-        master_id: 3,        
+        master_id: 3,
+        order_number: 127,
+        location: 'some address...',
         createdAt: new Date(), updatedAt: new Date()
       },
 
