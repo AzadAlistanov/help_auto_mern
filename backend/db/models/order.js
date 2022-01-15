@@ -22,6 +22,15 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.BOOLEAN,
       allowNull: false,
     },
+    order_number: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      unique: true,
+    },
+    location: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
     service_id: {
       type: DataTypes.INTEGER,
     },

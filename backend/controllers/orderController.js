@@ -9,15 +9,16 @@ exports.getOrders = async (req, res) => {
     const ordersWithUsers = []
     for (let i = 0; i < ordersId.length; i++) {
       const findUser = await User.findOne({ where: { id: ordersId[i] }, row: true });
-      const orderNumber = Math.floor(Math.random() * 1000);
+      // const orderNumber = Math.floor(Math.random() * 1000);
       const alreadyFind = {
-        orderId: orderNumber,
+        orderNumber: orders[i].order_number,
         nickName: findUser.nickName,
         brand: findUser.carBrand,
         model: findUser.carModel,
         status: orders[i].status,
         orderName: orders[i].name,
         date: orders[i].createdAt,
+        userId: findUser.id,
       }
       ordersWithUsers.push(alreadyFind)
     }

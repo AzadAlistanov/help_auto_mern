@@ -15,7 +15,7 @@ export default function OrderList() {
   }, []);
 
   const cards = orders.map((order) => {
-    return <OrderItem order={order}/>
+    return <OrderItem order={order} serviceId={id}/>
   });
 
   return (
