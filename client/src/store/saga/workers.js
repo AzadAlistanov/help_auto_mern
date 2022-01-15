@@ -57,8 +57,6 @@ export function* logout(payload) {
       
       const response = await fetch('http://localhost:5000/logout', options);
       
-        
-      
     })
   );
   console.log(123)

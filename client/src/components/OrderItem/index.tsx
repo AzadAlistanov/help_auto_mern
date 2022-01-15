@@ -22,7 +22,7 @@ const OrderItem = ({ order, serviceId }: Props) => {
 
   const onRespond = async () => {
     await axios
-      .get(`${process.env.REACT_APP_BACKEND_URL}/serviceslist/order?order_number=${orderNumber}&user_id=${userId}&service_id=${serviceId}`);
+      .get(`${process.env.REACT_APP_BACKEND_URL}servicelist/order/${orderNumber}/${userId}/${serviceId}`);
   }
 
   return (
@@ -52,7 +52,7 @@ const OrderItem = ({ order, serviceId }: Props) => {
             Помогите, {orderName}
           </p>
           <div className="d-flex justify-content-between">
-            {status
+            {!status
               ? <a className="btn btn-info p-md-1 my-1" data-mdb-toggle="collapse" href="#collapseContent"
                    onClick={onRespond}
                    role="button" aria-expanded="false" aria-controls="collapseContent">Откликнуться</a>
