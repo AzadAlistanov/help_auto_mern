@@ -22,8 +22,6 @@ exports.getOrders = async (req, res) => {
       }
       ordersWithUsers.push(alreadyFind)
     }
-    console.log(orders);
-
     res.json({ ordersWithUsers });
   } catch (error) {
     console.log(error.message);

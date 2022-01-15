@@ -27,7 +27,6 @@ router.post('/', async (req, res) => {
       rating: 0,
       photo: 'https://media.istockphoto.com/photos/man-covering-his-face-with-a-question-mark-sign-picture-id177110242',
     });
-    console.log(checkUser)
     if (checkUser) {
       req.session.username = checkUser.name;
       req.session.userId = checkUser.id;
