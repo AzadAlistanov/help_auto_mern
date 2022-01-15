@@ -20,7 +20,7 @@ export default function App() {
   const {auth} = useSelector((state: State) => state);
 
   // console.log('auth', auth);
-  
+
 
   return (
     <>
@@ -31,22 +31,22 @@ export default function App() {
           <Route path='/'>
             <Route path='auth' element={<Auth/>} />
             <Route path='auth/usersignin' element={<UserSignin/>} />
-            <Route path='auth/mastersignin' element={<MasterSignin/>} />
+            <Route path='auth/mastersignin' element={<MasterSignin />} />
             <Route path='auth/usersignup' element={<UserSignup/>} />
-            <Route path='auth/mastersignup' element={<MasterSignup/>} />
+            <Route path='auth/mastersignup' element={<MasterSignup />} />
           </Route>
 
-          <Route path='/expirience/:brandcar' element={<Expirience/>} />
+          <Route path='/expirience/:brandcar' element={<Expirience />} />
 
           <Route path='/servicelist' element={<ServiceList/>} />
-          <Route path='/servicelist/orderslist/:id' element={<OrderList/>} />
+          <Route path='/servicelist/orderslist/:id' element={<OrderList />} />
           <Route path='/servicelist/neworder' element={<NewOrder/>} />
 
           <Route path='/master/:masterid' element={<MasterProfile />}/>
-          <Route path='/user/:userid' element={<MasterProfile />}/>
+          <Route path='/user/:userid' element={<MasterProfile />} />
         </Routes>
       </main>
-      <Footer/>
+      <Footer />
     </>
   );
 }
