@@ -6,23 +6,12 @@ import * as actions from '../../store/actions/task'
 export default function MasterSignup() {
   const dispatch = useDispatch();
   const navigate = useNavigate()
-  const [value, setValue] = useState({ name: "", email: "", password: "", phone: "", address: "", photo: "", about: "", rating: "" })
+  const [value, setValue] = useState({
+     name: "", email: "", password: "",
+     phone: "", address: "", photo: "", about: "", rating: "" })
 
   async function signUp() {
-    // console.log(value)
     dispatch(actions.getSignInSagaMaster(value))
-    // console.log(`value`, value)
-    // const options: any = {
-    //   method: 'POST',
-    //   body: JSON.stringify({ value }),
-    //   credentials: 'include',
-    //   headers: { 'Accept': 'application/json', 'Content-Type': 'application/json', },
-    // };
-    // const response = await fetch('http://localhost:5000/mastersignup', options);
-
-    // const user = await response.json();
-    // console.log(`user`, user)
-    // navigate('/')
   }
 
   return (
