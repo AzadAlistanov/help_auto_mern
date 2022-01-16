@@ -56,7 +56,7 @@ export function* logout(payload) {
       
       
       const response = await fetch('http://localhost:5000/logout', options);
-      
+      await response.json();
         
       
     })
@@ -113,6 +113,7 @@ export function* getSignInMaster(payload) {
 }
 
 export function* addOrderSuccess(payload) {
+  console.log(`order`)
   const order = payload.payload
   console.log('payload', order);
   yield call(

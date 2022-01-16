@@ -10,6 +10,7 @@ exports.getServices = async (req, res) => {
 };
 
 exports.addOrder = async (req, res) => {
+  console.log(req.body)
   try {
     const { 
       name, user_id, service_id, status, master_id 

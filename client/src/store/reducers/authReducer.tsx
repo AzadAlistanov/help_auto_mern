@@ -14,7 +14,7 @@ const authReducer = (state = initialState, action: { type: any; payload: any; })
   switch (type) {
     case types.GET_AUTH:    
     return { ...newState,  userId: payload.checkUser.id, email: payload.checkUser.email, auth: true }
-    case types.GET_LOGOUT:    
+    case types.GET_LOGOUT:      
     return { ...newState, userId: '', email: '',auth: false }
     default:
       return state;

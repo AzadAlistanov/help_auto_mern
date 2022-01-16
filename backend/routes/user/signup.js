@@ -38,7 +38,7 @@ router.post('/', async (req, res) => {
     console.log(checkUser)
     if (checkUser) {
       req.session.username = checkUser.nickName;
-      req.session.userId = checkUser.id;      
+      req.session.userId = checkUser.id;            
       res.json({ checkUser });
     }
   } catch (error) {

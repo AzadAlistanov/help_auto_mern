@@ -1,0 +1,8 @@
+.drop-area {
+  width: 80 px;
+  height: 80 px;
+  border: 5 px dashed black;
+  display: flex;
+  align-items: center;
+  justify-content: center
+}
