@@ -12,6 +12,12 @@ router.post('/', fileMiddleware.single('avatar'), async (req, res) => {
 
   console.log(req.file)
   if (req.file) {
+    await User.update(
+      {
+        photo: req.file.path,
+      },
+      { where: { id: req.file.originalname } },
+    );
     res.json(req.file)
     // res.sendFile(path.join(__dirname, '../../',req.file.path))
   }
