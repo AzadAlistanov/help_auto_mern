@@ -13,12 +13,14 @@ const signinRouter = require('./routes/user/signin');
 const logoutRouter = require('./routes/user/logout');
 const mastersignupRouter = require('./routes/master/signup');
 const mastersigninRouter = require('./routes/master/signin');
-const masterlogoutRouter = require('./routes/master/logout');
 const userprofileRouter = require('./routes/user/userprofile');
+const masterprofileRouter = require('./routes/master/masterprofile');
 const userprofilecomponentsRouter = require('./routes/user/userprofilecomponents');
+const masterprofilecomponentsRouter = require('./routes/master/masterprofilecomponents');
 const useravatarRouter = require('./routes/user/useravatar');
+const masteravatarRouter = require('./routes/master/masteravatar');
 const bodyParser = require('body-parser');
-const formData = require("express-form-data");
+
 
 
 
@@ -71,8 +73,11 @@ app.use('/logout', logoutRouter);
 app.use('/mastersignup', mastersignupRouter);
 app.use('/mastersignin', mastersigninRouter);
 app.use('/userprofile/:id', userprofileRouter);
+app.use('/masterprofile/:id', masterprofileRouter);
 app.use('/userprofilecomponents/:id', userprofilecomponentsRouter);
+app.use('/masterprofilecomponents/:id', masterprofilecomponentsRouter);
 app.use('/useravatarRouter', useravatarRouter);
+app.use('/masteravatarRouter', masteravatarRouter);
 app.use('/', home);
 app.use('/servicelist', serviceList);
 app.use('/orderlist/:id', orderList);
