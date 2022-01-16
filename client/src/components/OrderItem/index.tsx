@@ -21,7 +21,7 @@ const OrderItem = ({ order, serviceId }: Props) => {
   const { orderNumber, userId, nickName, orderName, status, date } = order;
   const onRespond = async () => {
     await axios
-      // .get(`${process.env.REACT_APP_BACKEND_URL}servicelist/order/${orderNumber}/${userId}/${serviceId}`);
+      .get(`${process.env.REACT_APP_BACKEND_URL}servicelist/order/${orderNumber}/${userId}/${serviceId}`);
   }
 
   return (
