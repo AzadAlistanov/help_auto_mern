@@ -20,7 +20,7 @@ exports.getOrders = async (req, res) => {
         date: orders[i].createdAt,
         userId: findUser.id,
       }
-      ordersWithUsers.push(alreadyFind)
+      ordersWithUsers.push(alreadyFind);
     }
     res.json({ ordersWithUsers });
   } catch (error) {
