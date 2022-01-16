@@ -46,7 +46,7 @@ export default function App() {
           <Route path='/user/:userid' element={<MasterProfile />} />
         </Routes>
       </main>
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 }
