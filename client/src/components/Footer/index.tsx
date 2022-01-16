@@ -47,7 +47,7 @@ export default function Footer() {
 
 
         <div className="footer-copyright text-center py-3">© 2022 Copyright:
-          <a href="#" className="text-decoration-none"> Arctic@Fox.com</a>
+          <a href="#" className="text-decoration-none"> Arctic<i className="fas fa-paw"></i>Fox.com</a>
         </div>
 
       </footer>

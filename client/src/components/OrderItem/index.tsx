@@ -19,10 +19,9 @@ type Props = {
 
 const OrderItem = ({ order, serviceId }: Props) => {
   const { orderNumber, userId, nickName, orderName, status, date } = order;
-
   const onRespond = async () => {
     await axios
-      .get(`${process.env.REACT_APP_BACKEND_URL}servicelist/order/${orderNumber}/${userId}/${serviceId}`);
+      // .get(`${process.env.REACT_APP_BACKEND_URL}servicelist/order/${orderNumber}/${userId}/${serviceId}`);
   }
 
   return (
@@ -55,7 +54,7 @@ const OrderItem = ({ order, serviceId }: Props) => {
             {!status
               ? <a className="btn btn-info p-md-1 my-1" data-mdb-toggle="collapse" href="#collapseContent"
                    onClick={onRespond}
-                   role="button" aria-expanded="false" aria-controls="collapseContent">Откликнуться</a>
+                   role="button" aria-expanded="false" aria-controls="collapseContent">Откликнуться <i className="fas fa-truck"></i></a>
               : <p className="text-success">Выполняется...</p>
             }
           <div>
