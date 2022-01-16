@@ -1,16 +1,9 @@
 const nodemailer = require('nodemailer');
 const Vonage = require('@vonage/server-sdk');
+let https = require('follow-redirects').https;
+let fs = require('fs');
 
 const { Service, Order, Master, User } = require('../db/models');
-
-const vonage = new Vonage({
-  apiKey: process.env.SMS_API_KEY,
-  apiSecret: process.env.SMS_API_SECRET,
-})
-
-const from = process.env.SMS_SERVICE;
-const to = process.env.SMS_CLIENT;
-const text = 'We went to you. See you soon!';
 
 exports.getServices = async (req, res) => {
   try {
@@ -82,6 +75,16 @@ exports.changeStatus = async (req, res) => {
       text: `Перейдите в приложение чтобы договориться о встрече`,
     });
 
+    //VONAGE SERVICE
+    // const vonage = new Vonage({
+    //   apiKey: process.env.SMS_API_KEY,
+    //   apiSecret: process.env.SMS_API_SECRET,
+    // });
+    //
+    // const from = process.env.SMS_SERVICE;
+    // const to = user.phone;
+    // const text = 'We went to you. See you soon!';
+    //
     // vonage.message.sendSms(from, to, text, (err, responseData) => {
     //   if (err) {
     //     console.log(err);
@@ -94,6 +97,42 @@ exports.changeStatus = async (req, res) => {
     //   }
     // });
 
+    // BIPPER
+
+  //   let options = {
+  //     'method': 'POST',
+  //     'hostname': '891nnr.api.infobip.com',
+  //     'path': '/sms/2/text/advanced',
+  //     'headers': {
+  //       'Authorization': `App ${process.env.SMS_BIPPER_KEY}`,
+  //       'Content-Type': 'application/json',
+  //       'Accept': 'application/json'
+  //     },
+  //     'maxRedirects': 20
+  //   };
+  //
+  //   let request = https.request(options, function (response) {
+  //     let chunks = [];
+  //
+  //     response.on("data", function (chunk) {
+  //       chunks.push(chunk);
+  //     });
+  //
+  //     response.on("end", function (chunk) {
+  //       let body = Buffer.concat(chunks);
+  //       console.log(body.toString());
+  //     });
+  //
+  //     response.on("error", function (error) {
+  //       console.error(error);
+  //     });
+  //   });
+  //
+  //   let postData = JSON.stringify({"messages":[{"from":"InfoSMS","destinations":[{"to":"79776606858"}],"text":"This is a sample message"}]});
+  //
+  //   request.write(postData);
+  //
+  //   request.end();
   } catch (error) {
     console.log(error.message);
   }
