@@ -9,7 +9,7 @@ module.exports = {
         password: '55555',
         phone: '6666666666',
         address: 'Moscow',
-        photo: 'images/masterimg/jpg',
+        photo: 'images/masterimg.jpg',
         about: 'Двигатель',
         rating: 0,
         createdAt: new Date(), updatedAt: new Date()
@@ -20,7 +20,7 @@ module.exports = {
         password: '55555',
         phone: '77777777777',
         address: 'Moscow',
-        photo: 'images/masterimg/jpg',
+        photo: 'images/masterimg.jpg',
         about: 'Шиномонтаж',
         rating: 0,
         createdAt: new Date(), updatedAt: new Date()
@@ -31,7 +31,7 @@ module.exports = {
         password: '55555',
         phone: '8888888888',
         address: 'Moscow',
-        photo: 'images/masterimg/jpg',
+        photo: 'images/masterimg.jpg',
         about: 'Тормозная система',
         rating: 0,
         createdAt: new Date(), updatedAt: new Date()

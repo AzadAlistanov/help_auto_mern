@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import MasterOrder from "./MasterOrder";
 
 
@@ -10,34 +10,41 @@ export default function MasterProfile() {
 
   const [img, setImg] = useState<any>(null)
   const [avatar, setAvatar] = useState<any>(null)
-  const refForm = useRef(null);
   const [user, setUser] = useState({ about: "", address: "", createdAt: "", email: "", id: "", name: "", phone: "", photo: "", rating: "" })
-  const id: any = 1
-
-  
-  
+  const id: any = 2
 
   const check = {
     props: id
   }
+
   useEffect(() => {
     (async function () {
-      const { data } = await axios.get(`http://localhost:5000/masterprofile/${id}`);      
+      const { data } = await axios.get(`http://localhost:5000/masterprofile/${id}`);
       setUser(data.master[0])
     }());
   }, []);
 
 
   const checkFunction = React.useCallback(async () => {
-    console.log(`123`, 123)
     const formData = new FormData()
     formData.append('avatar', img, id)
     await axios.post('http://localhost:5000/masteravatarRouter', formData, { headers: { 'Content-Type': 'multipart/form-data' } })
-
       .then(res => setAvatar(`http://localhost:5000/${res.data.path}`))
     return user
   }, [img]
   )
+
+
+    // const posts = useSelector((state: State) => state.post)
+    // const [values, setValues] = useState([]);
+    
+    const onSend = (e: any) => {
+      e.preventDefault();
+      let formData = new FormData(e.target);
+      const data = Object.fromEntries(formData);
+      console.log(`data`, data)
+    };
+  
 
   return (
     <div>
@@ -63,13 +70,26 @@ export default function MasterProfile() {
                 </div>
                 <div className="panel-body">
                   <div className="text-center" id="author">
-                   { avatar === null ?                   
-                    <img src={`http://localhost:5000/${user.photo}`} />  :
-                    <img src={`${avatar}`} />  }                
+                    {avatar === null ?
+                      <img src={`http://localhost:5000/${user.photo}`} /> :
+                      <img src={`${avatar}`} />}
                     <h3><strong className="label label-warning">{user.address}</strong></h3>
                     <h3>{user.email}</h3>
                     <p className="sosmed-author">
                     </p>
+                    <div className="dropdown">
+                      <button className="btn btn-secondary dropdown-toggle"
+                        type="button" id="dropdownMenu1" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                        Поменять фото
+                      </button>
+                      <div className="dropdown-menu" aria-labelledby="dropdownMenu1">
+                        <input onChange={e => e.target.files !== null && setImg(e.target.files[0])} type="file" className="form-control" id="inputGroupFile01" />
+                        <button onClick={checkFunction}>отправить</button>
+                        {/* <a className="dropdown-item" href="#!">Action</a>
+                        <a className="dropdown-item" href="#!">Another action</a> */}
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -78,8 +98,8 @@ export default function MasterProfile() {
               <div className="panel">
                 <div className="panel-body">
                   <ul id="myTab" className="nav nav-pills">
-                    <li className="active"><a href="#detail" data-toggle="tab">О пользователе</a></li>
-                    <li className=""><a href="#contact" data-toggle="tab">Отправить сообщение</a></li>
+                    <li className="active"><a href="#detail" data-toggle="tab">О сервисе</a></li>
+                    <li className="passive"><a href="#contact" data-toggle="tab">Оставить отзыв</a></li>
                   </ul>
                   <div id="myTabContent" className="tab-content">
                     <hr />
@@ -95,8 +115,24 @@ export default function MasterProfile() {
                         </tbody>
                       </table>
                     </div>
-                    <div className="tab-pane fade" id="contact">
-                      <p></p>
+                    <div className="tab-pane fade passive in" id="contact">
+
+                      <h4>История профиля</h4>
+                      <table className="table table-th-block">
+                        <tbody>
+                          <div className="p-5">
+                            <h1 className="my-4 text-light text-center"></h1>
+                            <form role="form" className="w-50 mx-auto" onSubmit={onSend}>
+                              <div className="form-group">
+                                <textarea name="comment" className="form-control" placeholder="Сообщение"></textarea>
+                              </div>
+                              <div className="form-group text-center">
+                                <input type="submit" className="btn btn-info" value="Отправить" />
+                              </div>
+                            </form>
+                          </div>
+                        </tbody>
+                      </table>
 
                     </div>
                   </div>
@@ -109,14 +145,10 @@ export default function MasterProfile() {
 
 
       </div>
-      <h1>Отзывы наших клиентов</h1>
+
       <MasterOrder id={id} />
-
-  
-        <input onChange={e => e.target.files !== null && setImg(e.target.files[0])} type="file" className="form-control" id="inputGroupFile01" />
-        <button onClick={checkFunction}>отправить</button>
-
-
+      {/* <input onChange={e => e.target.files !== null && setImg(e.target.files[0])} type="file" className="form-control" id="inputGroupFile01" />
+        <button onClick={checkFunction}>отправить</button> */}
     </div >
   );
 }

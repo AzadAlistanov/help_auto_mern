@@ -14,18 +14,19 @@ export default function Home() {
   const getBrandCar = async () => {
     axios.get('http://localhost:5000/')
     .then((res) => setBrandCars(res.data))}
-  
+
   useEffect (() => {
     getBrandCar()
   }, [])
-  
+
   return (
     <div className="">
-      <form className="mb-5 hstack gap-3">
-        <input className="form-control me-auto" 
-          type="text" 
+
+      <form className="mx-auto w-75 mb-5 hstack gap-3">
+        <input className="form-control me-auto"
+          type="text"
           placeholder="Поиск ответов..."/>
-        <button type="submit" 
+        <button type="submit"
           className="btn btn-secondary">Отправить</button>
       </form>
 

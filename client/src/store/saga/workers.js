@@ -81,7 +81,9 @@ export function* getSignInUser(payload) {
       };
       const response = await fetch('http://localhost:5000/signup', options);
 
+      console.log(123)
       const user = await response.json();
+      console.log(123)
       return user
 
     })

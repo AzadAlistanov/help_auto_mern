@@ -4,6 +4,7 @@ const { User } = require('../../db/models');
 
 router.get('/', async (req, res) => {
   const id = req.baseUrl.slice(-1);
+  console.log(`id`, id)
 
   try {
     const user = await User.findAll({ where: { id } });

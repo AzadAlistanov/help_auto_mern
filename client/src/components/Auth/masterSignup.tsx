@@ -1,33 +1,39 @@
-import React, { useState } from 'react'
-import { useDispatch } from 'react-redux';
+import { useState, useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import axios from "axios";
+
+import { State } from "../../typeTS/initialState";
 import * as actions from '../../store/actions/task'
+
+
 
 export default function MasterSignup() {
   const dispatch = useDispatch();
   const navigate = useNavigate()
-  const [value, setValue] = useState({ name: "", email: "", password: "", phone: "", address: "", photo: "", about: "", rating: "" })
+
+  const [services, setServices] = useState([]);
+
+  const [value, setValue] = useState({
+    name: "", email: "", password: "",
+    phone: "", address: "", photo: "",
+    about: "", rating: "", checkService: [] as any})
 
   async function signUp() {
-    // console.log(value)
-    dispatch(actions.getSignInSagaMaster(value))
-    // console.log(`value`, value)
-    // const options: any = {
-    //   method: 'POST',
-    //   body: JSON.stringify({ value }),
-    //   credentials: 'include',
-    //   headers: { 'Accept': 'application/json', 'Content-Type': 'application/json', },
-    // };
-    // const response = await fetch('http://localhost:5000/mastersignup', options);
-
-    // const user = await response.json();
-    // console.log(`user`, user)
-    // navigate('/')
+    dispatch(actions.getSignInSagaMaster(value));
   }
 
+  useEffect(() => {
+    (async function() {
+      const { data } = await axios.get('http://localhost:5000/servicelist');
+      setServices(data);
+    }());
+  }, []);
+
+  
   return (
 
-    <section className="vh-100 bg-image">
+    <section className="vh-100 bg-image pb-5">
       <div className="mask d-flex align-items-center h-100 gradient-custom-3">
         <div className="container h-100">
           <div className="row d-flex justify-content-center align-items-center h-100">
@@ -37,7 +43,6 @@ export default function MasterSignup() {
                   <h2 className="text-uppercase text-center mb-5">Create an account</h2>
 
                   <form >
-
                     <div className="form-outline mb-4">
                       <input onChange={(event) => setValue({ ...value, name: event.target.value })} value={value.name} type="name" id="form3Example4cg" className="form-control form-control-lg" />
                       <label className="form-label" htmlFor="form3Example4cg">name</label>
@@ -69,37 +74,28 @@ export default function MasterSignup() {
                       <label className="form-label" htmlFor="form3Example4cg">photo</label>
                     </div>
 
-                    {/* <div className="form-outline mb-4">
+
+                    <div className="form-outline mb-4">
                       <input onChange={(event) => setValue({ ...value, about: event.target.value })} value={value.about} type="about" id="form3Example4cg" className="form-control form-control-lg" />
                       <label className="form-label" htmlFor="form3Example4cg">about</label>
-                    </div> */}
-
-                    <div className="form-floating">
-                      <select onChange={(event) => setValue({ ...value, about: event.target.value })} className="form-select" id="floatingSelect" aria-label="Floating label select example">
-                        <option selected>Откройте это меню выбора</option>
-                        <option value='Двигатель'>Двигатель</option>
-                        <option value='Кузовной ремонт'>Кузовной ремонт</option>
-                        <option value='Обслуживание ходовой части'>Обслуживание ходовой части</option>
-                        <option value='Шиномонтаж'>Шиномонтаж</option>
-                        <option value='Трансмиссия'>Трансмиссия</option>
-                        <option value='Рулевое управление'>Рулевое управление</option>
-                        <option value='Тормозная система'>Тормозная система</option>
-                        <option value='Иные услуги'>Иные услуги</option>
-                        <option value='Компьютерная диагностика'>Компьютерная диагностика</option>
-                        <option value='Сход-развал'>Сход-развал</option>
-                      </select>
-                      <label htmlFor="floatingSelect">Работает с элементом выбора</label>
                     </div>
 
-
+                    <div>{
+                      services.map((service: { id: number; name: string }) => (
+                        <div key={service.id}>
+                          <input
+                            id={String(service.id)}
+                            type='checkbox'
+                            value={service.id}
+                            onChange={(event) => setValue({ ...value, checkService: [...value.checkService, Number(event.target.value)] })}/>
+                          <label htmlFor={String(service.id)}>{service.name}</label>
+                        </div>
+                      ))
+                    }</div>
                     <div className="d-flex justify-content-center">
                       <button onClick={signUp} type="button" className="btn btn-info">Register</button>
                     </div>
-
-
-
                   </form>
-
                 </div>
               </div>
             </div>

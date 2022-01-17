@@ -1,13 +1,9 @@
 import React from 'react'
 type Order = {
-  orderId: number
-  brand: string
-  model: string
+  feedback: number
   nickName: string
-  orderName: string
-  status: boolean
-  date: string
-  master: string
+  photo: string
+
 }
 
 type Props = {
@@ -16,38 +12,12 @@ type Props = {
 
 
 export default function MasterItem(props: Props) {
-  const { orderId, brand, model, nickName, orderName, status, date, master } = props.order;
+  const { nickName, feedback, photo } = props.order;  
   return (
-
-    <table className="table table-striped">
-      <thead>
-        <tr>
-          <th>#</th>
-          <th>First Name</th>
-          <th>Last Name</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <th scope="row">1</th>
-          <td>
-            <th>
-              <div>
-                {/* <img src='https://storage.theoryandpractice.ru/tnp/uploads/image_unit/000/156/586/image/base_87716f252d.jpg'></img> */}
-              </div>
-              <div>2</div>
-            </th>
-          </td>
-          <td>Otto</td>
-        </tr>
-        <tr>
-          <th scope="row">2</th>
-          <td>Jacob</td>
-          <td>Thornton</td>
-        </tr>
-      </tbody>
-
-    </table>
-
+    <li>
+      <h5 className="font-cond mgb-5 fg-text-d fs-130" contentEditable="false">{nickName}</h5>
+      <img src={`http://localhost:5000/${photo}`} className="wpx-100 img-round mgb-20" title="" alt="" data-edit="false" data-editor="field" data-field="src[Image Path]; title[Image Title]; alt[Image Alternate Text]" />
+      <p className="fs-110 font-cond-l" contentEditable={"false"}>" {feedback}"</p>
+    </li>
   );
 }

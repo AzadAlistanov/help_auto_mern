@@ -1,6 +1,9 @@
 import axios from 'axios';
+
 import React, { useEffect, useState } from 'react'
+import "../../style.css"
 import MasterItem from './MasterItem';
+
 
 type Order = { id: number }
 
@@ -8,48 +11,30 @@ type Order = { id: number }
 
 export default function MasterOrder(order: Order) {
   const { id } = order
-  const [orders, setOrders] = useState({comemnt:""});
+  const [orders, setOrders] = useState([]);
 
   useEffect(() => {
     (async function () {
       const data: any = await axios.get(`http://localhost:5000/masterprofilecomponents/${id}`);
-      console.log(data.data.feedback)
-      setOrders(data.data.feedback)
-      console.log(`orders`, orders)
+      // console.log(data)
+      setOrders(data.data.feedbackWithUser)
+      // console.log(`orders`, orders)
     }());
   }, []);
 
-  // const cards = orders.map((order) => {
-  //   return <MasterItem order={order}/>
-  // });
+  const cards = orders.map((order) => {
+    return <MasterItem order={order} />
+  });
 
   return (
-    <table className="table table-striped">
-      <thead>
-        <tr>
-          <th>#</th>
-          <th>First Name</th>
-          <th>Last Name</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <th scope="row">1</th>
-          <td>
-            <th>
-              {/* <div><img src='https://storage.theoryandpractice.ru/tnp/uploads/image_unit/000/156/586/image/base_87716f252d.jpg'></img></div> */}
-              <div>{}</div>
-            </th>
-          </td>
-          <td>Otto</td>
-        </tr>
-        <tr>
-          <th scope="row">2</th>
-          <td>Jacob</td>
-          <td>Thornton</td>
-        </tr>
-      </tbody>
-
-    </table>
+    <div className="container">
+      <div className="mgb-40 padb-30 auto-invert line-b-4 align-center">
+        <h3 className="font-cond-l fg-accent lts-md mgb-10" contentEditable="false">Отзывы наших клиентов</h3>
+        <h1 className="font-cond-b fg-text-d lts-md fs-300 fs-300-xs no-mg" contentEditable="false"></h1>
+      </div>
+      <ul className="hash-list cols-3 cols-1-xs pad-30-all align-center text-sm">
+        {cards}
+      </ul>
+    </div>
   )
 }

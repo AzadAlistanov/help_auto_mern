@@ -16,6 +16,15 @@ module.exports = {
         type: Sequelize.BOOLEAN,
         allowNull: false,
       },
+      order_number: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        unique: true,
+      },
+      location: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
       service_id: {
         type: Sequelize.INTEGER,
         references: {

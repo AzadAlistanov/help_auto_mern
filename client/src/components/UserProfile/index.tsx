@@ -18,27 +18,24 @@ export default function UserProfile() {
   const [avatar, setAvatar] = useState<any>(null)
   const refForm = useRef(null);
   const [user, setUser] = useState({ name: "", email: "", password: "", nickName: "", firstName: "", lastName: "", city: "", carBrand: "", carModel: "", carYear: "", phone: "", createdAt: "", photo: "" })
-  const id: any = 1
-
+  const id: any = 3
 
   const check = {
     props: id
   }
+
   useEffect(() => {
     (async function () {
       const { data } = await axios.get(`http://localhost:5000/userprofile/${id}`);
-      console.log(`data`, data)
       setUser(data.user[0])
     }());
   }, []);
 
 
   const checkFunction = React.useCallback(async () => {
-
     const formData = new FormData()
     formData.append('avatar', img, id)
     await axios.post('http://localhost:5000/useravatarRouter', formData, { headers: { 'Content-Type': 'multipart/form-data' } })
-
       .then(res => setAvatar(`http://localhost:5000/${res.data.path}`))
     return user
   }, [img]
@@ -77,6 +74,19 @@ export default function UserProfile() {
                     <h3>{user.city}</h3>
                     <p className="sosmed-author">
                     </p>
+                    <div className="dropdown">
+                      <button className="btn btn-secondary dropdown-toggle"
+                        type="button" id="dropdownMenu1" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                        Поменять фото
+                      </button>
+                      <div className="dropdown-menu" aria-labelledby="dropdownMenu1">
+                      <input onChange={e => e.target.files !== null && setImg(e.target.files[0])} type="file" className="form-control" id="inputGroupFile01" />
+                      <button onClick={checkFunction}>отправить</button>
+                        {/* <a className="dropdown-item" href="#!">Action</a>
+                        <a className="dropdown-item" href="#!">Another action</a> */}
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -121,8 +131,8 @@ export default function UserProfile() {
 
       {/* <form ref={refForm} className="input-group mb-3" encType="multipart/form-data">
         <label className="input-group-text" htmlFor="inputGroupFile01">Загрузка</label> */}
-      <input onChange={e => e.target.files !== null && setImg(e.target.files[0])} type="file" className="form-control" id="inputGroupFile01" />
-      <button onClick={checkFunction}>отправить</button>
+      {/* <input onChange={e => e.target.files !== null && setImg(e.target.files[0])} type="file" className="form-control" id="inputGroupFile01" />
+      <button onClick={checkFunction}>отправить</button> */}
       {/* </form> */}
 
       {/* <div className="drop-area" style={{
