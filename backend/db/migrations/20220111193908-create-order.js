@@ -9,21 +9,16 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       name: {
-        type: Sequelize.STRING,
-        allowNull: false,
+        type: Sequelize.STRING,       
       },
       status: {
-        type: Sequelize.BOOLEAN,
-        allowNull: false,
+        type: Sequelize.BOOLEAN,        
       },
       order_number: {
         type: Sequelize.INTEGER,
-        allowNull: false,
-        unique: true,
       },
       location: {
-        type: Sequelize.STRING,
-        allowNull: false,
+        type: Sequelize.STRING,        
       },
       service_id: {
         type: Sequelize.INTEGER,

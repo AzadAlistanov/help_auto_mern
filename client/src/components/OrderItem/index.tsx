@@ -21,9 +21,11 @@ type Props = {
 
 
 const OrderItem = ({ order, serviceId }: Props) => {
+  const { authMaster } = useSelector((state: State) => state);
   // const { isAuth } = useSelector((state: State) => state.auth);
   const { orderNumber, userId, nickName, orderName, status, date } = order;
   const onRespond = async () => {
+    console.log(`check`)
     await axios
       .get(`${process.env.REACT_APP_BACKEND_URL}servicelist/order/${orderNumber}/${userId}/${serviceId}`);
   }
@@ -55,12 +57,12 @@ const OrderItem = ({ order, serviceId }: Props) => {
             Помогите, {orderName}
           </p>
           <div className="d-flex justify-content-between">
-            {/*{isAuth && (!status*/}
-            {/*  ? <a className="btn btn-info p-md-1 my-1" data-mdb-toggle="collapse" href="#collapseContent"*/}
-            {/*       onClick={onRespond}*/}
-            {/*       role="button" aria-expanded="false" aria-controls="collapseContent">Откликнуться <i className="fas fa-truck"></i></a>*/}
-            {/*  : <p className="text-success">Выполняется...</p>)*/}
-            {/*}*/}
+            {authMaster.masterId && (!status
+             ? <a className="btn btn-info p-md-1 my-1" data-mdb-toggle="collapse" href="#collapseContent"
+                   onClick={onRespond}
+                   role="button" aria-expanded="false" aria-controls="collapseContent">Откликнуться <i className="fas fa-truck"></i></a>
+              : <p className="text-success">Выполняется...</p>)
+           }
           <div>
             <i className="fas fa-share-alt text-muted p-md-1 my-1 me-2" data-mdb-toggle="tooltip"
               data-mdb-placement="top" title="Share this post"></i>

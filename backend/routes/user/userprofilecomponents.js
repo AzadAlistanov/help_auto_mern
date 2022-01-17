@@ -39,6 +39,7 @@ router.get('/', async (req, res) => {
           orderName: orders[i].name,
           date: orders[i].createdAt,
           master: findMaster.name,
+          masterId: findMaster.id,
           photo: findMaster.photo
         }
         ordersWithUsers.push(alreadyFind)

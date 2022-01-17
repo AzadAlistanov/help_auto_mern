@@ -1,8 +1,8 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import MasterOrder from "./MasterOrder";
-
-
+import { State } from '../../typeTS/initialState';
 
 
 
@@ -11,7 +11,9 @@ export default function MasterProfile() {
   const [img, setImg] = useState<any>(null)
   const [avatar, setAvatar] = useState<any>(null)
   const [user, setUser] = useState({ about: "", address: "", createdAt: "", email: "", id: "", name: "", phone: "", photo: "", rating: "" })
-  const id: any = 2
+  const { authMaster } = useSelector((state: State) => state);
+  console.log(`authMaster`, authMaster)
+  const id: any = authMaster.masterId
 
   const check = {
     props: id

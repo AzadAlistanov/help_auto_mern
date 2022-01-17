@@ -11,7 +11,8 @@ export default function UserOrder(order: Order) {
   useEffect(() => {
     (async function () {
       const { data: { ordersWithUsers } } = await axios.get(`http://localhost:5000/userprofilecomponents/${id}`);
-      setOrders(ordersWithUsers);      
+      setOrders(ordersWithUsers); 
+      console.log(`orders`, orders)    
     }());
   }, []);
 
