@@ -2,6 +2,8 @@
 
 import axios from "axios";
 import React, { useEffect, useRef, useState } from "react";
+import { useSelector } from "react-redux";
+import { State } from "../../typeTS/initialState";
 import UserOrder from "./userOrders";
 
 
@@ -14,11 +16,14 @@ type options = {
 
 
 export default function UserProfile() {
+
+  const {authUser} = useSelector((state: State) => state);
+  console.log(`authUser`, authUser.userId)
   const [img, setImg] = useState<any>(null)
   const [avatar, setAvatar] = useState<any>(null)
   const refForm = useRef(null);
   const [user, setUser] = useState({ name: "", email: "", password: "", nickName: "", firstName: "", lastName: "", city: "", carBrand: "", carModel: "", carYear: "", phone: "", createdAt: "", photo: "" })
-  const id: any = 3
+  const id: any = authUser.userId
 
   const check = {
     props: id

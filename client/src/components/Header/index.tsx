@@ -93,6 +93,8 @@ async function logout() {
               <Link className="dropdown-item" to='/auth/usersignin'>User Sign in</Link>
               <Link className="dropdown-item" to='/auth/mastersignup'>Master Sign up</Link>
               <Link className="dropdown-item" to='/auth/mastersignin'>Master Sign in</Link>
+              <Link className="dropdown-item" to='/master/:masterid'>Master </Link>
+              <Link className="dropdown-item" to='/userprofile/:userid'>User </Link>
             </div>
           </li>
         </ul>

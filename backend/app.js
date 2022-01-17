@@ -57,7 +57,7 @@ app.use(
   }),
 );
 
-app.use(cors({ credentials: true, origin: '*' }));
+// app.use(cors({ credentials: true, origin: '*' }));
 
 app.use(cookieParser());
 app.use(session(sessionConfig));
