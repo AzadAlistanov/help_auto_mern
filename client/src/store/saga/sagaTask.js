@@ -20,6 +20,7 @@ function* initAuth() {
 function* addPost(action) {
   const { payload } = action;
   try {
+
     const { data: { posts } } = yield call(() => axios.post(`${process.env.REACT_APP_BACKEND_URL}posts`, payload));
     yield put(actions.createPostSuccessAC(posts));
   } catch (e) {

@@ -10,10 +10,11 @@ exports.getPosts = async (req, res) => {
 };
 
 exports.addPost = async (req, res) => {
-  const { data } = req.body;
+  const data = req.body;
+  console.log(data);
   try {
-    const posts = await Post.create();
-    res.json( { posts } );
+    // const posts = await Post.create();
+    res.json( { data } );
   } catch (error) {
     console.log(error.message);
   }
