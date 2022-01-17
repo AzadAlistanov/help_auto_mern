@@ -21,6 +21,7 @@ router.post('/', async (req, res) => {
       carYear,
       phone
     } = req.body.checkUser;
+    console.log(email);
     const cryptPass = await bcrypt.hash(password, 10);
     const checkUser = await User.create({
       nickName,
