@@ -14,10 +14,7 @@ const authUserReducer = (state = initialState, action: { type: any; payload: any
   switch (type) {
     case types.SIGN_UP_USER:    
     case types.SIGN_IN_USER:
-      const user = payload.checkUser;
-      
-      // localStorage.setItem('isAuth', user);
-      
+      const user = payload.checkUser;         
     return {
       ...newState,
       userId: payload.checkUser.id,
@@ -25,9 +22,7 @@ const authUserReducer = (state = initialState, action: { type: any; payload: any
       auth: true
     }
     
-    case types.SIGN_OUT_USER:
-      console.log('out');
-      
+    case types.SIGN_OUT_USER:      
     return { ...newState,
       userId: '',
       email: '',

@@ -16,20 +16,17 @@ module.exports = (sequelize, DataTypes) => {
   Order.init({
     name: {
       type: DataTypes.STRING,
-      allowNull: false,
+      
     },
     status: {
       type: DataTypes.BOOLEAN,
-      allowNull: false,
+      
     },
     order_number: {
       type: DataTypes.INTEGER,
-      allowNull: false,
-      unique: true,
     },
     location: {
-      type: DataTypes.STRING,
-      allowNull: false,
+      type: DataTypes.STRING,      
     },
     service_id: {
       type: DataTypes.INTEGER,
