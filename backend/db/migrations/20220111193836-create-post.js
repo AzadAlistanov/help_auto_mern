@@ -16,7 +16,6 @@ module.exports = {
       },
       like: {
         type: Sequelize.INTEGER,
-        allowNull: false,
       },
       carBrand: {
         type: Sequelize.STRING,

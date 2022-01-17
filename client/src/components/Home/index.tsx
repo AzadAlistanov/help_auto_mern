@@ -20,14 +20,14 @@ export default function Home() {
   }, [])
 
   return (
-    <div className="">
+    <div className="py-5">
 
       <form className="mx-auto w-75 mb-5 hstack gap-3">
         <input className="form-control me-auto"
           type="text"
           placeholder="Поиск ответов..."/>
         <button type="submit"
-          className="btn btn-secondary">Отправить</button>
+          className="btn btn-secondary overflow-visible">Отправить</button>
       </form>
 
       <div className="shadow p-3 mb-5 bg-body rounded text-center">

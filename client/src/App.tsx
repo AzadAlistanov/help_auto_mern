@@ -5,7 +5,7 @@ import MasterSignin from './components/Auth/masterSignin';
 import MasterSignup from './components/Auth/masterSignup';
 import UserSignin from './components/Auth/userSignin';
 import UserSignup from './components/Auth/userSignup';
-import Expirience from './components/Expirience';
+import Experience from './components/Experience';
 import Footer from './components/Footer';
 import Header from './components/Header';
 import Home from './components/Home';
@@ -15,6 +15,7 @@ import OrderList from './components/OrderList';
 import ServiceList from './components/ServiceList';
 import UserProfile from './components/UserProfile';
 import { State } from './typeTS/initialState';
+import AddPost from './components/AddPost';
 
 export default function App() {
 
@@ -37,17 +38,19 @@ export default function App() {
             <Route path='auth/mastersignup' element={<MasterSignup />} />
           </Route>
 
-          <Route path='/expirience/:brandcar' element={<Expirience />} />
+          <Route path='/expirience/:carBrand' element={<Experience />} />
 
           <Route path='/servicelist' element={<ServiceList/>} />
           <Route path='/servicelist/orderslist/:id' element={<OrderList />} />
           <Route path='/servicelist/neworder' element={<NewOrder/>} />
 
-          <Route path='/master/:masterid' element={<MasterProfile />}/>
-          <Route path='/userprofile/:userid' element={<UserProfile />}/>
+          <Route path='/master/:masterid' element={<MasterProfile />} />
+          <Route path='/user/:userid' element={<MasterProfile />} />
+          <Route path='/addPost/:carBrand' element={<AddPost />} />
+          <Route path='/userprofile/:id' element={<UserProfile />} />
         </Routes>
       </main>
-      {/* <Footer /> */}
+       <Footer />
     </>
   );
 }

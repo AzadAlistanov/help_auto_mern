@@ -13,8 +13,7 @@ export default function MasterSignin() {
   async function signIn() {
     dispatch(actions.signInMasterSucces(value));
     navigate('/');
-  };
-
+  }
 
   return (
     <section className="vh-100 bg-image">
@@ -24,7 +23,7 @@ export default function MasterSignin() {
             <div className="col-12 col-md-9 col-lg-7 col-xl-6">
               <div className="card" >
                 <div className="card-body p-5">
-                  <h2 className="text-uppercase text-center mb-5">Create an account</h2>
+                  <h2 className="text-uppercase text-center mb-5">master sign in</h2>
 
                   <form >
 
@@ -39,8 +38,8 @@ export default function MasterSignin() {
                     </div>
 
 
-                    <div className="d-flex justify-content-center">     
-                      <button onClick={signIn} type="button" className="btn btn-info">Register</button>
+                    <div className="d-flex justify-content-center">
+                      <button onClick={signIn} type="button" className="btn btn-info">sign in</button>
                     </div>
 
                   </form>

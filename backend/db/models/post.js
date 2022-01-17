@@ -24,7 +24,6 @@ module.exports = (sequelize, DataTypes) => {
     },
     like: {
       type: DataTypes.INTEGER,
-      allowNull: false,
     },
     carBrand: {
       type: DataTypes.STRING,
