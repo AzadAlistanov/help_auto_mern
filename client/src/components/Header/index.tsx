@@ -1,4 +1,9 @@
 import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+
+import * as actions from '../../store/actions/auth'
+import { State } from '../../typeTS/initialState';
 
 
 export default function Header() {
@@ -13,6 +18,21 @@ export default function Header() {
 //   <Link style={{margin: '10px'}} to='/servicelist/orderslist'>servicelist/orderslist</Link>
 //   <Link style={{margin: '10px'}} to='/servicelist/neworder'>servicelist/neworder</Link>
 // </div>
+const dispatch = useDispatch();
+const navigate = useNavigate();
+const {authUser, authMaster} = useSelector((state: State) => state);
+console.log(authUser);
+console.log(authMaster);
+
+
+
+async function logout() {
+  dispatch(actions.signOutUserSucces());
+  dispatch(actions.signOutMasterSucces());
+  navigate('/');
+};
+
+
   return (
 
     <nav className="mb-1 navbar navbar-expand-lg navbar-dark default-color">
@@ -30,6 +50,15 @@ export default function Header() {
           <li className="nav-item">
             <Link className="nav-link" to='/servicelist'>Services</Link>
           </li>
+          {
+            authUser.userId && authMaster.masterId
+            ?
+            <div className="d-flex justify-content-center">     
+              <button onClick={logout} type="button" className="btn btn-info">logout</button>
+            </div>
+            : <></>
+          }
+
           {/*<li className="nav-item dropdown">*/}
           {/*  <a className="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"*/}
           {/*     aria-haspopup="true" aria-expanded="false">Authorization*/}
