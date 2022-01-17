@@ -1,9 +1,17 @@
 
-export interface AuthType {
+export interface AuthUserType {
   userId: null | number,
+  email: string,
+  auth: boolean,
+}
+
+export interface AuthMasterType {
+  masterId: null | number,
+  name: null | string,
   email: string,
   isAuth: boolean
 }
+
 export interface PostType {
   isLoading: boolean,
   posts: [],
@@ -19,7 +27,8 @@ export interface OrderType {
 }
 
 export interface State {
-  auth: AuthType,
+  authUser: AuthUserType,
+  authMaster: AuthMasterType,
   post: PostType,
   order: OrderType,
 }

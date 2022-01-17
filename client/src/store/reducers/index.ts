@@ -1,10 +1,12 @@
 import { combineReducers } from 'redux';
-import authReducer from './authReducer';
+import authUserReducer from './authUserReducer';
+import authMasterReducer from './authMasterReducer';
 import postReducer from './postReducer';
 import orderReducer from './orderReducer';
 
 const reducersSpec = {
-  auth: authReducer,
+  authUser: authUserReducer,
+  authMaster: authMasterReducer,
   post: postReducer,
   order: orderReducer,
 };

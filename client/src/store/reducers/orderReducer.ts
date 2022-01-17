@@ -16,7 +16,6 @@ const postReducer = (state = initialState, action: { type: any; payload: any; })
   
   switch (type) {
     case types.ADD_ORDER_SUCCESS: {
-      // console.log('{...newState, ...payload }', {...newState, ...payload });
       
       return {...newState, ...payload };
     }

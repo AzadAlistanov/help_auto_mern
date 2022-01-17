@@ -1,26 +1,5 @@
 import * as types from '../actionTypes';
 
-export function authInitAC(payload) {
-  return {
-    type: types.AUTH_SUCCESS,
-    payload,
-  };
-}
-
-export function authSuccessAC(payload) {
-  return {
-    type: types.AUTH_SUCCESS,
-    payload,
-  };
-}
-
-export function authErrorAC(payload) {
-  return {
-    type: types.AUTH_ERROR,
-    payload,
-  };
-}
-
 export function addOrderSuccessAC(payload) {
   return {
     type: types.ADD_ORDER_SUCCESS,
@@ -75,53 +54,7 @@ export function createPostErrorAC(payload) {
   };
 }
 
-export function getInitAuthAC (payload) {
-  return {
-    type: types.GET_AUTH,
-    payload
-  }
-};
 
-export function getInitAuthSaga (payload) {
-  return {
-    type: types.GET_AUTH_SAGA_USER,
-    payload
-  }
-};
-
-export function getInitAuthSagaMaster (payload) {
-  return {
-    type: types.GET_AUTH_SAGA_MASTER,
-    payload
-  }
-};
-
-export function getSignInSagaUser (payload) {
-  return {
-    type: types.GET_SIGNIN_SAGA_USER,
-    payload
-  }
-};
-
-export function getSignInSagaMaster (payload) {
-  return {
-    type: types.GET_SIGNIN_SAGA_MASTER,
-    payload
-  }
-};
-export function logOutSaga(payload) {
-  return {
-    type: types.LOGOUT_SAGA,
-    payload
-  }
-};
-
-export function getLogoutAC (payload) {
-  return {
-    type: types.GET_LOGOUT,
-    payload
-  }
-};
 
 
 

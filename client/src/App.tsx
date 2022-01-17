@@ -17,9 +17,9 @@ import { State } from './typeTS/initialState';
 
 export default function App() {
 
-  const {auth} = useSelector((state: State) => state);
+  const {authUser} = useSelector((state: State) => state);
 
-  // console.log('auth', auth);
+  // console.log('authUser', authUser);
 
 
   return (
