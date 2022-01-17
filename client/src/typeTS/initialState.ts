@@ -14,7 +14,7 @@ export interface AuthMasterType {
 
 export interface PostType {
   isLoading: boolean,
-  posts: [],
+  posts: Post[],
   error: null | string,
 }
 export interface OrderType {
@@ -31,4 +31,14 @@ export interface State {
   authMaster: AuthMasterType,
   post: PostType,
   order: OrderType,
+}
+
+export interface Post {
+  id: number,
+  title: string,
+  post: string,
+  like: number,
+  carBrand: string,
+  user_id: number,
+  createDate: string,
 }

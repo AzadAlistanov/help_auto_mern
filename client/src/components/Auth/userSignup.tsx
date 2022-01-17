@@ -5,7 +5,6 @@ import * as actions from '../../store/actions/auth'
 
 export default function UserSignup() {
   const dispatch = useDispatch();
-  
   const navigate = useNavigate()
   const [value, setValue] = useState({
     name: "", email: "", password: "",
@@ -19,7 +18,8 @@ export default function UserSignup() {
   }
 
   return (
-    <section className="vh-100 bg-image">
+
+    <section className="bg-image pb-5">
       <div className="mask d-flex align-items-center h-100 gradient-custom-3">
         <div className="container h-100">
           <div className="row d-flex justify-content-center align-items-center h-100">

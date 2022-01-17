@@ -14,6 +14,8 @@ const signinRouter = require('./routes/user/signin');
 const logoutRouter = require('./routes/user/logout');
 const mastersignupRouter = require('./routes/master/signup');
 const mastersigninRouter = require('./routes/master/signin');
+const masterlogoutRouter = require('./routes/master/logout');
+const postRouter = require('./routes/posts');
 const userprofileRouter = require('./routes/user/userprofile');
 const masterprofileRouter = require('./routes/master/masterprofile');
 const userprofilecomponentsRouter = require('./routes/user/userprofilecomponents');
@@ -21,9 +23,6 @@ const masterprofilecomponentsRouter = require('./routes/master/masterprofilecomp
 const useravatarRouter = require('./routes/user/useravatar');
 const masteravatarRouter = require('./routes/master/masteravatar');
 const bodyParser = require('body-parser');
-
-
-
 
 serverStart().then(connect);
 
@@ -82,5 +81,6 @@ app.use('/masteravatarRouter', masteravatarRouter);
 app.use('/', home);
 app.use('/servicelist', serviceList);
 app.use('/orderlist/:id', orderList);
+app.use('/posts', postRouter);
 
 module.exports = app;
