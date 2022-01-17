@@ -30,7 +30,7 @@ router.post('/', async (req, res) => {
       lastName,
       email,
       phone,
-      photo: 'https://media.istockphoto.com/photos/man-covering-his-face-with-a-question-mark-sign-picture-id177110242',
+      photo: 'images/userimg.jpg',
       city,
       carBrand:brand,
       carModel,
@@ -39,7 +39,7 @@ router.post('/', async (req, res) => {
     console.log(checkUser)
     if (checkUser) {
       req.session.username = checkUser.nickName;
-      req.session.userId = checkUser.id;      
+      req.session.userId = checkUser.id;            
       res.json({ checkUser });
     }
   } catch (error) {
