@@ -6,12 +6,12 @@ import { addOrderSuccessAC } from "../../store/actions/task";
 
 export default function NewOrder() {
   const [services, setServices] = useState([]);
-  const {auth} = useSelector((state: State) => state);
+  const {authUser} = useSelector((state: State) => state);
   const [orderState, setOrderState] = useState({
     name: '',
     status: false,
     service_id: 8,
-    user_id: auth.userId,
+    user_id: authUser.userId,
     master_id: null,
     error: null,
   });
@@ -23,7 +23,7 @@ export default function NewOrder() {
         {...orderState,
         name: orderState.name,
         service_id: orderState.service_id,
-        user_id: auth.userId,
+        user_id: authUser.userId,
       });
       setOrderState({...orderState, name: ''});
     dispatch(addOrderSuccessAC(orderState));

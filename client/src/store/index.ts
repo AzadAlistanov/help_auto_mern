@@ -8,8 +8,14 @@ import {State} from '../typeTS/initialState';
 const sagaMiddleware = createSagaMiddleware();
 
 const initialState: State = {
-  auth: {
+  authUser: {
     userId: null,
+    email: '',
+    auth: false,
+  },
+  authMaster: {
+    masterId: null,
+    name: null,
     email: '',
     isAuth: false,
   },

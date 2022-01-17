@@ -2,9 +2,8 @@ import { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import axios from "axios";
-
 import { State } from "../../typeTS/initialState";
-import * as actions from '../../store/actions/task'
+import * as actions from '../../store/actions/auth'
 
 
 
@@ -20,7 +19,8 @@ export default function MasterSignup() {
     about: "", rating: "", checkService: [] as any})
 
   async function signUp() {
-    dispatch(actions.getSignInSagaMaster(value));
+    dispatch(actions.signUpMasterSucces(value));
+    navigate('/')
   }
 
   useEffect(() => {

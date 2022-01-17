@@ -13,14 +13,15 @@ import MasterProfile from './components/MasterProfile';
 import NewOrder from './components/NewOrder';
 import OrderList from './components/OrderList';
 import ServiceList from './components/ServiceList';
+import UserProfile from './components/UserProfile';
 import { State } from './typeTS/initialState';
 import AddPost from './components/AddPost';
 
 export default function App() {
 
-  const {auth} = useSelector((state: State) => state);
+  const {authUser} = useSelector((state: State) => state);
 
-  // console.log('auth', auth);
+  // console.log('authUser', authUser);
 
 
   return (
@@ -46,6 +47,7 @@ export default function App() {
           <Route path='/master/:masterid' element={<MasterProfile />} />
           <Route path='/user/:userid' element={<MasterProfile />} />
           <Route path='/addPost/:carBrand' element={<AddPost />} />
+          <Route path='/userprofile/:id' element={<UserProfile />} />
         </Routes>
       </main>
        <Footer />

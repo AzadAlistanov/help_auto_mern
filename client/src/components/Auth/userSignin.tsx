@@ -2,7 +2,7 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import * as actions from '../../store/actions/task'
+import * as actions from '../../store/actions/auth'
 
 
 export default function ToSignIn() {
@@ -12,37 +12,11 @@ export default function ToSignIn() {
   const navigate = useNavigate()
 
   async function signIn() {
-    // console.log('signin')
-    // const options: any = {
-    //   method: 'POST',
-    //   body: JSON.stringify({ value }),
-    //   credentials: 'include',
-    //   headers: { 'Accept': 'application/json', 'Content-Type': 'application/json', },
-    // };
-    // const response = await fetch('http://localhost:5000/signin', options);
-    // const user = await response.json();
-
-    dispatch(actions.getInitAuthSaga(value))
+    dispatch(actions.signInUserSucces(value))
     navigate('/')
   }
 
-  async function logout() {
-    dispatch(actions.logOutSaga(value))
-    // const options: any = {
-    //   method: 'POST',
-    //   credentials: 'include',
-    //   headers: { 'Accept': 'application/json', 'Content-Type': 'application/json', },
-    // };
-    // const response = await fetch('http://localhost:5000/logout', options);
-
-    // const user = await response.json();
-
-    // navigate('/')
-  }
-
-
   return (
-
     <section className="vh-100 bg-image">
       <div className="mask d-flex align-items-center h-100 gradient-custom-3">
         <div className="container h-100">
@@ -67,12 +41,6 @@ export default function ToSignIn() {
                     <div className="d-flex justify-content-center">
                       <button onClick={signIn} type="button" className="btn btn-info">sign in</button>
                     </div>
-
-                    {/*<div className="d-flex justify-content-center">     */}
-                    {/*  <button onClick={logout} type="button" className="btn btn-info">logout</button>*/}
-                    {/*</div>*/}
-
-
 
                   </form>
 

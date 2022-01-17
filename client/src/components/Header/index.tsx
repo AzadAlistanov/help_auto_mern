@@ -1,10 +1,13 @@
 import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+
+import * as actions from '../../store/actions/auth'
 import { State } from '../../typeTS/initialState';
 
 
 export default function Header() {
-  const { isAuth } = useSelector((state: State) => state.auth);
+  // const { isAuth } = useSelector((state: State) => state.auth);
   // <div style={{display: 'flex'}}>
 //   <Link style={{margin: '10px'}} to='/auth'>auth</Link>
 //   <Link style={{margin: '10px'}} to='/auth/usersignin'>usersignin</Link>
@@ -16,6 +19,21 @@ export default function Header() {
 //   <Link style={{margin: '10px'}} to='/servicelist/orderslist'>servicelist/orderslist</Link>
 //   <Link style={{margin: '10px'}} to='/servicelist/neworder'>servicelist/neworder</Link>
 // </div>
+const dispatch = useDispatch();
+const navigate = useNavigate();
+const {authUser, authMaster} = useSelector((state: State) => state);
+console.log(authUser);
+console.log(authMaster);
+
+
+
+async function logout() {
+  dispatch(actions.signOutUserSucces());
+  dispatch(actions.signOutMasterSucces());
+  navigate('/');
+};
+
+
   return (
 
     <nav className="mb-1 navbar fixed-top navbar-expand-lg navbar-dark default-color">
@@ -44,6 +62,26 @@ export default function Header() {
               <Link className="dropdown-item" to='/auth/mastersignin'>Master Sign in</Link>
             </div>
           </li>
+          {
+            authUser.userId && authMaster.masterId
+            ?
+            <div className="d-flex justify-content-center">
+              <button onClick={logout} type="button" className="btn btn-info">logout</button>
+            </div>
+            : <></>
+          }
+
+          {/*<li className="nav-item dropdown">*/}
+          {/*  <a className="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"*/}
+          {/*     aria-haspopup="true" aria-expanded="false">Authorization*/}
+          {/*  </a>*/}
+          {/*  <div className="dropdown-menu dropdown-default" aria-labelledby="navbarDropdownMenuLink-333">*/}
+          {/*    <Link className="dropdown-item" to='/auth/usersignup'>User Sign up</Link>*/}
+          {/*    <Link className="dropdown-item" to='/auth/usersignin'>User Sign in</Link>*/}
+          {/*    <Link className="dropdown-item" to='/auth/mastersignup'>Master Sign up</Link>*/}
+          {/*    <Link className="dropdown-item" to='/auth/mastersignin'>Master Sign in</Link>*/}
+          {/*  </div>*/}
+          {/*</li>*/}
         </ul>
         <ul className="navbar-nav ml-auto nav-flex-icons">
           <li className="nav-item">
@@ -56,22 +94,22 @@ export default function Header() {
               <i className="fab fa-google-plus-g"></i>
             </a>
           </li>
-          {
-            isAuth && <li className="nav-item dropdown">
-              <a className="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
-                 aria-haspopup="true" aria-expanded="false">
-                <i className="fas fa-user"></i>
-              </a>
+          {/*{*/}
+          {/*  isAuth && <li className="nav-item dropdown">*/}
+          {/*    <a className="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"*/}
+          {/*       aria-haspopup="true" aria-expanded="false">*/}
+          {/*      <i className="fas fa-user"></i>*/}
+          {/*    </a>*/}
 
-              <div className="dropdown-menu dropdown-menu-right dropdown-default"
-                   aria-labelledby="navbarDropdownMenuLink-333">
-                {/*<Link className="dropdown-item" to='/auth/usersignup'>User Sign up</Link>*/}
-                {/*<Link className="dropdown-item" to='/auth/usersignin'>User Sign in</Link>*/}
-                {/*<Link className="dropdown-item" to='/auth/mastersignup'>Master Sign up</Link>*/}
-                {/*<Link className="dropdown-item" to='/auth/mastersignin'>Master Sign in</Link>*/}
-              </div>
-            </li>
-          }
+          {/*    <div className="dropdown-menu dropdown-menu-right dropdown-default"*/}
+          {/*         aria-labelledby="navbarDropdownMenuLink-333">*/}
+          {/*      /!*<Link className="dropdown-item" to='/auth/usersignup'>User Sign up</Link>*!/*/}
+          {/*      /!*<Link className="dropdown-item" to='/auth/usersignin'>User Sign in</Link>*!/*/}
+          {/*      /!*<Link className="dropdown-item" to='/auth/mastersignup'>Master Sign up</Link>*!/*/}
+          {/*      /!*<Link className="dropdown-item" to='/auth/mastersignin'>Master Sign in</Link>*!/*/}
+          {/*    </div>*/}
+          {/*  </li>*/}
+          {/*}*/}
         </ul>
       </div>
     </nav>

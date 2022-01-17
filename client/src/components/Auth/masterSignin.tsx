@@ -1,49 +1,21 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import * as actions from '../../store/actions/task'
+import * as actions from '../../store/actions/auth'
 
 
 export default function MasterSignin() {
 
-  const [value, setValue] = useState({  email: "", password: "" })
-  const navigate = useNavigate()
+  const [value, setValue] = useState({  email: "", password: "" });
+  const navigate = useNavigate();
 
   const dispatch = useDispatch();
   async function signIn() {
-
-    dispatch(actions.getInitAuthSagaMaster(value))
-    // console.log(`value`, value)
-    // const options: any = {
-    //   method: 'POST',
-    //   body: JSON.stringify({ value }),
-    //   credentials: 'include',
-    //   headers: { 'Accept': 'application/json', 'Content-Type': 'application/json', },
-    // };
-    // const response = await fetch('http://localhost:5000/mastersignin', options);
-
-    // const user = await response.json();
-    // console.log(`user`, user)
-    navigate('/')
+    dispatch(actions.signInMasterSucces(value));
+    navigate('/');
   }
 
-  async function logout() {
-
-    dispatch(actions.logOutSaga(value))
-
-    // const options: any = {
-    //   method: 'POST',
-    //   credentials: 'include',
-    //   headers: { 'Accept': 'application/json', 'Content-Type': 'application/json', },
-    // };
-    // const response = await fetch('http://localhost:5000/masterlogout', options);
-
-    // const master = await response.json();
-    // console.log(`master`, master)
-    // navigate('/')
-  }
   return (
-
     <section className="vh-100 bg-image">
       <div className="mask d-flex align-items-center h-100 gradient-custom-3">
         <div className="container h-100">
@@ -69,13 +41,6 @@ export default function MasterSignin() {
                     <div className="d-flex justify-content-center">
                       <button onClick={signIn} type="button" className="btn btn-info">sign in</button>
                     </div>
-
-                    {/*<div className="d-flex justify-content-center">*/}
-                    {/*  <button onClick={logout} type="button" className="btn btn-info">logout</button>*/}
-                    {/*</div>*/}
-
-
-
 
                   </form>
 
