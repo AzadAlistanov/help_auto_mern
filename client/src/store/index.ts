@@ -1,13 +1,14 @@
-import { createStore, applyMiddleware } from 'redux';
+import {createStore, applyMiddleware} from 'redux';
 import createSagaMiddleware from 'redux-saga';
-import { composeWithDevTools } from 'redux-devtools-extension';
+import {composeWithDevTools} from 'redux-devtools-extension';
 import rootReducer from './reducers';
 import rootSaga from './saga';
-import { State } from '../typeTS/initialState';
+import {State} from '../typeTS/initialState';
+
 const sagaMiddleware = createSagaMiddleware();
 
 const initialState: State = {
-  auth: {    
+  auth: {
     userId: null,
     email: '',
     isAuth: false,

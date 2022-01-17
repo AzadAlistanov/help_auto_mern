@@ -55,9 +55,10 @@ export function initPostErrorAC(payload) {
   };
 }
 
-export function createPostAC() {
+export function createPostAC(payload) {
   return {
     type: types.CREATE_POST,
+    payload,
   };
 }
 
@@ -80,48 +81,48 @@ export function getInitAuthAC (payload) {
     type: types.GET_AUTH,
     payload
   }
-};
+}
 
 export function getInitAuthSaga (payload) {
   return {
     type: types.GET_AUTH_SAGA_USER,
     payload
   }
-};
+}
 
 export function getInitAuthSagaMaster (payload) {
   return {
     type: types.GET_AUTH_SAGA_MASTER,
     payload
   }
-};
+}
 
 export function getSignInSagaUser (payload) {
   return {
     type: types.GET_SIGNIN_SAGA_USER,
     payload
   }
-};
+}
 
 export function getSignInSagaMaster (payload) {
   return {
     type: types.GET_SIGNIN_SAGA_MASTER,
     payload
   }
-};
+}
 export function logOutSaga(payload) {
   return {
     type: types.LOGOUT_SAGA,
     payload
   }
-};
+}
 
 export function getLogoutAC (payload) {
   return {
     type: types.GET_LOGOUT,
     payload
   }
-};
+}
 
 
 

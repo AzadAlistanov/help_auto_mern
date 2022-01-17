@@ -7,12 +7,12 @@ import * as actions from '../../store/actions/task'
 export default function UserSignup() {
   const dispatch = useDispatch();
   // getSignInSaga
-  
+
   const navigate = useNavigate()
   const [value, setValue] = useState({ name: "", email: "", password: "", nickName: "", firstName: "", lastName: "", city: "", brand: "", carModel: "", carYear: "", phone: "" })
 
   async function signUp() {
-    dispatch(actions.getSignInSagaUser(value)) 
+    dispatch(actions.getSignInSagaUser(value))
     // console.log(`value`, value)
     // const options: any = {
     //   method: 'POST',
@@ -30,7 +30,7 @@ export default function UserSignup() {
 
   return (
 
-    <section className="vh-100 bg-image">
+    <section className="bg-image pb-5">
       <div className="mask d-flex align-items-center h-100 gradient-custom-3">
         <div className="container h-100">
           <div className="row d-flex justify-content-center align-items-center h-100">

@@ -15,6 +15,7 @@ const logoutRouter = require('./routes/user/logout');
 const mastersignupRouter = require('./routes/master/signup');
 const mastersigninRouter = require('./routes/master/signin');
 const masterlogoutRouter = require('./routes/master/logout');
+const postRouter = require('./routes/posts');
 
 
 serverStart().then(connect);
@@ -62,5 +63,6 @@ app.use(cors({ credentials: true, origin: '*' }));
 app.use('/', home);
 app.use('/servicelist', serviceList);
 app.use('/orderlist/:id', orderList);
+app.use('/posts', postRouter);
 
 module.exports = app;

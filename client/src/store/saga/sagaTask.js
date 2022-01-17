@@ -2,7 +2,7 @@ import { takeEvery, call, put } from 'redux-saga/effects';
 import axios from 'axios';
 import * as types from '../actionTypes';
 import * as actions from '../actions/task';
-import { 
+import {
   getInitAuth, getInitAuthMaster,getSignInUser,
   getSignInMaster,logout, addOrderSuccess
 } from './workers'
@@ -17,15 +17,27 @@ function* initAuth() {
   }
 }
 
-
-export default function* tasksSaga() {
-  yield takeEvery(types.AUTH_INIT, initAuth);
-  yield takeEvery(types.GET_AUTH_SAGA_USER, getInitAuth);
-  yield takeEvery(types.GET_AUTH_SAGA_MASTER, getInitAuthMaster);  
-  yield takeEvery(types.GET_SIGNIN_SAGA_USER, getSignInUser);
-  yield takeEvery(types.GET_SIGNIN_SAGA_MASTER, getSignInMaster);
-  yield takeEvery(types.LOGOUT_SAGA, logout);
-  yield takeEvery(types.ADD_ORDER_SUCCESS, addOrderSuccess);
+function* addPost(action) {
+  const { payload } = action;
+  try {
+    const { data: { posts } } = yield call(() => axios.post(`${process.env.REACT_APP_BACKEND_URL}posts`, payload));
+    yield put(actions.createPostSuccessAC(posts));
+  } catch (e) {
+    yield put(actions.createPostErrorAC(e));
+  }
 }
 
 
+export default function* tasksSaga() {
+  yield takeEvery(types.AUTH_INIT, initAuth);
+
+  yield takeEvery(types.GET_AUTH_SAGA_USER, getInitAuth);
+  yield takeEvery(types.GET_AUTH_SAGA_MASTER, getInitAuthMaster);
+  yield takeEvery(types.GET_SIGNIN_SAGA_USER, getSignInUser);
+  yield takeEvery(types.GET_SIGNIN_SAGA_MASTER, getSignInMaster);
+  yield takeEvery(types.LOGOUT_SAGA, logout);
+
+  yield takeEvery(types.ADD_ORDER_SUCCESS, addOrderSuccess);
+
+  yield takeEvery(types.CREATE_POST, addPost);
+}
