@@ -1,5 +1,4 @@
 
-
 import axios from "axios";
 import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -30,6 +29,7 @@ export default function UserProfile() {
   
   
   const id: any = authUser.userId
+  console.log(id);
 
   const check = {
     props: id

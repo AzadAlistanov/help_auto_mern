@@ -1,9 +1,10 @@
 const router = require('express').Router();
 
 const { getServices, addOrder, changeStatus } = require('../controllers/serviceController');
+const { authUser } = require('../middleware/auth');
 
 
-router.get('/', getServices);
+router.get('/', authUser, getServices);
 
 router.post('/neworder', addOrder)
 

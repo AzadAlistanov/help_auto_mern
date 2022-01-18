@@ -7,6 +7,8 @@ const { Service, Order, Master, User } = require('../db/models');
 
 exports.getServices = async (req, res) => {
   try {
+  console.log('list-----', req.session);
+
     const services = await Service.findAll();
     res.json( services );
   } catch (error) {

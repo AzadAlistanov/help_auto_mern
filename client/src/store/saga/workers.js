@@ -19,7 +19,6 @@ export function* signUpUser (payload) {
 
     })
   );
-  console.log(`data`, data)
   yield put(actions.signUpUserAC(data));
 }
 
@@ -29,7 +28,6 @@ export function* signUpMaster(payload) {
   
   const data = yield call(
     (async function () {
-      console.log(`value`, checkUser)
       const options = {
         method: 'POST',
         body: JSON.stringify({ checkUser }),
@@ -75,9 +73,7 @@ export function* signInMaster(payload) {
       };
       const response = await fetch('http://localhost:5000/mastersignin', options);
 
-      console.log(123)
       const user = await response.json();
-      console.log(123)
       return user
     })
   );
@@ -108,6 +104,8 @@ export function* signOutMaster() {
   );
   yield put(actions.signOutMasterAC());
 }
+
+
 
 export function* addOrderSuccess(payload) {
   console.log(`order`)

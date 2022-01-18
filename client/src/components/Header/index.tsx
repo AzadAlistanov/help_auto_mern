@@ -22,17 +22,17 @@ export default function Header() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { authUser, authMaster } = useSelector((state: State) => state);
-  console.log('authUser', authUser);
-  console.log('authMaster', authMaster);
 
 
-
-  async function logout() {
+  async function logoutUser() {
     dispatch(actions.signOutUserSucces());
+    navigate('/');
+  };
+  
+  async function logoutMaster() {
     dispatch(actions.signOutMasterSucces());
     navigate('/');
   };
-
 
   return (
 
@@ -53,10 +53,17 @@ export default function Header() {
           </li>
 
           {
-            authUser.auth || authMaster.masterId
+            authUser.userId || authMaster.masterId
               ?
               <div className="d-flex justify-content-center">
-                <button onClick={logout} type="button" className="btn btn-info">logout</button>
+                <button 
+                  onClick={
+                    authUser.userId
+                    ? logoutUser
+                    : logoutMaster
+                  } 
+                  type="button" 
+                  className="btn btn-info">logout</button>
               </div>
               : <></>
           }
