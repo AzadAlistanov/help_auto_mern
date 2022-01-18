@@ -41,9 +41,9 @@ export default function Header() {
       <div className="collapse navbar-collapse" id="navbarSupportedContent-333">
         <ul className="navbar-nav mr-auto">
           <li className="nav-item active">
-            <a className="nav-link" href="/">Home
+            <Link to='/' className="nav-link" >Home
               <span className="sr-only">(current)</span>
-            </a>
+            </Link>
           </li>
           {/*<li className="nav-item">*/}
           {/*  <Link className="nav-link" to='/expirience'>Forum</Link>*/}
