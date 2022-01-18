@@ -14,9 +14,10 @@ export function addOrderErrorAC(payload) {
   };
 }
 
-export function initPostAC() {
+export function initPostAC(payload) {
   return {
     type: types.INIT_POST,
+    payload,
   };
 }
 

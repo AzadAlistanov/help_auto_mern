@@ -13,11 +13,20 @@ import {
 function* addPost(action) {
   const { payload } = action;
   try {
-
     const { data: { posts } } = yield call(() => axios.post(`${process.env.REACT_APP_BACKEND_URL}posts`, payload));
     yield put(actions.createPostSuccessAC(posts));
   } catch (e) {
     yield put(actions.createPostErrorAC(e));
+  }
+}
+
+function* initPost(action) {
+  const { payload } = action;
+  try {
+    const { data: { posts } } = yield call(() => axios.get(`${process.env.REACT_APP_BACKEND_URL}posts/${payload}`));
+    yield put(actions.initPostSuccessAC(posts));
+  } catch (e) {
+    yield put(actions.initPostErrorAC(e));
   }
 }
 
@@ -34,4 +43,5 @@ export default function* tasksSaga() {
   yield takeEvery(types.ADD_ORDER_SUCCESS, addOrderSuccess);
 
   yield takeEvery(types.CREATE_POST, addPost);
+  yield takeEvery(types.INIT_POST, initPost);
 }

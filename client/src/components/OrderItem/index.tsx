@@ -11,6 +11,7 @@ type Order = {
   status: boolean
   date: string
   order_id: number
+  location: string
 }
 
 type Props = {
@@ -22,12 +23,12 @@ type Props = {
 
 const OrderItem = ({ order, serviceId }: Props) => {
   const { authMaster: { masterId } } = useSelector((state: State) => state);
-  const { orderNumber, userId, nickName, orderName, status, date } = order;
+  const { orderNumber, userId, nickName, orderName, status, date, location } = order;
   const [orderStatus, setOrderStatus] = useState(status);
   const onRespond = async () => {
     const data = await axios
       .get(`${process.env.REACT_APP_BACKEND_URL}servicelist/order/${orderNumber}/${userId}/${serviceId}/${masterId}`);
-      data && setOrderStatus(false);
+    data && setOrderStatus(false);
   }
 
   return (
@@ -41,6 +42,7 @@ const OrderItem = ({ order, serviceId }: Props) => {
               width="50px" alt="avatar"/>
           <div>
           <h5 className="card-title font-weight-bold mb-2">{ `Заказ ${ orderNumber } ` }</h5>
+          <h5 className="card-title font-weight-bold mb-2">{ `Местоположение: ${ location } ` }</h5>
           <p className="card-text"><i className="far fa-clock pe-2"></i>{ date }</p>
           <p>{ `Заказчик: ${nickName}` }</p>
           </div>

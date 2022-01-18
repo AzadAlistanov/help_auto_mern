@@ -13,7 +13,7 @@ const postReducer = (state = {}, action) => {
       return { ...newState, posts: payload, isLoading: false };
     }
     case types.CREATE_POST_SUCCESS: {
-      return { ...newState, posts: [...newState.posts, payload], isLoading: false };
+      return { ...newState, isLoading: false }; // posts: [...newState.posts, payload],
     }
     case types.INIT_POST_ERROR:
     case types.CREATE_POST_ERROR: {

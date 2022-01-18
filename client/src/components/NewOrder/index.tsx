@@ -1,15 +1,17 @@
 import axios from "axios";
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from "react";
+import { useNavigate } from 'react-router-dom';
 import { State } from "../../typeTS/initialState";
 import { addOrderSuccessAC } from "../../store/actions/task";
 
 export default function NewOrder() {
   const [services, setServices] = useState([]);
+  const navigate = useNavigate();
   const { authUser } = useSelector((state: State) => state);
   const [orderState, setOrderState] = useState({
     name: '',
-    status: false,
+    status: true,
     location: '',
     service_id: 8,
     user_id: authUser.userId,
@@ -31,6 +33,7 @@ export default function NewOrder() {
       console.log(`orderState`, orderState)
     setOrderState({ ...orderState, name: '', location: '' });
     dispatch(addOrderSuccessAC(orderState));
+    navigate('/servicelist');
   }
 
   useEffect(() => {

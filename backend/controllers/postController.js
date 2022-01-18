@@ -1,8 +1,12 @@
 const { Post } = require('../db/models');
 
 exports.getPosts = async (req, res) => {
+  const { carBrand } = req.params;
+  console.log(carBrand)
+  console.log(1)
   try {
-    const posts = await Post.findAll();
+    const posts = await Post.findAll({ where: { carBrand } });
+
     res.json( { posts } );
   } catch (error) {
     console.log(error.message);
@@ -11,10 +15,10 @@ exports.getPosts = async (req, res) => {
 
 exports.addPost = async (req, res) => {
   const data = req.body;
-  console.log(data);
+  // console.log(data);
   try {
-    // const posts = await Post.create();
-    res.json( { data } );
+    const posts = await Post.create(data);
+    res.json( { success: 'Успешно создан!' } );
   } catch (error) {
     console.log(error.message);
   }

@@ -26,7 +26,7 @@ router.post('/', async (req, res) => {
       address,
       about,
       rating: 0,
-      photo: 'https://media.istockphoto.com/photos/man-covering-his-face-with-a-question-mark-sign-picture-id177110242',
+      photo: 'images/masterimg.jpg',
     });
 
     for (let i = 0; i < checkService.length; i++) {
@@ -41,7 +41,7 @@ router.post('/', async (req, res) => {
     }
   } catch (error) {
     console.log('Новый master не создан');
-    
+
   }
 });
 

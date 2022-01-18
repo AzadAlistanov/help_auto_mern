@@ -7,32 +7,18 @@ import { State } from '../../typeTS/initialState';
 
 
 export default function Header() {
-  // const { isAuth } = useSelector((state: State) => state.auth);
-  // <div style={{display: 'flex'}}>
-  //   <Link style={{margin: '10px'}} to='/auth'>auth</Link>
-  //   <Link style={{margin: '10px'}} to='/auth/usersignin'>usersignin</Link>
-  //   <Link style={{margin: '10px'}} to='/auth/mastersignin'>mastersignin</Link>
-  //   <Link style={{margin: '10px'}} to='/auth/usersignup'>usersignup</Link>
-  //   <Link style={{margin: '10px'}} to='/auth/mastersignup'>mastersignup</Link>
-  //   <Link style={{margin: '10px'}} to='/expirience'>expirience</Link>
-  //   <Link style={{margin: '10px'}} to='/servicelist'>servicelist</Link>
-  //   <Link style={{margin: '10px'}} to='/servicelist/orderslist'>servicelist/orderslist</Link>
-  //   <Link style={{margin: '10px'}} to='/servicelist/neworder'>servicelist/neworder</Link>
-  // </div>
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { authUser, authMaster } = useSelector((state: State) => state);
   console.log('authUser', authUser);
   console.log('authMaster', authMaster);
 
-
-
   async function logout() {
-    dispatch(actions.signOutUserSucces());
-    dispatch(actions.signOutMasterSucces());
+    authUser.auth
+      ? dispatch(actions.signOutUserSucces())
+      : dispatch(actions.signOutMasterSucces());
     navigate('/');
-  };
-
+  }
 
   return (
 
@@ -45,9 +31,6 @@ export default function Header() {
               <span className="sr-only">(current)</span>
             </Link>
           </li>
-          {/*<li className="nav-item">*/}
-          {/*  <Link className="nav-link" to='/expirience'>Forum</Link>*/}
-          {/*</li>*/}
           <li className="nav-item">
             <Link className="nav-link" to='/servicelist'>Services</Link>
           </li>
@@ -55,23 +38,11 @@ export default function Header() {
           {
             authUser.auth || authMaster.masterId
               ?
-              <div className="d-flex justify-content-center">
-                <button onClick={logout} type="button" className="btn btn-info">logout</button>
-              </div>
-              : <></>
+              <li className="nav-item">
+                <span onClick={logout} className="nav-link">Logout</span>
+              </li>
+              : null
           }
-
-          {/*<li className="nav-item dropdown">*/}
-          {/*  <a className="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"*/}
-          {/*     aria-haspopup="true" aria-expanded="false">Authorization*/}
-          {/*  </a>*/}
-          {/*  <div className="dropdown-menu dropdown-default" aria-labelledby="navbarDropdownMenuLink-333">*/}
-          {/*    <Link className="dropdown-item" to='/auth/usersignup'>User Sign up</Link>*/}
-          {/*    <Link className="dropdown-item" to='/auth/usersignin'>User Sign in</Link>*/}
-          {/*    <Link className="dropdown-item" to='/auth/mastersignup'>Master Sign up</Link>*/}
-          {/*    <Link className="dropdown-item" to='/auth/mastersignin'>Master Sign in</Link>*/}
-          {/*  </div>*/}
-          {/*</li>*/}
         </ul>
         <ul className="navbar-nav ml-auto nav-flex-icons">
           <li className="nav-item">
@@ -85,9 +56,9 @@ export default function Header() {
             </a>
           </li>
           <li className="nav-item">
-            <p className="nav-link waves-effect waves-light">
-              {(authUser.auth || authMaster.masterId) && (`Master ${authMaster.name}` || `User ${authUser.email}`)}
-            </p>
+            <span className="nav-link waves-effect waves-light">
+              {(authUser.auth || authMaster.masterId) && (authMaster.name ? `Master ${authMaster.name}` : `User ${authUser.email}`)}
+            </span>
           </li>
           <li className="nav-item dropdown">
             <a className="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
@@ -109,8 +80,6 @@ export default function Header() {
                 <Link className="dropdown-item" to='/auth/usersignin'>User Sign in</Link>
                 <Link className="dropdown-item" to='/auth/mastersignup'>Master Sign up</Link>
                 <Link className="dropdown-item" to='/auth/mastersignin'>Master Sign in</Link>
-                {/* <Link className="dropdown-item" to='/master/:masterid'>Master </Link>
-              <Link className="dropdown-item" to='/userprofile/:userid'>User </Link> */}
               </div>
 
             }
@@ -121,26 +90,9 @@ export default function Header() {
                 <Link className="dropdown-item" to='/userprofile/:userid'>Master </Link>
               </div>
               :
-              <></>
-
+              null
             }
           </li>
-          {/*{*/}
-          {/*  isAuth && <li className="nav-item dropdown">*/}
-          {/*    <a className="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"*/}
-          {/*       aria-haspopup="true" aria-expanded="false">*/}
-          {/*      <i className="fas fa-user"></i>*/}
-          {/*    </a>*/}
-
-          {/*    <div className="dropdown-menu dropdown-menu-right dropdown-default"*/}
-          {/*         aria-labelledby="navbarDropdownMenuLink-333">*/}
-          {/*      /!*<Link className="dropdown-item" to='/auth/usersignup'>User Sign up</Link>*!/*/}
-          {/*      /!*<Link className="dropdown-item" to='/auth/usersignin'>User Sign in</Link>*!/*/}
-          {/*      /!*<Link className="dropdown-item" to='/auth/mastersignup'>Master Sign up</Link>*!/*/}
-          {/*      /!*<Link className="dropdown-item" to='/auth/mastersignin'>Master Sign in</Link>*!/*/}
-          {/*    </div>*/}
-          {/*  </li>*/}
-          {/*}*/}
         </ul>
       </div>
     </nav>

@@ -63,6 +63,7 @@ exports.changeStatus = async (req, res) => {
 
     const user = await User.findOne({ where: { id: userId }});
 
+
     const transporter = nodemailer.createTransport({
       service: 'Gmail',
       auth: {
@@ -70,14 +71,14 @@ exports.changeStatus = async (req, res) => {
         pass: process.env.EMAIL_PASSWORD,
       },
     });
-
+    console.log(123)
     await transporter.sendMail({
       from: '"Мастер готов выполнить ваш заказ"',
       to: user.email,
       subject: `Мастер готов выполнить ваш заказ`,
       text: `Перейдите в приложение чтобы договориться о встрече`,
     });
-
+    console.log(456)
     //VONAGE SERVICE
     // const vonage = new Vonage({
     //   apiKey: process.env.SMS_API_KEY,
@@ -136,7 +137,7 @@ exports.changeStatus = async (req, res) => {
   //   request.write(postData);
   //
   //   request.end();
-    return res.json({ user });
+    return res.json({  });
   } catch (error) {
     console.log(error.message);
   }
