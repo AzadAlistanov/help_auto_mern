@@ -106,8 +106,8 @@ export default function UserProfile() {
               <div className="panel">
                 <div className="panel-body">
                   <ul id="myTab" className="nav nav-pills">
-                    <li className="active"><a href="#detail" data-toggle="tab">О пользователе</a></li>
-                    <li className=""><a href="#contact" data-toggle="tab">Отправить сообщение</a></li>
+                    {/* <li className="active"><a href="#detail" data-toggle="tab">О пользователе</a></li> */}
+                    {/* <li className=""><a href="#contact" data-toggle="tab">Отправить сообщение</a></li> */}
                   </ul>
                   <div id="myTabContent" className="tab-content">
                     <hr />
@@ -115,7 +115,7 @@ export default function UserProfile() {
                       <h4>История профиля</h4>
                       <table className="table table-th-block">
                         <tbody>
-                          <tr><td className="active">Зарегистрирован: </td><td>{user.createdAt}</td></tr>
+                          <tr><td className="active">Зарегистрирован: </td><td>{new Date(user.createdAt).toLocaleString()}</td></tr>
                           <tr><td className="active">carBrand: </td><td>{user.carBrand}</td></tr>
                           <tr><td className="active">carModel: </td><td>{user.carModel}</td></tr>
                           <tr><td className="active">phone: </td><td>{user.phone}</td></tr>
@@ -137,7 +137,7 @@ export default function UserProfile() {
 
 
       </div>
-      <h1>Мои заказы</h1>
+     
       <UserOrder id={id} />
 
       {/* <form ref={refForm} className="input-group mb-3" encType="multipart/form-data">
