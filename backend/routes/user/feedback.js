@@ -19,7 +19,7 @@ router.post('/', async (req, res) => {
       master_id,
       user_id
     });
-
+    res.json({})
 
   } catch (error) {
     console.log('Новый пользователь не создан');

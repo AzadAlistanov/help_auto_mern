@@ -10,8 +10,6 @@ export default function Header() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { authUser, authMaster } = useSelector((state: State) => state);
-  console.log('authUser', authUser);
-  console.log('authMaster', authMaster);
 
   async function logout() {
     authUser.auth
@@ -36,12 +34,25 @@ export default function Header() {
           </li>
 
           {
-            authUser.auth || authMaster.masterId
+            authUser.userId || authMaster.masterId
               ?
               <li className="nav-item">
                 <span onClick={logout} className="nav-link">Logout</span>
               </li>
               : null
+// =======
+//               <div className="d-flex justify-content-center">
+//                 <button
+//                   onClick={
+//                     authUser.userId
+//                     ? logoutUser
+//                     : logoutMaster
+//                   }
+//                   type="button"
+//                   className="btn btn-info">logout</button>
+//               </div>
+//               : <></>
+// >>>>>>> develop
           }
         </ul>
         <ul className="navbar-nav ml-auto nav-flex-icons">

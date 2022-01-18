@@ -1,4 +1,4 @@
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Routes, Route } from 'react-router-dom';
 import Auth from './components/Auth';
 import MasterSignin from './components/Auth/masterSignin';
@@ -14,14 +14,16 @@ import NewOrder from './components/NewOrder';
 import OrderList from './components/OrderList';
 import ServiceList from './components/ServiceList';
 import UserProfile from './components/UserProfile';
-import { State } from './typeTS/initialState';
 import AddPost from './components/AddPost';
+import { State } from './typeTS/initialState';
+import { useEffect } from 'react';
 
 export default function App() {
+  const { authUser, authMaster } = useSelector((state: State) => state);
+  
 
-  const {authUser} = useSelector((state: State) => state);
-
-  // console.log('authUser', authUser);
+  console.log('authUser', authUser);
+  console.log('authMaster', authMaster);
 
 
   return (

@@ -43,7 +43,7 @@ const OrderItem = ({ order, serviceId }: Props) => {
           <div>
           <h5 className="card-title font-weight-bold mb-2">{ `Заказ ${ orderNumber } ` }</h5>
           <h5 className="card-title font-weight-bold mb-2">{ `Местоположение: ${ location } ` }</h5>
-          <p className="card-text"><i className="far fa-clock pe-2"></i>{ date }</p>
+          <p className="card-text"><i className="far fa-clock pe-2"></i>{new Date(date).toLocaleString()}</p>
           <p>{ `Заказчик: ${nickName}` }</p>
           </div>
           </div>

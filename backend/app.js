@@ -34,7 +34,7 @@ const sessionConfig = {
   resave: false,
   saveUninitialized: false,
   cookie: {
-    httpOnly: true,
+    httpOnly: false,
     maxAge: 1000 * 60 * 60 * 24,
     // secure: process.env.NODE_ENV === 'development',
   },

@@ -7,7 +7,6 @@ import {
   signUpUser, signUpMaster, signInUser,
   signInMaster, signOutUser, signOutMaster,
   addOrderSuccess
-
 } from './workers'
 
 function* addPost(action) {

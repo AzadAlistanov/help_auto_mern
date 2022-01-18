@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import * as actions from '../../store/actions/auth'
@@ -9,12 +9,22 @@ export default function ToSignIn() {
   const dispatch = useDispatch();
 
   const [value, setValue] = useState({ nickName: "",  password: "" })
+
+  const [regValue, setRegValue] = useState(false);
+
   const navigate = useNavigate()
 
   async function signIn() {
-    dispatch(actions.signInUserSucces(value))
+    dispatch(actions.signInUserSucces(value));
+    setRegValue(true);
     navigate('/')
   }
+
+  useEffect(()=> {
+    if(regValue) {
+      dispatch(actions.signInUserSucces(value));
+    }
+  },[regValue])
 
   return (
     <section className="vh-100 bg-image">

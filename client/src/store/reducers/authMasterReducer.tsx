@@ -15,14 +15,16 @@ const authMasterReducer = (state = initialState, action: { type: any; payload: a
   switch (type) {
     case types.SIGN_UP_MASTER:    
     case types.SIGN_IN_MASTER:
+      const master = payload.checkUser;
       return { 
         ...newState,
-        masterId: payload.checkUser.id,
-        name:payload.checkUser.name,
-        email: payload.checkUser.email,
+        masterId: master.id,
+        name: master.name,
+        email: master.email,
         auth: true }
     
-    case types.SIGN_OUT_MASTER:    
+    case types.SIGN_OUT_MASTER:
+      localStorage.removeItem('store');
     return { ...newState,
       masterId: '',
       name: '',
