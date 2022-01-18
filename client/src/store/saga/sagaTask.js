@@ -9,7 +9,6 @@ import {
   addOrderSuccess
 
 } from './workers'
-import axios from 'axios';
 
 function* addPost(action) {
   const { payload } = action;

@@ -50,14 +50,14 @@ exports.addOrder = async (req, res) => {
 
 
 exports.changeStatus = async (req, res) => {
-  console.log(`123`, 123)
+  console.log(req.params)
   try {
     const {
-      orderNumber, userId, serviceId
+      orderNumber, userId, serviceId, masterId
     } = req.params;
 
     await Order.update(
-      { status: true },
+      { status: false , master_id: masterId },
       { where: { order_number: orderNumber }});
 
     const user = await User.findOne({ where: { id: userId }});
@@ -135,6 +135,7 @@ exports.changeStatus = async (req, res) => {
   //   request.write(postData);
   //
   //   request.end();
+    return res.json({ user });
   } catch (error) {
     console.log(error.message);
   }

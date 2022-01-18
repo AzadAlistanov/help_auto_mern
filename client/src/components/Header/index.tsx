@@ -84,6 +84,11 @@ export default function Header() {
               <i className="fab fa-google-plus-g"></i>
             </a>
           </li>
+          <li className="nav-item">
+            <p className="nav-link waves-effect waves-light">
+              {(authUser.auth || authMaster.masterId) && (`Master ${authMaster.name}` || `User ${authUser.email}`)}
+            </p>
+          </li>
           <li className="nav-item dropdown">
             <a className="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
               aria-haspopup="true" aria-expanded="false">
@@ -93,8 +98,8 @@ export default function Header() {
               <div className="dropdown-menu dropdown-menu-right dropdown-default"
                 aria-labelledby="navbarDropdownMenuLink-333">
                   {authUser.auth ?
-                <Link className="dropdown-item" to='/userprofile/:userid'>User </Link>:
-                <Link className="dropdown-item" to='/master/:masterid'>Master </Link>
+                <Link className="dropdown-item" to='/userprofile/:userid'>Personal Area</Link>:
+                <Link className="dropdown-item" to='/master/:masterid'>Personal Area</Link>
                   }
               </div>
               :
