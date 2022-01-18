@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
 import { State } from '../../typeTS/initialState';
@@ -21,13 +21,13 @@ type Props = {
 
 
 const OrderItem = ({ order, serviceId }: Props) => {
-  const { authMaster } = useSelector((state: State) => state);
-  // const { isAuth } = useSelector((state: State) => state.auth);
+  const { authMaster: { masterId } } = useSelector((state: State) => state);
   const { orderNumber, userId, nickName, orderName, status, date } = order;
+  const [orderStatus, setOrderStatus] = useState(status);
   const onRespond = async () => {
-    console.log(`check`)
-    await axios
-      .get(`${process.env.REACT_APP_BACKEND_URL}servicelist/order/${orderNumber}/${userId}/${serviceId}`);
+    const data = await axios
+      .get(`${process.env.REACT_APP_BACKEND_URL}servicelist/order/${orderNumber}/${userId}/${serviceId}/${masterId}`);
+      data && setOrderStatus(false);
   }
 
   return (
@@ -57,7 +57,7 @@ const OrderItem = ({ order, serviceId }: Props) => {
             Помогите, {orderName}
           </p>
           <div className="d-flex justify-content-between">
-            {authMaster.masterId && (!status
+            {masterId && (orderStatus
              ? <a className="btn btn-info p-md-1 my-1" data-mdb-toggle="collapse" href="#collapseContent"
                    onClick={onRespond}
                    role="button" aria-expanded="false" aria-controls="collapseContent">Откликнуться <i className="fas fa-truck"></i></a>

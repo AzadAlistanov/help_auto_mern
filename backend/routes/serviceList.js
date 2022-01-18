@@ -7,7 +7,7 @@ router.get('/', getServices);
 
 router.post('/neworder', addOrder)
 
-router.get('/order/:orderNumber/:userId/:serviceId', changeStatus);
+router.get('/order/:orderNumber/:userId/:serviceId/:masterId', changeStatus);
 
 
 module.exports = router;

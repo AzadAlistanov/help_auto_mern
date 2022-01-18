@@ -1,4 +1,5 @@
 import { takeEvery, call, put } from 'redux-saga/effects';
+import axios from 'axios';
 import * as types from '../actionTypes';
 import * as actions from '../actions/task';
 
@@ -8,7 +9,6 @@ import {
   addOrderSuccess
 
 } from './workers'
-import axios from 'axios';
 
 function* addPost(action) {
   const { payload } = action;
