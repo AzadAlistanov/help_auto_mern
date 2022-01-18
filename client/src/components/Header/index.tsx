@@ -93,7 +93,7 @@ export default function Header() {
           </li>
           <li className="nav-item">
             <p className="nav-link waves-effect waves-light">
-              {(authUser.auth || authMaster.masterId) && (`Master ${authMaster.name}` || `User ${authUser.email}`)}
+              {(authUser.userId || authMaster.masterId) && (`Master ${authMaster.name}` || `User ${authUser.email}`)}
             </p>
           </li>
           <li className="nav-item dropdown">

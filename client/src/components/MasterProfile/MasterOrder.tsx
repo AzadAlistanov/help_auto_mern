@@ -22,8 +22,8 @@ export default function MasterOrder(order: Order) {
     }());
   }, [id]);
 
-  const cards = orders.map((order) => {
-    return <MasterItem order={order} />
+  const cards = orders.map((order, i) => {
+    return <MasterItem key={i} order={order} />
   });
 
   return (
