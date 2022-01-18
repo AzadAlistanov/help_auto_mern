@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import MasterOrder from "./MasterOrder";
 import { State } from '../../typeTS/initialState';
+import { useParams } from "react-router";
 
 
 
@@ -11,9 +12,38 @@ export default function MasterProfile() {
   const [img, setImg] = useState<any>(null)
   const [avatar, setAvatar] = useState<any>(null)
   const [user, setUser] = useState({ about: "", address: "", createdAt: "", email: "", id: "", name: "", phone: "", photo: "", rating: "" })
-  const { authMaster } = useSelector((state: State) => state);
+  const { authMaster, authUser } = useSelector((state: State) => state);
   console.log(`authMaster`, authMaster)
-  const id: any = authMaster.masterId
+  const { masterid } = useParams()
+  console.log(`masterid`, masterid)
+
+  const [orderState, setOrderState] = useState({
+
+    comment: "",
+    user_id: authUser.userId,
+    master_id: masterid,
+    error: null,
+  });
+
+  async function addFeedback(event: { preventDefault: () => void; }) {
+    event.preventDefault();
+    setOrderState(
+      {
+        ...orderState,
+        comment: orderState.comment,
+        error: null,
+      });
+    console.log(`orderState`, orderState)
+
+    const feedback = await axios.post('http://localhost:5000/newfeedback', orderState)
+
+
+    setOrderState({ ...orderState, comment: '' });
+  }
+
+  let id: any
+
+  authMaster.masterId ? id = authMaster.masterId : id = masterid
 
   const check = {
     props: id
@@ -37,16 +67,16 @@ export default function MasterProfile() {
   )
 
 
-    // const posts = useSelector((state: State) => state.post)
-    // const [values, setValues] = useState([]);
-    
-    const onSend = (e: any) => {
-      e.preventDefault();
-      let formData = new FormData(e.target);
-      const data = Object.fromEntries(formData);
-      console.log(`data`, data)
-    };
-  
+  // const posts = useSelector((state: State) => state.post)
+  // const [values, setValues] = useState([]);
+
+  const onSend = (e: any) => {
+    e.preventDefault();
+    let formData = new FormData(e.target);
+    const data = Object.fromEntries(formData);
+    console.log(`data`, data)
+  };
+
 
   return (
     <div>
@@ -79,19 +109,24 @@ export default function MasterProfile() {
                     <h3>{user.email}</h3>
                     <p className="sosmed-author">
                     </p>
-                    <div className="dropdown">
-                      <button className="btn btn-secondary dropdown-toggle"
-                        type="button" id="dropdownMenu1" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false">
-                        Поменять фото
-                      </button>
-                      <div className="dropdown-menu" aria-labelledby="dropdownMenu1">
-                        <input onChange={e => e.target.files !== null && setImg(e.target.files[0])} type="file" className="form-control" id="inputGroupFile01" />
-                        <button onClick={checkFunction}>отправить</button>
-                        {/* <a className="dropdown-item" href="#!">Action</a>
+                    {authMaster.masterId ?
+                      <div className="dropdown">
+                        <button className="btn btn-secondary dropdown-toggle"
+                          type="button" id="dropdownMenu1" data-toggle="dropdown"
+                          aria-haspopup="true" aria-expanded="false">
+                          Поменять фото
+                        </button>
+                        <div className="dropdown-menu" aria-labelledby="dropdownMenu1">
+                          <input onChange={e => e.target.files !== null && setImg(e.target.files[0])} type="file" className="form-control" id="inputGroupFile01" />
+                          <button onClick={checkFunction}>отправить</button>
+                          {/* <a className="dropdown-item" href="#!">Action</a>
                         <a className="dropdown-item" href="#!">Another action</a> */}
+                        </div>
                       </div>
-                    </div>
+                      :
+                      <></>
+
+                    }
                   </div>
                 </div>
               </div>
@@ -124,14 +159,25 @@ export default function MasterProfile() {
                         <tbody>
                           <div className="p-5">
                             <h1 className="my-4 text-light text-center"></h1>
-                            <form role="form" className="w-50 mx-auto" onSubmit={onSend}>
-                              <div className="form-group">
-                                <textarea name="comment" className="form-control" placeholder="Сообщение"></textarea>
-                              </div>
-                              <div className="form-group text-center">
-                                <input type="submit" className="btn btn-info" value="Отправить" />
-                              </div>
-                            </form>
+                            <div className="d-flex justify-content-center">
+                              <form onSubmit={addFeedback} className="col-12 col-md-9 col-lg-7 col-xl-6 shadow p-5 bg-body rounded text-center">
+
+
+                                <div className="mt-3">
+                                  <label
+                                    htmlFor="floatingTextarea"
+                                    className="form-label">Описание</label>
+                                  <textarea
+                                    value={orderState.comment}
+                                    onChange={(event) => setOrderState({ ...orderState, comment: event.target.value })}
+                                    className="form-control"
+                                    id="floatingTextarea" />
+                                </div>
+                                <div className="mt-5">
+                                  <button type="submit" className="btn btn-info">Создать</button>
+                                </div>
+                              </form>
+                            </div>
                           </div>
                         </tbody>
                       </table>

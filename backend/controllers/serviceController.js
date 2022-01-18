@@ -18,10 +18,11 @@ exports.addOrder = async (req, res) => {
   console.log(req.body)
   try {
     const {
-      name, user_id, service_id, status, master_id
+      name, user_id, service_id, status, master_id,location
     } = req.body;
+    let random = Math.floor(Math.random() * (1000))
     await Order.create({
-      name, user_id, service_id, status, master_id,
+      name, user_id, service_id,location, status, master_id, order_number:random
     });
 
     const masters = await Master.findAll(
