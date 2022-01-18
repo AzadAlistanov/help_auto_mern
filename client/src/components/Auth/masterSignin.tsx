@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import * as actions from '../../store/actions/auth'
@@ -10,10 +10,15 @@ export default function MasterSignin() {
   const navigate = useNavigate();
 
   const dispatch = useDispatch();
-  async function signIn() {
+  
+  function signIn() {
     dispatch(actions.signInMasterSucces(value));
     navigate('/');
   }
+
+  useEffect(() => {
+    dispatch(actions.signInMasterSucces(value));
+  },[])
 
   return (
     <section className="vh-100 bg-image">

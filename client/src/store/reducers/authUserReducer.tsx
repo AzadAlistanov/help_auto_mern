@@ -14,15 +14,16 @@ const authUserReducer = (state = initialState, action: { type: any; payload: any
   switch (type) {
     case types.SIGN_UP_USER:    
     case types.SIGN_IN_USER:
-      const user = payload.checkUser;         
+      const user = payload.checkUser;
     return {
       ...newState,
-      userId: payload.checkUser.id,
-      email: payload.checkUser.email,
-      auth: true
+      userId: user.id,
+      email: user.email,
+      auth: true,
     }
     
-    case types.SIGN_OUT_USER:      
+    case types.SIGN_OUT_USER:
+      localStorage.removeItem('store');
     return { ...newState,
       userId: '',
       email: '',
