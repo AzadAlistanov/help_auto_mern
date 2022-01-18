@@ -41,7 +41,7 @@ router.post('/', async (req, res) => {
     }
   } catch (error) {
     console.log('Новый master не создан');
-    
+
   }
 });
 

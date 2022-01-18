@@ -1,12 +1,18 @@
 import PostItem from '../PostItem';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import { State } from '../../typeTS/initialState';
+import * as actions from '../../store/actions/task';
+import {useEffect} from 'react';
 
 export default function Experience() {
   const { posts } = useSelector((state: State) => state.post);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const { carBrand } = useParams();
+  useEffect(() => {
+    dispatch(actions.initPostAC(carBrand));
+  }, []);
   const view = posts.map((post) => {
     return <PostItem />
   });

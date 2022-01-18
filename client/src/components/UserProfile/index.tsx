@@ -15,19 +15,19 @@ type options = {
 
 
 export default function UserProfile() {
- 
+
   const [img, setImg] = useState<any>(null)
   const [avatar, setAvatar] = useState<any>(null)
   const refForm = useRef(null);
   const [user, setUser] = useState({ name: "", email: "", password: "", nickName: "", firstName: "", lastName: "", city: "", carBrand: "", carModel: "", carYear: "", phone: "", createdAt: "", photo: "" })
-  
-  
+
+
   const {authUser} = useSelector((state: State) => state);
   console.log(`authUser`, authUser.userId)
   console.log(authUser);
- 
-  
-  
+
+
+
   const id: any = authUser.userId
   console.log(id);
 
@@ -52,20 +52,10 @@ export default function UserProfile() {
   }, [img]
   )
 
-
-
   return (
     <div>
-      <link rel="stylesheet" href="https://bootstraptema.ru/plugins/2015/bootstrap3/bootstrap.min.css" />
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-      <script src="https://bootstraptema.ru/plugins/jquery/jquery-1.11.3.min.js"></script>
-      <script src="https://bootstraptema.ru/plugins/2015/b-v3-3-6/bootstrap.min.js"></script>
-
-
       <div className="container">
         <div id="main">
-
-
           <div className="row" id="real-estates-detail">
             <div className="col-lg-4 col-md-4 col-xs-12">
               <div className="panel panel-default">
@@ -79,7 +69,7 @@ export default function UserProfile() {
                 <div className="panel-body">
                   <div className="text-center" id="author">
                     {avatar === null ?
-                      <img src={`http://localhost:5000/${user.photo}`} /> :
+                      <img src={`http://localhost:5000/${user.photo}`} width="200px" /> :
                       <img src={`${avatar}`} />}
                     <h3><strong className="label label-warning">{user.nickName}</strong></h3>
                     <h3>{user.city}</h3>
@@ -133,35 +123,8 @@ export default function UserProfile() {
             </div>
           </div>
         </div>
-
-
-
       </div>
-     
       <UserOrder id={id} />
-
-      {/* <form ref={refForm} className="input-group mb-3" encType="multipart/form-data">
-        <label className="input-group-text" htmlFor="inputGroupFile01">Загрузка</label> */}
-      {/* <input onChange={e => e.target.files !== null && setImg(e.target.files[0])} type="file" className="form-control" id="inputGroupFile01" />
-      <button onClick={checkFunction}>отправить</button> */}
-      {/* </form> */}
-
-      {/* <div className="drop-area" style={{
-        width: '200px',
-        height: '200px',
-        border: '5px dashed black',
-        backgroundColor: 'red'
-      }}      
-      >
-        <div
-        onDragLeave={(e: any) => checkFunction(e)}
-        >
-        
-
-        </div>
-
-      </div> */}
-
     </div >
   );
 }

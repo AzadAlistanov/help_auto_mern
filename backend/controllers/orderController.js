@@ -19,6 +19,7 @@ exports.getOrders = async (req, res) => {
         orderName: orders[i].name,
         date: orders[i].createdAt,
         userId: findUser.id,
+        location: orders[i].location,
       }
       ordersWithUsers.push(alreadyFind);
     }
