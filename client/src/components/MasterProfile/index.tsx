@@ -104,30 +104,38 @@ export default function MasterProfile() {
                 </div>
                 <div className="panel-body">
                   <div className="text-center" id="author">
-                    {avatar === null ?
-                      <img src={`http://localhost:5000/${user.photo}`} /> :
-                      <img src={`${avatar}`} />}
+                  {authMaster.masterId ?
+                  avatar === null ?
+                     <div className="dropdown">
+                     <button className="btn btn-lite dropdown-toggle"
+                       type="button" id="dropdownMenu1" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false">
+                       <img style={{maxWidth:'100%', maxHeight:'100%'}} src={`http://localhost:5000/${user.photo}`} width="200px" />
+                     </button>
+                     <div className="dropdown-menu" aria-labelledby="dropdownMenu1">
+                     <input onChange={e => e.target.files !== null && setImg(e.target.files[0])} type="file" className="form-control" id="inputGroupFile01" />
+                     <button onClick={checkFunction}>отправить</button>
+                     </div>
+                   </div>                       
+                      :
+                      <div className="dropdown">
+                      <button className="btn btn-lite dropdown-toggle"
+                        type="button" id="dropdownMenu1" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                        <img style={{maxWidth:'100%', maxHeight:'100%'}} src={`${avatar}`} />
+                      </button>
+                      <div className="dropdown-menu" aria-labelledby="dropdownMenu1">
+                      <input onChange={e => e.target.files !== null && setImg(e.target.files[0])} type="file" className="form-control" id="inputGroupFile01" />
+                      <button onClick={checkFunction}>отправить</button>
+                      </div>
+                    </div>
+                      
+                      :  <img style={{maxWidth:'100%', maxHeight:'100%'}} src={`http://localhost:5000/${user.photo}`} width="200px" />
+                    }
                     <h3><strong className="label label-warning">{user.address}</strong></h3>
                     <h3>{user.email}</h3>
                     <p className="sosmed-author">
                     </p>
-                    {authMaster.masterId ?
-                      <div className="dropdown">
-                        <button className="btn btn-secondary dropdown-toggle"
-                                type="button" id="dropdownMenu1" data-toggle="dropdown"
-                                aria-haspopup="true" aria-expanded="false">
-                          Поменять фото
-                        </button>
-                        <div className="dropdown-menu" aria-labelledby="dropdownMenu1">
-                          <input onChange={e => e.target.files !== null && setImg(e.target.files[0])} type="file" className="form-control" id="inputGroupFile01" />
-                          <button onClick={checkFunction}>отправить</button>
-                          {/* <a className="dropdown-item" href="#!">Action</a>
-                        <a className="dropdown-item" href="#!">Another action</a> */}
-                        </div>
-                      </div>
-                      :
-                      null
-                    }
                   </div>
                 </div>
               </div>
