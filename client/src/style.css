@@ -1,5 +1,8 @@
 body{margin-top:20px;}
 
+body::-webkit-scrollbar {
+  width: 0;
+}
 .align-center {
     text-align: center;
 }
@@ -60,4 +63,157 @@ img {
 }
 .font-cond-b {
     font-weight: 700 !important;
+}
+.main {
+  background: url('/public/img/garage.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 1200px;
+  overflow: scroll;
+  overflow-x: hidden;
+  padding: 60px 12%;
+}
+.main::-webkit-scrollbar {
+  width: 0;
+}
+
+.bg-body {
+  background-color: transparent!important;
+}
+.header {
+  background-color: #0f372e!important;
+  text-transform: uppercase;
+  padding: 0 4%;
+}
+.footer {
+  background-color: #0f372e!important;
+  opacity: 75%;
+}
+.services-list {
+  flex-wrap: wrap;
+  text-align: center;
+}
+.service-item {
+  width: 300px;
+  height: 100px;
+  --bs-bg-opacity: 0.5;
+  vertical-align: middle;
+  text-transform: uppercase;
+}
+.new-order {
+  color: white;
+}
+.form {
+  background-color: #be570e;
+}
+.btn:hover {
+  color: #E6AF2A;
+  border: 1px solid;
+}
+
+.logo {
+  font-size: 30px;
+}
+.logo strong {
+  color: #ff3900;
+}
+.logo span {
+  text-transform: none;
+  color: #be570e;
+}
+.dropdown-menu {
+  padding: 0 10px;
+  background-color: #be570e;
+}
+.dropdown-item {
+  border-bottom: 1px solid #e4b593;
+}
+.profile {
+  background: #be570e;
+  margin: 5px;
+  padding: 5px;
+}
+.image-profile {
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+}
+.home_wrapper {
+  
+}
+.car{
+  margin: 0 auto;
+  position: relative;
+  width: 400px;
+  animation: moving 10s linear -2s infinite;
+}
+.car:before {
+  content:"";
+  display:block;
+  animation: carmove 3.1s infinite linear;
+  background: url('https://i.stack.imgur.com/xWNOG.png') center/cover;
+  padding-top:45.25%;
+}
+
+.weel{
+  animation: wheel 10s infinite -2s linear;
+  background: url('https://i.stack.imgur.com/0Osjx.png') center/cover;
+  position: absolute;
+  bottom:0.8%;
+  width: 14.15%;
+}
+.weel:before {
+   content:"";
+   display:block;
+   padding-top:100%;
+}
+.weel1{left: 14.5%;}
+.weel2{right: 10%;}
+
+/*animations*/
+@keyframes carmove{
+  0%{transform: translateY(0px);}
+  25%{transform: translateY(1px)}
+  29%{transform: translateY(2px)}
+  33%{transform: translateY(3px)}
+  47%{transform: translateY(0px)}
+  58%{transform: translateY(1px)}
+  62%{transform: translateY(2px)}
+  66%{transform: translateY(3px)}
+  75%{transform: translateY(1px)}
+  100%{transform: translateY(0px)}
+}
+
+@keyframes wheel{
+ 0%{
+   transform: rotate(0deg)
+  }
+  35% {
+    transform: rotate(-920deg)
+  }
+  36%,
+  56% {
+    transform: rotate(-920deg)
+  }
+ 100%{
+   transform: rotate(-1440deg)
+  }
+}
+
+@keyframes moving {
+  0% {
+    right: -80em;
+    animation-timing-function: ease-out;
+  }
+  35% {
+    right: 0;
+  }
+  36%,
+  56% {
+    right: 0;
+    animation-timing-function: ease-in;
+  }
+  100% {
+    right: 120%;
+  }
 }

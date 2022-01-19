@@ -67,7 +67,7 @@ export default function UserProfile() {
               <div className="panel panel-default">
                 <div className="panel-heading">
                   <header className="panel-title">
-                    <div className="text-center">
+                    <div className="profile text-center">
                       <strong>{user.firstName} {user.lastName}</strong>
                     </div>
                   </header>
@@ -108,7 +108,7 @@ export default function UserProfile() {
               </div>
             </div>
             <div className="col-lg-8 col-md-8 col-xs-12">
-              <div className="panel">
+              <div className="profile panel">
                 <div className="panel-body">
                   <ul id="myTab" className="nav nav-pills">
                   </ul>

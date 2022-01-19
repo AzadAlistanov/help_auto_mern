@@ -39,45 +39,45 @@ export default function MasterSignup() {
           <div className="row d-flex justify-content-center align-items-center h-100">
             <div className="col-12 col-md-9 col-lg-7 col-xl-6">
               <div className="card" >
-                <div className="card-body p-5">
-                  <h2 className="text-uppercase text-center mb-5">Create an account</h2>
+                <div className="form card-body p-5">
+                  <h2 className="text-uppercase text-center mb-5">Регистрация организации</h2>
 
                   <form >
                     <div className="form-outline mb-4">
                       <input onChange={(event) => setValue({ ...value, name: event.target.value })} value={value.name} type="name" id="form3Example4cg" className="form-control form-control-lg" />
-                      <label className="form-label" htmlFor="form3Example4cg">name</label>
+                      <label className="form-label" htmlFor="form3Example4cg">Наименование</label>
                     </div>
 
                     <div className="form-outline mb-4">
                       <input onChange={(event) => setValue({ ...value, email: event.target.value })} value={value.email} type="email" id="form3Example3cg" className="form-control form-control-lg" />
-                      <label className="form-label" htmlFor="form3Example3cg">Your Email</label>
+                      <label className="form-label" htmlFor="form3Example3cg">Адрес электронной почты</label>
                     </div>
 
                     <div className="form-outline mb-4">
                       <input onChange={(event) => setValue({ ...value, password: event.target.value })} value={value.password} type="password" id="form3Example4cg" className="form-control form-control-lg" />
-                      <label className="form-label" htmlFor="form3Example4cg">Password</label>
+                      <label className="form-label" htmlFor="form3Example4cg">Пароль</label>
                     </div>
 
                     <div className="form-outline mb-4">
                       <input onChange={(event) => setValue({ ...value, phone: event.target.value })} value={value.phone} type="phone" id="form3Example4cg" className="form-control form-control-lg" />
-                      <label className="form-label" htmlFor="form3Example4cg">phone</label>
+                      <label className="form-label" htmlFor="form3Example4cg">Телефон</label>
                     </div>
 
                     <div className="form-outline mb-4">
                       <input onChange={(event) => setValue({ ...value, address: event.target.value })} value={value.address} type="address" id="form3Example4cg" className="form-control form-control-lg" />
-                      <label className="form-label" htmlFor="form3Example4cg">address</label>
+                      <label className="form-label" htmlFor="form3Example4cg">Адрес</label>
                     </div>
 
                     <div className="form-outline mb-4">
                       <input onChange={(event) => setValue({ ...value, about: event.target.value })} value={value.about} type="about" id="form3Example4cg" className="form-control form-control-lg" />
-                      <label className="form-label" htmlFor="form3Example4cg">about</label>
+                      <label className="form-label" htmlFor="form3Example4cg">Информация о вас</label>
                     </div>
 
                     <div id="accordion">
                       <div className="">
                         <div className="text-center" id="headingThree">
                           <button onClick={(event) => event.preventDefault()} className="btn collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                            Выбрать оказываемые услуги
+                            Оказываемые услуги..
                           </button>
                         </div>
                         <div id="collapseThree" className="collapse" aria-labelledby="headingThree" data-parent="#accordion">
@@ -100,7 +100,7 @@ export default function MasterSignup() {
                     </div>
                     
                     <div className="mt-3 d-flex justify-content-center">
-                      <button onClick={signUp} type="button" className="btn btn-info">Register</button>
+                      <button onClick={signUp} type="button" className="btn btn-dark m-1">Зарегистрироваться</button>
                     </div>
 
                   </form>
