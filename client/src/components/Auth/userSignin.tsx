@@ -8,7 +8,7 @@ import * as actions from '../../store/actions/auth'
 export default function ToSignIn() {
   const dispatch = useDispatch();
 
-  const [value, setValue] = useState({ nickName: "",  password: "" })
+  const [value, setValue] = useState({ email: "",  password: "" })
 
   const [regValue, setRegValue] = useState(false);
 
@@ -39,8 +39,8 @@ export default function ToSignIn() {
                   <form >
 
                     <div className="form-outline mb-4">
-                      <input onChange={(event) => setValue({ ...value, nickName: event.target.value })} value={value.nickName} type="nickName" id="form3Example1cg" className="form-control form-control-lg" />
-                      <label className="form-label" htmlFor="form3Example1cg">Your nickName</label>
+                      <input onChange={(event) => setValue({ ...value, email: event.target.value })} value={value.email} type="nickName" id="form3Example1cg" className="form-control form-control-lg" />
+                      <label className="form-label" htmlFor="form3Example1cg">Your email</label>
                     </div>
 
                     <div className="form-outline mb-4">
