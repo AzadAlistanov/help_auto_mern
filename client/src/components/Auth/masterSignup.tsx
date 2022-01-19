@@ -68,33 +68,41 @@ export default function MasterSignup() {
                       <label className="form-label" htmlFor="form3Example4cg">address</label>
                     </div>
 
-
-                    <div className="form-outline mb-4">
-                      <input onChange={(event) => setValue({ ...value, photo: event.target.value })} value={value.photo} type="photo" id="form3Example4cg" className="form-control form-control-lg" />
-                      <label className="form-label" htmlFor="form3Example4cg">photo</label>
-                    </div>
-
-
                     <div className="form-outline mb-4">
                       <input onChange={(event) => setValue({ ...value, about: event.target.value })} value={value.about} type="about" id="form3Example4cg" className="form-control form-control-lg" />
                       <label className="form-label" htmlFor="form3Example4cg">about</label>
                     </div>
 
-                    <div>{
-                      services.map((service: { id: number; name: string }) => (
-                        <div key={service.id}>
-                          <input
-                            id={String(service.id)}
-                            type='checkbox'
-                            value={service.id}
-                            onChange={(event) => setValue({ ...value, checkService: [...value.checkService, Number(event.target.value)] })}/>
-                          <label htmlFor={String(service.id)}>{service.name}</label>
+                    <div id="accordion">
+                      <div className="">
+                        <div className="text-center" id="headingThree">
+                          <button onClick={(event) => event.preventDefault()} className="btn collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                            Выбрать оказываемые услуги
+                          </button>
                         </div>
-                      ))
-                    }</div>
-                    <div className="d-flex justify-content-center">
+                        <div id="collapseThree" className="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                          <div className="card-body">
+                          <div>{
+                            services.map((service: { id: number; name: string }) => (
+                              <div key={service.id}>
+                                <input
+                                  id={String(service.id)}
+                                  type='checkbox'
+                                  value={service.id}
+                                  onChange={(event) => setValue({ ...value, checkService: [...value.checkService, Number(event.target.value)] })}/>
+                                <label className='ml-2' htmlFor={String(service.id)}>{service.name}</label>
+                              </div>
+                            ))
+                          }</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div className="mt-3 d-flex justify-content-center">
                       <button onClick={signUp} type="button" className="btn btn-info">Register</button>
                     </div>
+
                   </form>
                 </div>
               </div>
