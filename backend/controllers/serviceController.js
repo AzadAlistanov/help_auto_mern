@@ -79,26 +79,26 @@ exports.changeStatus = async (req, res) => {
     });
     console.log(456)
     //VONAGE SERVICE
-    // const vonage = new Vonage({
-    //   apiKey: process.env.SMS_API_KEY,
-    //   apiSecret: process.env.SMS_API_SECRET,
-    // });
-    //
-    // const from = process.env.SMS_SERVICE;
-    // const to = user.phone;
-    // const text = 'We went to you. See you soon!';
-    //
-    // vonage.message.sendSms(from, to, text, (err, responseData) => {
-    //   if (err) {
-    //     console.log(err);
-    //   } else {
-    //     if(responseData.messages[0]['status'] === "0") {
-    //       console.log("Message sent successfully.");
-    //     } else {
-    //       console.log(`Message failed with error: ${responseData.messages[0]['error-text']}`);
-    //     }
-    //   }
-    // });
+    const vonage = new Vonage({
+      apiKey: process.env.SMS_API_KEY,
+      apiSecret: process.env.SMS_API_SECRET,
+    });
+
+    const from = process.env.SMS_SERVICE;
+    const to = user.phone;
+    const text = 'We went to you. See you soon!';
+
+    vonage.message.sendSms(from, to, text, (err, responseData) => {
+      if (err) {
+        console.log(err);
+      } else {
+        if(responseData.messages[0]['status'] === "0") {
+          console.log("Message sent successfully.");
+        } else {
+          console.log(`Message failed with error: ${responseData.messages[0]['error-text']}`);
+        }
+      }
+    });
 
     // BIPPER
 

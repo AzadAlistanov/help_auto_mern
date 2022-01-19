@@ -6,25 +6,31 @@ import * as actions from '../../store/actions/task';
 import {useEffect} from 'react';
 
 export default function Experience() {
-  const { posts } = useSelector((state: State) => state.post);
+  const { post: { posts }, authUser, authMaster  } = useSelector((state: State) => state);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { carBrand } = useParams();
   useEffect(() => {
     dispatch(actions.initPostAC(carBrand));
   }, []);
-  const view = posts.map((post) => {
-    return <PostItem />
+  const items = posts || [];
+  const view = items.map((post) => {
+    return <PostItem item={post}/>
   });
 
   const onAddPost = () => {
     navigate(`/addPost/${carBrand}`);
   };
 
+  const authCond = authUser.auth || authMaster.masterId;
+
   return (
     <div className="container py-5">
       <div className="d-grid gap-2 col-3 mx-auto mb-5">
-        <button className="btn btn-cyan" type="button" onClick={onAddPost}>Add post</button>
+        {
+          authCond && <button className="btn btn-cyan" type="button" onClick={onAddPost}>Add post</button>
+        }
+
       </div>
       <div className="d-flex justify-content-center flex-wrap">
         { view }

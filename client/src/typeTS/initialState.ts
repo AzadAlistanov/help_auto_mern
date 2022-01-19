@@ -16,6 +16,7 @@ export interface PostType {
   isLoading: boolean,
   posts: Post[],
   error: null | string,
+  status: string
 }
 export interface OrderType {
   name: string,
