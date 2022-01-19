@@ -37,7 +37,9 @@ export default function UserProfile() {
 
   useEffect(() => {
     (async function () {
+      console.log(123)
       const { data } = await axios.get(`http://localhost:5000/userprofile/${id}`);
+      console.log(456)
       setUser(data.user[0])
     }());
   }, []);
@@ -54,6 +56,10 @@ export default function UserProfile() {
 
   return (
     <div>
+            <link rel="stylesheet" href="https://bootstraptema.ru/plugins/2015/bootstrap3/bootstrap.min.css" />
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+      <script src="https://bootstraptema.ru/plugins/jquery/jquery-1.11.3.min.js"></script>
+      <script src="https://bootstraptema.ru/plugins/2015/b-v3-3-6/bootstrap.min.js"></script>
       <div className="container">
         <div id="main">
           <div className="row" id="real-estates-detail">
@@ -67,27 +73,36 @@ export default function UserProfile() {
                   </header>
                 </div>
                 <div className="panel-body">
-                  <div className="text-center" id="author">
+                  <div className="text-center " id="author">
                     {avatar === null ?
-                      <img src={`http://localhost:5000/${user.photo}`} width="200px" /> :
-                      <img src={`${avatar}`} />}
-                    <h3><strong className="label label-warning">{user.nickName}</strong></h3>
-                    <h3>{user.city}</h3>
-                    <p className="sosmed-author">
-                    </p>
-                    <div className="dropdown">
-                      <button className="btn btn-secondary dropdown-toggle"
+                     <div className="dropdown">
+                     <button className="btn btn-lite dropdown-toggle"
+                       type="button" id="dropdownMenu1" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false">
+                       <img style={{maxWidth:'100%', maxHeight:'100%'}} src={`http://localhost:5000/${user.photo}`} width="200px" />
+                     </button>
+                     <div className="dropdown-menu" aria-labelledby="dropdownMenu1">
+                     <input onChange={e => e.target.files !== null && setImg(e.target.files[0])} type="file" className="form-control" id="inputGroupFile01" />
+                     <button onClick={checkFunction}>отправить</button>
+                     </div>
+                   </div>                       
+                      :
+                      <div className="dropdown">
+                      <button className="btn btn-lite dropdown-toggle"
                         type="button" id="dropdownMenu1" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false">
-                        Поменять фото
+                        <img style={{maxWidth:'100%', maxHeight:'100%'}} src={`${avatar}`} />
                       </button>
                       <div className="dropdown-menu" aria-labelledby="dropdownMenu1">
                       <input onChange={e => e.target.files !== null && setImg(e.target.files[0])} type="file" className="form-control" id="inputGroupFile01" />
                       <button onClick={checkFunction}>отправить</button>
-                        {/* <a className="dropdown-item" href="#!">Action</a>
-                        <a className="dropdown-item" href="#!">Another action</a> */}
                       </div>
                     </div>
+                      }
+                    <h3><strong className="label label-warning">{user.nickName}</strong></h3>
+                    <h3>{user.city}</h3>
+                    <p className="sosmed-author">
+                    </p>
                   </div>
                 </div>
               </div>
@@ -96,8 +111,6 @@ export default function UserProfile() {
               <div className="panel">
                 <div className="panel-body">
                   <ul id="myTab" className="nav nav-pills">
-                    {/* <li className="active"><a href="#detail" data-toggle="tab">О пользователе</a></li> */}
-                    {/* <li className=""><a href="#contact" data-toggle="tab">Отправить сообщение</a></li> */}
                   </ul>
                   <div id="myTabContent" className="tab-content">
                     <hr />

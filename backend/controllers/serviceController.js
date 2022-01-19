@@ -38,7 +38,7 @@ exports.addOrder = async (req, res) => {
         pass: process.env.EMAIL_PASSWORD,
       },
     });
-    console.log(123)
+    console.log('check1')
     masters.forEach(async (master) => {
       await transporter.sendMail({
         from: '"Мастер готов выполнить ваш заказ"',
@@ -47,7 +47,7 @@ exports.addOrder = async (req, res) => {
         text: `Перейдите в приложение чтобы договориться о встрече`,
       });
     });
-    console.log(789);
+    console.log('check2');
     res.json({a: 'Hello!'});
   } catch (error) {
     console.log(error.message);
@@ -111,4 +111,3 @@ exports.changeStatus = async (req, res) => {
     console.log(error.message);
   }
 };
-
