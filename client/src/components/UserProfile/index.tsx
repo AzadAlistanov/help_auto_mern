@@ -61,15 +61,15 @@ export default function UserProfile() {
               <div className="panel panel-default">
                 <div className="panel-heading">
                   <header className="panel-title">
-                    <div className="text-center">
+                    <div className="profile text-center">
                       <strong>{user.firstName} {user.lastName}</strong>
                     </div>
                   </header>
                 </div>
-                <div className="panel-body">
+                <div className="profile panel-body">
                   <div className="text-center" id="author">
                     {avatar === null ?
-                      <img src={`http://localhost:5000/${user.photo}`} width="200px" /> :
+                      <img className="image-profile" src={`http://localhost:5000/${user.photo}`} /> :
                       <img src={`${avatar}`} />}
                     <h3><strong className="label label-warning">{user.nickName}</strong></h3>
                     <h3>{user.city}</h3>
@@ -93,7 +93,7 @@ export default function UserProfile() {
               </div>
             </div>
             <div className="col-lg-8 col-md-8 col-xs-12">
-              <div className="panel">
+              <div className="profile panel">
                 <div className="panel-body">
                   <ul id="myTab" className="nav nav-pills">
                     {/* <li className="active"><a href="#detail" data-toggle="tab">О пользователе</a></li> */}

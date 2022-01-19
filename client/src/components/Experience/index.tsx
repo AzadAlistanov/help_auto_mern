@@ -24,7 +24,7 @@ export default function Experience() {
   return (
     <div className="container py-5">
       <div className="d-grid gap-2 col-3 mx-auto mb-5">
-        <button className="btn btn-cyan" type="button" onClick={onAddPost}>Add post</button>
+        <button className="btn btn-dark" type="button" onClick={onAddPost}>Добавить пост</button>
       </div>
       <div className="d-flex justify-content-center flex-wrap">
         { view }

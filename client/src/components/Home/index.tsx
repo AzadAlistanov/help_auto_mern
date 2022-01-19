@@ -20,26 +20,23 @@ export default function Home() {
   }, [])
 
   return (
-    <div className="py-5">
-
-      <form className="mx-auto w-75 mb-5 hstack gap-3">
-        <input className="form-control me-auto"
-          type="text"
-          placeholder="Поиск ответов..."/>
-        <button type="submit"
-          className="btn btn-secondary overflow-visible">Отправить</button>
-      </form>
-
-      <div className="shadow p-3 mb-5 bg-body rounded text-center">
-        {brandCars.map((brand: any) => (
-          <Link key={brand.name} to={`/expirience/${brand.name}`}>
-            <button className="btn btn-secondary m-1">
-              {brand.name.toUpperCase()}
-            </button>
-          </Link>
-        ))}
+    <div className="home_wrapper">
+      <div className="py-5">
+        <div className="shadow p-3 mb-5 bg-body bg-dark rounded text-center">
+          {brandCars.map((brand: any) => (
+            <Link key={brand.name} to={`/expirience/${brand.name}`}>
+              <button className="btn btn-dark m-1">
+                {brand.name.toUpperCase()}
+              </button>
+            </Link>
+          ))}
+        </div>
       </div>
 
+      <div className="car">
+        <div className="weel weel1"></div>
+        <div className="weel weel2"></div>
+      </div>
     </div>
   );
 }

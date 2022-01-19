@@ -4,9 +4,6 @@ import axios from "axios";
 import { useSelector } from 'react-redux';
 import { State } from '../../typeTS/initialState';
 
-// export interface ServiceItems {
-//   name: string;
-// }
 
 export default function ServiceList() {
   const [service, setService] = useState([]);
@@ -23,8 +20,7 @@ export default function ServiceList() {
     return <Link
       key={id}
       to={`/servicelist/orderslist/${id}`}
-      className="col m-3 p-5 bg-secondary rounded-3 d-inline-block text-light text-decoration-none text-center fs-6"
-      style={{width: '200px', height: '200px'}}
+      className="service-item col m-3 p-5 bg-dark rounded-3 d-inline-block text-light text-decoration-none"
       >{name}</Link>
   });
 
@@ -33,13 +29,13 @@ export default function ServiceList() {
       <div className="mb-4 p-4">
         {authUser.auth ?
         <Link to='/servicelist/neworder'>
-          <button className="btn btn-info">Создать заявку</button>
+          <button className="btn btn-dark">Создать заявку</button>
         </Link>
         : <></>
       }
       </div>
   
-      <div className=''>
+      <div className='services-list'>
         {view}
       </div>
 
