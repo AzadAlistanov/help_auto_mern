@@ -5,7 +5,7 @@ const { Master, Entry } = require('../../db/models');
 
 router.post('/', async (req, res) => {
 
-  console.log(req.body)
+  // console.log(req.body)
 
   try {
     const {
@@ -41,7 +41,6 @@ router.post('/', async (req, res) => {
     }
   } catch (error) {
     console.log('Новый master не создан');
-
   }
 });
 
