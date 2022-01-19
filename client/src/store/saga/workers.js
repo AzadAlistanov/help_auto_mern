@@ -25,7 +25,7 @@ export function* signUpUser (payload) {
 
 export function* signUpMaster(payload) {
   const checkUser = payload.payload
-  
+
   const data = yield call(
     (async function () {
       const options = {
@@ -111,9 +111,5 @@ export function* addOrderSuccess(payload) {
   console.log(`order`)
   const order = payload.payload
   console.log('payload', order);
-  yield call(
-    (async function () {
-      await axios.post('http://localhost:5000/servicelist/neworder', order)
-    })
-  );
+  yield call(() => axios.post('http://localhost:5000/servicelist/neworder', order));
 }

@@ -27,6 +27,7 @@ const initState = () => {
     post: {
       isLoading: false,
       posts: [],
+      status: '',
       error: null,
     },
     order: {
@@ -39,7 +40,7 @@ const initState = () => {
     }
   };
   return JSON.parse(localStorage.getItem('store') || '{}') || initialState;
-}; 
+};
 
 const store = createStore(
   rootReducer,

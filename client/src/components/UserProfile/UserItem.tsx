@@ -16,7 +16,7 @@ export default function UserItem(props: Props) {
   const { photo, orderName, master, masterId } = props.order;
   console.log(`photo`, photo)
   return (
-    <li>
+    <li style={{width: '350px', height:'300px'}}>
       <small className="font-cond case-u lts-sm fs-80 fg-text-l" >Контора оказавшая услуги:</small>
       {master ?
         <div>
@@ -27,8 +27,8 @@ export default function UserItem(props: Props) {
         <h5 className="font-cond mgb-5 fg-text-d fs-130" > мастер не выбран</h5>
       }
       {photo ?
-        <img src={`http://localhost:5000/${photo}`} className="wpx-100 img-round mgb-20" title="" alt="" data-edit="false" data-editor="field" data-field="src[Image Path]; title[Image Title]; alt[Image Alternate Text]" /> :
-        <img src={`http://localhost:5000/images/masterimg.jpg`} className="wpx-100 img-round mgb-20" title="" alt="" data-edit="false" data-editor="field" data-field="src[Image Path]; title[Image Title]; alt[Image Alternate Text]" />
+        <img style={{width: "120px", height: "120px"}} src={`http://localhost:5000/${photo}`} className="wpx-100 img-round mgb-20" title="" alt="" data-edit="false" data-editor="field" data-field="src[Image Path]; title[Image Title]; alt[Image Alternate Text]" /> :
+        <img style={{width: "120px", height: "120px"}} src={`http://localhost:5000/images/masterimg.jpg`} className="wpx-100 img-round mgb-20" title="" alt="" data-edit="false" data-editor="field" data-field="src[Image Path]; title[Image Title]; alt[Image Alternate Text]" />
       }
       <br />
       <small className="font-cond case-u lts-sm fs-80 fg-text-l" >Вид услги:</small>

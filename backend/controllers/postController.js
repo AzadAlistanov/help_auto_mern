@@ -15,10 +15,10 @@ exports.getPosts = async (req, res) => {
 
 exports.addPost = async (req, res) => {
   const data = req.body;
-  // console.log(data);
+  console.log(data);
   try {
     const posts = await Post.create(data);
-    res.json( { success: 'Успешно создан!' } );
+    res.json( { status: 'Успешно создан!' } );
   } catch (error) {
     console.log(error.message);
   }

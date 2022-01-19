@@ -21,28 +21,34 @@ exports.addOrder = async (req, res) => {
     } = req.body;
     let random = Math.floor(Math.random() * (1000))
     await Order.create({
-      name, user_id, service_id,location, status, master_id, order_number:random
+      name, user_id, service_id, location, status, master_id, order_number:random
     });
 
-    const masters = await Master.findAll(
-      { where: { id: service_id },
-       include: [{ model: Service }]});
+    const masters = await Service.findAll({
+      where: { id: service_id },
+      include: { model: Master },
+      raw: true,
+    });
+    console.log(masters);
 
+    const transporter = nodemailer.createTransport({
+      service: 'Gmail',
+      auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASSWORD,
+      },
+    });
+    console.log('check1')
     masters.forEach(async (master) => {
-      const transporter = nodemailer.createTransport({
-        service: 'Gmail',
-        auth: {
-          user: 'help.auto.elbrus@gmail.com',
-          pass: 'help.auto.elbrus321',
-        },
-      });
       await transporter.sendMail({
-        from: '"Новый заказ по вашей услуге"',
-        to: master.email,
-        subject: `Новый заказ по вашей услуге`,
-        text: `Перейдите в приложение для просмотра заказа`,
+        from: '"Мастер готов выполнить ваш заказ"',
+        to: master['Masters.email'],
+        subject: `Мастер готов выполнить ваш заказ`,
+        text: `Перейдите в приложение чтобы договориться о встрече`,
       });
-    })
+    });
+    console.log('check2');
+    res.json({a: 'Hello!'});
   } catch (error) {
     console.log(error.message);
   }
@@ -100,45 +106,8 @@ exports.changeStatus = async (req, res) => {
     //   }
     // });
 
-    // BIPPER
-
-  //   let options = {
-  //     'method': 'POST',
-  //     'hostname': '891nnr.api.infobip.com',
-  //     'path': '/sms/2/text/advanced',
-  //     'headers': {
-  //       'Authorization': `App ${process.env.SMS_BIPPER_KEY}`,
-  //       'Content-Type': 'application/json',
-  //       'Accept': 'application/json'
-  //     },
-  //     'maxRedirects': 20
-  //   };
-  //
-  //   let request = https.request(options, function (response) {
-  //     let chunks = [];
-  //
-  //     response.on("data", function (chunk) {
-  //       chunks.push(chunk);
-  //     });
-  //
-  //     response.on("end", function (chunk) {
-  //       let body = Buffer.concat(chunks);
-  //       console.log(body.toString());
-  //     });
-  //
-  //     response.on("error", function (error) {
-  //       console.error(error);
-  //     });
-  //   });
-  //
-  //   let postData = JSON.stringify({"messages":[{"from":"InfoSMS","destinations":[{"to":"79776606858"}],"text":"This is a sample message"}]});
-  //
-  //   request.write(postData);
-  //
-  //   request.end();
-    return res.json({  });
+    return res.json({});
   } catch (error) {
     console.log(error.message);
   }
 };
-
