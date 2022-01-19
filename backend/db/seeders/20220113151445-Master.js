@@ -36,8 +36,17 @@ module.exports = {
         rating: 0,
         createdAt: new Date(), updatedAt: new Date()
       },
-
-
+      {
+        name: 'Реактор',
+        email: 'nvgertiy@mail.ru',
+        password: '123',
+        phone: '999999999',
+        address: 'Moscow',
+        photo: 'images/masterimg.jpg',
+        about: 'Двигатель',
+        rating: 0,
+        createdAt: new Date(), updatedAt: new Date()
+      },
     ], {});
   },
 
