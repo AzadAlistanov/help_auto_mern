@@ -4,6 +4,7 @@ import {AuthUserType} from '../../typeTS/initialState'
 const initialState: AuthUserType = {
   userId: null,
   email: '',
+  nick: '',
   auth: false,
 }
 
@@ -19,6 +20,7 @@ const authUserReducer = (state = initialState, action: { type: any; payload: any
       ...newState,
       userId: user.id,
       email: user.email,
+      nick: user.nickName,
       auth: true,
     }
 
@@ -27,6 +29,7 @@ const authUserReducer = (state = initialState, action: { type: any; payload: any
     return { ...newState,
       userId: null,
       email: '',
+      nick: '',
       auth: false
     }
     default:

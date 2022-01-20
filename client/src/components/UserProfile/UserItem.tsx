@@ -14,7 +14,6 @@ type Props = {
 export default function UserItem(props: Props) {
   console.log(`123`, 123)
   const { photo, orderName, master, masterId } = props.order;
-  console.log(`photo`, photo)
   return (
     <li className='order-item'>
       <small className="">Контора оказавшая услуги:</small>

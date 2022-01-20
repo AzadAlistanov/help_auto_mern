@@ -33,10 +33,7 @@ export default function Comment() {
     console.log('orderState', orderState);
     const newcomment = await axios.post('http://localhost:5000/newpostcomment', orderState)
     setOrderState({ ...orderState, comment: '' });
-
   }
-
-
 
   const comment = comments.map((order, i) => {
     return <CommentItem key={i} order={order} />})    
@@ -48,8 +45,6 @@ export default function Comment() {
         setComments(commentWithUser.reverse());
       }());
     }, [orderState]);
-
-
 
   return (
 

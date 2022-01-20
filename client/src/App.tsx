@@ -1,4 +1,3 @@
-import { useDispatch, useSelector } from 'react-redux';
 import { Routes, Route, Link } from 'react-router-dom';
 import Auth from './components/Auth';
 import MasterSignin from './components/Auth/masterSignin';
@@ -16,16 +15,21 @@ import OrderList from './components/OrderList';
 import ServiceList from './components/ServiceList';
 import UserProfile from './components/UserProfile';
 import AddPost from './components/AddPost';
-import { State } from './typeTS/initialState';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 export default function App() {
   const [scroll, setScroll] = useState(0);
-  const state = useSelector((state: State) => state);
   
-  console.log('state', state);
+  const handleScroll = () => {
+    setScroll(window.scrollY);
+  }
 
-  console.log(window.scrollY);
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [])
+
+  console.log(scroll);
   
   return (
     <>
@@ -53,14 +57,13 @@ export default function App() {
           <Route path='/addPost/:carBrand' element={<AddPost />} />
           <Route path='/userprofile/:id' element={<UserProfile />} />
         </Routes>
-        {window.scrollY > 100
+        {scroll > 150
           ?
-          <div className="akeconsa-udaneles">
-            <Link to={''} className='fas fa-angle-up' onClick={()=> window.scrollTo(0, 0)}></Link>
+          <div onClick={() => window.scrollTo(0, 0)} className="akeconsa-udaneles rounded-3">
+            <i className="fas fa-caret-up"></i>
+            <i className="fas fa-caret-up"></i>
           </div>
-          
-          : console.log(window.scrollY)
-        }
+          : null}
       </main>
        <Footer />
     </>

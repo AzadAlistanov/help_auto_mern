@@ -20,18 +20,18 @@ export default function ServiceList() {
     return <Link
       key={id}
       to={`/servicelist/orderslist/${id}`}
-      className="service-item col m-3 p-5 bg-dark rounded-3 d-inline-block text-light text-decoration-none"
+      className="service-item bg-dark rounded-3 text-light"
       >{name}</Link>
   });
 
   return (
     <div className="container">
-      <div className="my-4 p-4">
+      <div className="my-4 p-4 text-center">
         {authUser.auth ?
         <Link to='/servicelist/neworder'>
           <button className="btn btn-dark">Создать заявку</button>
         </Link>
-        : <></>
+        : <h2 className='text-center'>Чтобы создать заявку, необходима авторизация автовладельца</h2>
       }
       </div>
 

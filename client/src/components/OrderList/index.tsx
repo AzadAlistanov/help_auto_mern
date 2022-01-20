@@ -9,7 +9,6 @@ export default function OrderList() {
   useEffect(() => {
     (async function () {
     const { data: { ordersWithUsers } } = await axios.get(`http://localhost:5000/orderlist/${id}`);
-      // console.log(data);
     setOrders(ordersWithUsers.reverse());
     
     }());

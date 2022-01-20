@@ -44,7 +44,6 @@ export default function MasterProfile() {
 
   let id: any
   authMaster.masterId ? id = authMaster.masterId : id = masterid
-  console.log(`id`, id)
   const check = {
     props: id
   }

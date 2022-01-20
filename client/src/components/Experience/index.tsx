@@ -15,7 +15,6 @@ export default function Experience() {
   }, []);
   const items = posts || [];
   const view = items.map((post) => {
-    // console.log('post', post);
     return <PostItem item={post}/>
   });
 
@@ -29,10 +28,13 @@ export default function Experience() {
     <div className="container py-5">
       <div className="d-grid gap-2 col-3 mx-auto mb-5">
         {
-          authCond && <button className="btn btn-dark" type="button" onClick={onAddPost}>Добавить новый пост</button>
+          authCond 
+          ? <button className="btn btn-dark" type="button" onClick={onAddPost}>Добавить новый пост</button>
+          : <h2 className='text-center'>Чтобы добавить пост, необходима авторизация автовладельца</h2>
         }
       </div>
-      <div className="d-flex justify-content-center flex-wrap">
+      <div>
+        <h2 className='text-center'>Посты: <strong style={{color: '#ffc883'}}>{carBrand?.toLocaleUpperCase()}</strong> </h2>
         { view }
       </div>
     </div>

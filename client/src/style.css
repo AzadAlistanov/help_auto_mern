@@ -1,4 +1,7 @@
-body{margin-top:20px;}
+body{
+  margin-top:20px;
+  color: #f7f0eb;
+}
 
 body::-webkit-scrollbar {
   width: 0;
@@ -90,8 +93,9 @@ img {
   opacity: 75%;
 }
 .services-list {
+  display: flex;
+  justify-content: center;
   flex-wrap: wrap;
-  text-align: center;
 }
 .service-item {
   width: 300px;
@@ -99,6 +103,13 @@ img {
   --bs-bg-opacity: 0.5;
   vertical-align: middle;
   text-transform: uppercase;
+  padding: 20px;
+  background: aliceblue;
+  text-align: center;
+  text-decoration: none;
+  margin: 10px;
+  font-size: 22px;
+  font-family: monospace;
 }
 .new-order {
   color: white;
@@ -220,23 +231,51 @@ img {
   background-color: #803a09;
 }
 
-.akeconsa-udaneles{
+.akeconsa-udaneles {
   position: fixed;
   bottom: 100px;
   right: 28px;
   z-index: 9;
-}
-.akeconsa-udaneles a {
-  height: 42px;
-  width: 42px;
-  text-align: center;
-  background: #0f372e;
-  display: block;
-  border-radius: 2px;
-}
-.akeconsa-udaneles a span {
-  color: #f7f0f0;
-  font-size: 30px;
-  line-height: 42px;
+  display: flex;
+  flex-direction: column;
+  padding: 10px 20px;
+  background: #434b4f;
+  opacity: 0.5;
   cursor: pointer;
+  color: #ebd005;
+}
+
+.akeconsa-udaneles:hover {
+  background: #094e2c;
+
+}
+
+.card-post {
+  width: 555px;
+  text-align: center;
+  color: #ffc883;
+  background: #212121de;
+  padding: 10px 15px;
+  margin: 5px 0;
+}
+.card-order {
+  width: 400px;
+  height: 630px;
+  color: #ffc883;
+  background: #212121de;
+  padding: 10px 15px;
+  margin: 5px 0;
+}
+.order-name {
+  width: 330px;
+  height: 140px;
+  overflow-wrap: anywhere;
+  overflow-y: auto;
+  font-size: 20px;
+  color: #fffcfc;
+}
+
+.order-name::-webkit-scrollbar {
+  width: 0;
+  height: 0;
 }

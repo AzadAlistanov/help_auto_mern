@@ -8,13 +8,13 @@
   content:"";
   display:block;
   animation: carmove 3.1s infinite linear;
-  background: url('https://i.stack.imgur.com/xWNOG.png') center/cover;
+  background: url('/public/img/xWNOG1.png') center/cover;
   padding-top:45.25%;
 }
 
 .weel{
   animation: wheel 10s infinite -2s linear;
-  background: url('https://i.stack.imgur.com/0Osjx.png') center/cover;
+  background: url('/public/img/0Osjx.png') center/cover;
   position: absolute;
   bottom:0.8%;
   width: 14.15%;
