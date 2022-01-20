@@ -3,7 +3,7 @@ const { Post } = require('../db/models');
 exports.getPosts = async (req, res) => {
   const { carBrand } = req.params;
   console.log(carBrand)
-  console.log(1)
+  console.log(2)
   try {
     const posts = await Post.findAll({ where: { carBrand } });
 
