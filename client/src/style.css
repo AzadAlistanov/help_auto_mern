@@ -219,3 +219,24 @@ img {
   border-radius: 10px;
   background-color: #803a09;
 }
+
+.akeconsa-udaneles{
+  position: fixed;
+  bottom: 100px;
+  right: 28px;
+  z-index: 9;
+}
+.akeconsa-udaneles a {
+  height: 42px;
+  width: 42px;
+  text-align: center;
+  background: #0f372e;
+  display: block;
+  border-radius: 2px;
+}
+.akeconsa-udaneles a span {
+  color: #f7f0f0;
+  font-size: 30px;
+  line-height: 42px;
+  cursor: pointer;
+}

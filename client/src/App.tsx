@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Link } from 'react-router-dom';
 import Auth from './components/Auth';
 import MasterSignin from './components/Auth/masterSignin';
 import MasterSignup from './components/Auth/masterSignup';
@@ -16,13 +16,16 @@ import ServiceList from './components/ServiceList';
 import UserProfile from './components/UserProfile';
 import AddPost from './components/AddPost';
 import { State } from './typeTS/initialState';
+import { useState } from 'react';
 
 export default function App() {
+  const [scroll, setScroll] = useState(0);
   const state = useSelector((state: State) => state);
   
   console.log('state', state);
 
-
+  console.log(window.scrollY);
+  
   return (
     <>
       <Header />
@@ -48,6 +51,14 @@ export default function App() {
           <Route path='/addPost/:carBrand' element={<AddPost />} />
           <Route path='/userprofile/:id' element={<UserProfile />} />
         </Routes>
+        {window.scrollY > 100
+          ?
+          <div className="akeconsa-udaneles">
+            <Link to={''} className='fas fa-angle-up' onClick={()=> window.scrollTo(0, 0)}></Link>
+          </div>
+          
+          : console.log(window.scrollY)
+        }
       </main>
        <Footer />
     </>
