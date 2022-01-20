@@ -1,7 +1,7 @@
 import * as types from '../actionTypes';
 import {AuthMasterType} from '../../typeTS/initialState'
 
-const initialState: AuthMasterType = { 
+const initialState: AuthMasterType = {
   masterId: null,
   name: null,
   email: '',
@@ -13,20 +13,20 @@ const authMasterReducer = (state = initialState, action: { type: any; payload: a
   const newState = { ...state };
 
   switch (type) {
-    case types.SIGN_UP_MASTER:    
+    case types.SIGN_UP_MASTER:
     case types.SIGN_IN_MASTER:
       const master = payload.checkUser;
-      return { 
+      return {
         ...newState,
         masterId: master.id,
         name: master.name,
         email: master.email,
         auth: true }
-    
+
     case types.SIGN_OUT_MASTER:
       localStorage.removeItem('store');
     return { ...newState,
-      masterId: '',
+      masterId: null,
       name: '',
       email: '',
       auth: false }

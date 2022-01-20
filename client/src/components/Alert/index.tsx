@@ -6,7 +6,7 @@ type Props = {
 
 const Alert = ({ message }: Props) => (
   <>
-    <div className="alert alert-success" role="alert">
+    <div className="alert alert-success text-center" role="alert">
       {message}
     </div>
   </>

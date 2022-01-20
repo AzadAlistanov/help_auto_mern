@@ -29,9 +29,8 @@ export default function Experience() {
     <div className="container py-5">
       <div className="d-grid gap-2 col-3 mx-auto mb-5">
         {
-          authCond && <button className="btn btn-cyan" type="button" onClick={onAddPost}>Add post</button>
+          authCond && <button className="btn btn-dark" type="button" onClick={onAddPost}>Добавить новый пост</button>
         }
-
       </div>
       <div className="d-flex justify-content-center flex-wrap">
         { view }

@@ -17,6 +17,9 @@ const PostItem = ({ item }: Props) => {
   const { title, post, carBrand, like, id } = item;
 
 
+  console.log(item);
+  
+
   return (
     <div className="card mb-5 mx-2" style={{ maxWidth: '540px'}}>
       <div className="row g-0">

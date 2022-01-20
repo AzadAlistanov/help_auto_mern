@@ -20,31 +20,31 @@ export default function Header() {
 
   return (
 
-    <nav className="navbar fixed-top navbar-expand-md navbar-dark default-color">
-      <Link to='/' className="navbar-brand">Help Auto</Link>
-      <button 
+    <nav className="header navbar fixed-top navbar-expand-md navbar-dark default-color">
+      <Link to='/' className="logo navbar-brand"> <strong>Help</strong><span>Auto</span></Link>
+      <button
         className='navbar-toggler'
         data-toggle='collapse'
         data-target='#navbarSupportedContent-333'
         aria-controls='#navbarSupportedContent-333'
         aria-expanded='false'>
-        <span className='navbar-toggler-icon'></span>    
+        <span className='navbar-toggler-icon'></span>
       </button>
 
 
       <div className="collapse navbar-collapse" id="navbarSupportedContent-333">
 
         <ul className="navbar-nav mr-auto">
-          
+
           <li className="nav-item">
-            <Link className="nav-link" to='/servicelist'>Services</Link>
+            <Link className="nav-link" to='/servicelist'>Услуги</Link>
           </li>
 
           {
             authUser.userId || authMaster.masterId
               ?
               <li className="nav-item">
-                <Link onClick={logout} className="nav-link" to={''}>Logout</Link>
+                <Link onClick={logout} className="nav-link" to={''}>Выйти</Link>
               </li>
               : null
           }
@@ -53,7 +53,7 @@ export default function Header() {
         <ul className="navbar-nav ml-auto nav-flex-icons">
           <li className="nav-item">
             <span className="nav-link waves-effect waves-light">
-              {(authUser.auth || authMaster.masterId) && (authMaster.name ? `Master ${authMaster.name}` : `User ${authUser.email}`)}
+              {(authUser.auth || authMaster.masterId) && (authMaster.name ? `Организация: ${authMaster.name}` : `Автовладелец: ${authUser.email}`)}
             </span>
           </li>
 
@@ -67,35 +67,35 @@ export default function Header() {
               <span className="fas fa-user"></span>
             </Link>
             {authUser.auth || authMaster.masterId ?
-              <div 
+              <div
                 className="dropdown-menu dropdown-menu-right dropdown-default"
                 aria-labelledby="navbarDropdownMenuLink-333">
                   {authUser.auth ?
-                <Link className="dropdown-item" to='/userprofile/:userid'>Personal Area</Link>:
-                <Link className="dropdown-item" to='/master/:masterid'>Personal Area</Link>
+                <Link className="dropdown-item" to='/userprofile/:userid'>Личный кабинет</Link>:
+                <Link className="dropdown-item" to='/master/:masterid'>Личный кабинет</Link>
                   }
               </div>
               :
               <div className="dropdown-menu dropdown-menu-right dropdown-default"
                 aria-labelledby="navbarDropdownMenuLink-333">
-                <Link className="dropdown-item" to='/auth/usersignup'>User Sign up</Link>
-                <Link className="dropdown-item" to='/auth/usersignin'>User Sign in</Link>
-                <Link className="dropdown-item" to='/auth/mastersignup'>Master Sign up</Link>
-                <Link className="dropdown-item" to='/auth/mastersignin'>Master Sign in</Link>
+                <Link className="dropdown-item" to='/auth/usersignin'>Вход для автовладельца</Link>
+                <Link className="dropdown-item" to='/auth/mastersignin'>Вход для организации</Link>
+                <Link className="dropdown-item" to='/auth/usersignup'>Регистрация автовладельца</Link>
+                <Link className="dropdown-item" to='/auth/mastersignup'>Регистрация организации</Link>
               </div>
             }
 
             {authMaster.isAuth ?
               <div className="dropdown-menu dropdown-menu-right dropdown-default"
                 aria-labelledby="navbarDropdownMenuLink-333">
-                <Link className="dropdown-item" to='/userprofile/:userid'>Master </Link>
+                <Link className="dropdown-item" to='/userprofile/:userid'>Master: </Link>
               </div>
               :
               null
             }
           </li>
         </ul>
-        
+
       </div>
     </nav>
 

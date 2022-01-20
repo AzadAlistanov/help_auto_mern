@@ -17,20 +17,17 @@ import ServiceList from './components/ServiceList';
 import UserProfile from './components/UserProfile';
 import AddPost from './components/AddPost';
 import { State } from './typeTS/initialState';
-import { useEffect } from 'react';
 
 export default function App() {
-  const { authUser, authMaster } = useSelector((state: State) => state);
+  const state = useSelector((state: State) => state);
   
-
-  console.log('authUser', authUser);
-  console.log('authMaster', authMaster);
+  console.log('state', state);
 
 
   return (
     <>
       <Header />
-      <main className="container-sm pt-5">
+      <main className="pt-5 main">
         <Routes>
           <Route path='/' element={<Home/>} />
           <Route path='/'>
