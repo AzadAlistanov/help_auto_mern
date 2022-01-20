@@ -6,6 +6,7 @@ import MasterSignup from './components/Auth/masterSignup';
 import UserSignin from './components/Auth/userSignin';
 import UserSignup from './components/Auth/userSignup';
 import Experience from './components/Experience';
+import Comment from './components/Comment';
 import Footer from './components/Footer';
 import Header from './components/Header';
 import Home from './components/Home';
@@ -41,6 +42,7 @@ export default function App() {
           </Route>
 
           <Route path='/expirience/:carBrand' element={<Experience />} />
+          <Route path='/expirience/:carBrand/:id' element={<Comment />} />
 
           <Route path='/servicelist' element={<ServiceList/>} />
           <Route path='/servicelist/orderslist/:id' element={<OrderList />} />

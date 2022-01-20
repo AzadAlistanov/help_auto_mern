@@ -2,10 +2,12 @@ import React, { useState } from 'react'
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import * as actions from '../../store/actions/auth'
+import Alert from '../Alert';
 
 export default function UserSignup() {
   const dispatch = useDispatch();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+  const [regStatus, setRegStatus] = useState(false);
   const [value, setValue] = useState({
     name: "", email: "", password: "",
     nickName: "", firstName: "", lastName: "",
@@ -14,7 +16,8 @@ export default function UserSignup() {
 
   async function signUp() {
     dispatch(actions.signUpUserSucces(value));
-    navigate('/');
+    setRegStatus(true);
+    setTimeout(() => navigate('/'), 1000);
   }
 
   return (
@@ -28,7 +31,7 @@ export default function UserSignup() {
                 <div className="form card-body p-5">
                   <h2 className="text-uppercase text-center mb-5">Регистрация автовладельца</h2>
 
-                  <form >
+                  <form className="mb-4">
                     <div className="form-outline mb-4">
                       <input onChange={(event) => setValue({ ...value, email: event.target.value })} value={value.email} type="email" id="form3Example3cg" className="form-control form-control-lg" />
                       <label className="form-label" htmlFor="form3Example3cg">Адрес электронной почты</label>
@@ -56,7 +59,7 @@ export default function UserSignup() {
                     </div>
 
                     <div className="form-outline mb-4">
-                      <input 
+                      <input
                         onChange={(event) => setValue({ ...value, city: event.target.value })}
                         value={value.city}
                         id="form3Example4cg"
@@ -75,7 +78,7 @@ export default function UserSignup() {
                     </div>
 
                     <div className="form-outline mb-4">
-                      <input 
+                      <input
                         onChange={(event) => setValue({ ...value, carYear: event.target.value })}
                         value={value.carYear}
                         type="date"
@@ -85,8 +88,8 @@ export default function UserSignup() {
                     </div>
 
                     <div className="form-outline mb-4">
-                      <input 
-                        onChange={(event) => setValue({ ...value, phone: event.target.value })} 
+                      <input
+                        onChange={(event) => setValue({ ...value, phone: event.target.value })}
                         value={value.phone}
                         type="tel" id="form3Example4cg"
                         className="form-control form-control-lg" />
@@ -94,16 +97,16 @@ export default function UserSignup() {
                     </div>
 
                     <div className="d-flex justify-content-center">
-                      <button 
-                        onClick={signUp} 
-                        type="button" 
+                      <button
+                        onClick={signUp}
+                        type="button"
                         className="btn btn-dark m-1">Зарегистрироваться</button>
                     </div>
 
 
 
                   </form>
-
+                  { regStatus && <Alert message="Успешная регистрация!"/> }
                 </div>
               </div>
             </div>

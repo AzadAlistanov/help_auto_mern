@@ -1,10 +1,12 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 type Post = {
   title: string
   post: string
   like: number
   carBrand: string
+  id: any
 }
 
 type Props = {
@@ -12,7 +14,8 @@ type Props = {
 }
 
 const PostItem = ({ item }: Props) => {
-  const { title, post, carBrand, like } = item;
+  const { title, post, carBrand, like, id } = item;
+
 
   console.log(item);
   
@@ -44,7 +47,9 @@ const PostItem = ({ item }: Props) => {
               </svg>
               <span>{ like }</span>
             </h3>
+            <Link key={carBrand} to={`/expirience/${carBrand}/${id}`}>
             <button type="button" className="btn btn-secondary btn-rounded">Comment<i className="fas fa-feather"></i></button>
+            </Link>
             <button type="button" className="btn btn-secondary btn-rounded">Like<i className="far fa-thumbs-up"></i></button>
           </div>
         </div>

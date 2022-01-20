@@ -1,7 +1,7 @@
 import * as types from '../actionTypes';
 import {AuthUserType} from '../../typeTS/initialState'
 
-const initialState: AuthUserType = { 
+const initialState: AuthUserType = {
   userId: null,
   email: '',
   auth: false,
@@ -12,7 +12,7 @@ const authUserReducer = (state = initialState, action: { type: any; payload: any
   const newState = { ...state };
 
   switch (type) {
-    case types.SIGN_UP_USER:    
+    case types.SIGN_UP_USER:
     case types.SIGN_IN_USER:
       const user = payload.checkUser;
     return {
@@ -21,13 +21,13 @@ const authUserReducer = (state = initialState, action: { type: any; payload: any
       email: user.email,
       auth: true,
     }
-    
+
     case types.SIGN_OUT_USER:
       localStorage.removeItem('store');
     return { ...newState,
-      userId: '',
+      userId: null,
       email: '',
-      auth: false 
+      auth: false
     }
     default:
       return state;
