@@ -36,7 +36,7 @@ export default function NewOrder() {
     setOrderState({ ...orderState, name: '', location: '' });
     dispatch(addOrderSuccessAC(orderState));
     setOrderStatus(true);
-    setTimeout(() => navigate('/servicelist'), 1000);
+    setTimeout(() => navigate('/servicelist'), 2000);
   }
 
   useEffect(() => {

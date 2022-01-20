@@ -22,6 +22,12 @@ export default function Home() {
 
   return (
     <div className="home_wrapper">
+
+      <div className="car">
+        <div className="weel weel1"></div>
+        <div className="weel weel2"></div>
+      </div>
+
       <div className="py-5">
         <div className="shadow p-3 mb-5 bg-body bg-dark rounded text-center">
           {brandCars.map((brand: any) => (
@@ -34,10 +40,7 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="car">
-        <div className="weel weel1"></div>
-        <div className="weel weel2"></div>
-      </div>
+      
     </div>
   );
 }
