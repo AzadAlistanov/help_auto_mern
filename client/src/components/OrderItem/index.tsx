@@ -22,7 +22,7 @@ type Props = {
 
 
 const OrderItem = ({ order, serviceId }: Props) => {
-  const { authMaster: { masterId } } = useSelector((state: State) => state);
+  const { authMaster: { masterId }, authUser } = useSelector((state: State) => state);
   const { orderNumber, userId, nickName, orderName, status, date, location } = order;
   const [orderStatus, setOrderStatus] = useState(status);
   const onRespond = async () => {
@@ -42,7 +42,7 @@ const OrderItem = ({ order, serviceId }: Props) => {
               width="50px" alt="avatar"/>
           <div>
           <h5 className="card-title font-weight-bold mb-2">{ `Заказ ${ orderNumber } ` }</h5>
-          <h5 className="card-title font-weight-bold mb-2">{ `Местоположение: ${ location } ` }</h5>
+          <h5 className="card-title font-weight-bold mb-2"><i className="fas fa-map-marker-alt"></i> { location }</h5>
           <p className="card-text"><i className="far fa-clock pe-2"></i>{new Date(date).toLocaleString()}</p>
           <p>{ `Заказчик: ${nickName}` }</p>
           </div>
@@ -60,18 +60,16 @@ const OrderItem = ({ order, serviceId }: Props) => {
           </p>
           <div className="d-flex justify-content-between">
             {masterId && (orderStatus
-             ? <a className="btn btn-info p-md-1 my-1" data-mdb-toggle="collapse" href="#collapseContent"
+             ? <div className="btn btn-info p-md-1 my-1 p-2" data-mdb-toggle="collapse"
                    onClick={onRespond}
-                   role="button" aria-expanded="false" aria-controls="collapseContent">Откликнуться <i className="fas fa-truck"></i></a>
+                   role="button" aria-expanded="false" aria-controls="collapseContent">Откликнуться <i className="fas fa-truck"></i></div>
               : <p className="text-success">Выполняется...</p>)
            }
-          <div>
-            <i className="fas fa-share-alt text-muted p-md-1 my-1 me-2" data-mdb-toggle="tooltip"
-              data-mdb-placement="top" title="Share this post"></i>
-            <i className="fas fa-heart text-muted p-md-1 my-1 me-0" data-mdb-toggle="tooltip"
-              data-mdb-placement="top"
-              title="I like it"></i>
-            </div>
+           {authUser.userId && (orderStatus
+             ? <p className="p-md-1 my-1 text-warning" data-mdb-toggle="collapse"
+                   role="button" aria-expanded="false" aria-controls="collapseContent">Ожидание приема заказа...</p>
+              : <p className="text-success">Выполняется...</p>)
+           }
           </div>
         </div>
       </div>

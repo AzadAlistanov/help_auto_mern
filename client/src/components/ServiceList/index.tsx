@@ -26,7 +26,7 @@ export default function ServiceList() {
 
   return (
     <div className="container">
-      <div className="mb-4 p-4">
+      <div className="my-4 p-4">
         {authUser.auth ?
         <Link to='/servicelist/neworder'>
           <button className="btn btn-dark">Создать заявку</button>
@@ -34,7 +34,7 @@ export default function ServiceList() {
         : <></>
       }
       </div>
-  
+
       <div className='services-list'>
         {view}
       </div>
