@@ -59,7 +59,7 @@ export default function MasterProfile() {
         });
       setUser(data.master[0])
     }())
-  }, [id, orderState.comment]);
+  }, [avatar]);
 
 
   const checkFunction = React.useCallback(async () => {
