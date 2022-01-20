@@ -1,9 +1,10 @@
-import { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import axios from "axios";
 import { State } from "../../typeTS/initialState";
 import * as actions from '../../store/actions/auth'
+import Alert from '../Alert';
 
 
 
@@ -12,6 +13,7 @@ export default function MasterSignup() {
   const navigate = useNavigate()
 
   const [services, setServices] = useState([]);
+  const [regStatus, setRegStatus] = useState(false);
 
   const [value, setValue] = useState({
     name: "", email: "", password: "",
@@ -20,7 +22,8 @@ export default function MasterSignup() {
 
   async function signUp() {
     dispatch(actions.signUpMasterSucces(value));
-    navigate('/')
+    setRegStatus(true);
+    setTimeout(() => navigate('/'), 1000);
   }
 
   useEffect(() => {
@@ -42,7 +45,7 @@ export default function MasterSignup() {
                 <div className="form card-body p-5">
                   <h2 className="text-uppercase text-center mb-5">Регистрация организации</h2>
 
-                  <form >
+                  <form className="mb-4">
                     <div className="form-outline mb-4">
                       <input onChange={(event) => setValue({ ...value, name: event.target.value })} value={value.name} type="name" id="form3Example4cg" className="form-control form-control-lg" />
                       <label className="form-label" htmlFor="form3Example4cg">Наименование</label>
@@ -98,12 +101,13 @@ export default function MasterSignup() {
                         </div>
                       </div>
                     </div>
-                    
+
                     <div className="mt-3 d-flex justify-content-center">
                       <button onClick={signUp} type="button" className="btn btn-dark m-1">Зарегистрироваться</button>
                     </div>
 
                   </form>
+                  { regStatus && <Alert message="Успешная регистрация!"/> }
                 </div>
               </div>
             </div>

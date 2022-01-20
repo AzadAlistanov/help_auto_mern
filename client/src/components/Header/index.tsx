@@ -22,20 +22,20 @@ export default function Header() {
 
     <nav className="header navbar fixed-top navbar-expand-md navbar-dark default-color">
       <Link to='/' className="logo navbar-brand"> <strong>Help</strong><span>Auto</span></Link>
-      <button 
+      <button
         className='navbar-toggler'
         data-toggle='collapse'
         data-target='#navbarSupportedContent-333'
         aria-controls='#navbarSupportedContent-333'
         aria-expanded='false'>
-        <span className='navbar-toggler-icon'></span>    
+        <span className='navbar-toggler-icon'></span>
       </button>
 
 
       <div className="collapse navbar-collapse" id="navbarSupportedContent-333">
 
         <ul className="navbar-nav mr-auto">
-          
+
           <li className="nav-item">
             <Link className="nav-link" to='/servicelist'>Услуги</Link>
           </li>
@@ -53,7 +53,7 @@ export default function Header() {
         <ul className="navbar-nav ml-auto nav-flex-icons">
           <li className="nav-item">
             <span className="nav-link waves-effect waves-light">
-              {(authUser.auth || authMaster.masterId) && (authMaster.name ? `Master: ${authMaster.name}` : `User: ${authUser.email}`)}
+              {(authUser.auth || authMaster.masterId) && (authMaster.name ? `Организация: ${authMaster.name}` : `Автовладелец: ${authUser.email}`)}
             </span>
           </li>
 
@@ -67,7 +67,7 @@ export default function Header() {
               <span className="fas fa-user"></span>
             </Link>
             {authUser.auth || authMaster.masterId ?
-              <div 
+              <div
                 className="dropdown-menu dropdown-menu-right dropdown-default"
                 aria-labelledby="navbarDropdownMenuLink-333">
                   {authUser.auth ?
@@ -95,7 +95,7 @@ export default function Header() {
             }
           </li>
         </ul>
-        
+
       </div>
     </nav>
 
