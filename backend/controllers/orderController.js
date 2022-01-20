@@ -1,8 +1,7 @@
 const { Order, User } = require('../db/models');
 
 exports.getOrders = async (req, res) => {
-  const id = req.baseUrl.slice(-1);
-
+  const id = req.baseUrl.slice(-1);  
   try {
     const orders = await Order.findAll({ where: { service_id: id } });
     const ordersId = orders.map((el) => el.user_id)
@@ -19,6 +18,7 @@ exports.getOrders = async (req, res) => {
         orderName: orders[i].name,
         date: orders[i].createdAt,
         userId: findUser.id,
+        photo: findUser.photo,
         location: orders[i].location,
       }
       ordersWithUsers.push(alreadyFind);

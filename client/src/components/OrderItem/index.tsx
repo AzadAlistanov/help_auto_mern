@@ -12,6 +12,7 @@ type Order = {
   date: string
   order_id: number
   location: string
+  photo:any
 }
 
 type Props = {
@@ -23,7 +24,8 @@ type Props = {
 
 const OrderItem = ({ order, serviceId }: Props) => {
   const { authMaster: { masterId }, authUser } = useSelector((state: State) => state);
-  const { orderNumber, userId, nickName, orderName, status, date, location } = order;
+  const { orderNumber, userId, nickName, orderName, status, date, location, photo } = order;
+  console.log('photo', photo);
   const [orderStatus, setOrderStatus] = useState(status);
   const onRespond = async () => {
     const data = await axios
@@ -32,14 +34,11 @@ const OrderItem = ({ order, serviceId }: Props) => {
   }
 
   return (
-    <div className="d-inline-block mx-2">
+    <div className="d-inline-block mx-2" style={{ width:'250px' }}>
       <section className="mx-auto my-5" style={{ maxWidth: '23rem' }}>
 
         <div className="card">
           <div className="card-body d-flex flex-row">
-            <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-8.jpg" className="rounded-circle me-3"
-              height="50px"
-              width="50px" alt="avatar"/>
           <div>
           <h5 className="card-title font-weight-bold mb-2">{ `Заказ ${ orderNumber } ` }</h5>
           <h5 className="card-title font-weight-bold mb-2"><i className="fas fa-map-marker-alt"></i> { location }</h5>
@@ -47,8 +46,8 @@ const OrderItem = ({ order, serviceId }: Props) => {
           <p>{ `Заказчик: ${nickName}` }</p>
           </div>
           </div>
-          <div className="bg-image hover-overlay ripple rounded-0" data-mdb-ripple-color="light">
-            <img className="img-fluid" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/%D0%9C%D0%B5%D0%BB%D0%B8%D0%BE%D1%80%D0%B0%D1%82%D0%B8%D0%B2%D0%BD%D0%B0%D1%8F_%D1%82%D0%B5%D1%85%D0%BF%D0%BE%D0%BC%D0%BE%D1%89%D1%8C_%D0%A1%D0%BE%D0%BA%D0%BE%D0%BB_%D0%B3%D0%BE%D1%80%D0%B01.jpg/1200px-%D0%9C%D0%B5%D0%BB%D0%B8%D0%BE%D1%80%D0%B0%D1%82%D0%B8%D0%B2%D0%BD%D0%B0%D1%8F_%D1%82%D0%B5%D1%85%D0%BF%D0%BE%D0%BC%D0%BE%D1%89%D1%8C_%D0%A1%D0%BE%D0%BA%D0%BE%D0%BB_%D0%B3%D0%BE%D1%80%D0%B01.jpg"
+          <div style={{width:"200px", height:"200px"}} className="bg-image hover-overlay ripple rounded-0 d-flex align-items-sm-center rounded-lg " data-mdb-ripple-color="light">
+            <img className="img-fluid rounded-lg"   src={`http://localhost:5000/${photo}`}
               alt="Card image cap"/>
             <a href="#!">
               <div className="mask" style={{ backgroundColor: 'rgba(251, 251, 251, 0.15)' }}></div>

@@ -4,6 +4,7 @@ type Order = {
   comment: string,
   nickName: string
   photo: any
+  createdAt: any
   
 }
 
@@ -12,7 +13,7 @@ type Props = {
 }
 
 export default function CommentItem(props: Props) {
-  const { comment, nickName, photo } = props.order;
+  const { comment, nickName, photo, createdAt } = props.order;
 
   return <div className="mb-3">
    
@@ -26,7 +27,7 @@ export default function CommentItem(props: Props) {
               {comment}.{" "}
             </p>
             <p style={{ textAlign: "left", color: "gray" }}>
-              posted 1 minute ago
+            {new Date(createdAt).toLocaleString()}
             </p>
           </Grid>
         </Grid>   

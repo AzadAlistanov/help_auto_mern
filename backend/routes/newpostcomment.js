@@ -20,6 +20,7 @@ router.post('/', async (req, res) => {
       post_id:postId,
       user_id
     });
+    
     res.json({ })
 
   } catch (error) {

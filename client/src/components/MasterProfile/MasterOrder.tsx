@@ -18,7 +18,7 @@ export default function MasterOrder(order: Order) {
   useEffect(() => {
     (async function () {
       const data: any = await axios.get(`http://localhost:5000/masterprofilecomponents/${id.master_id}`);
-      setOrders(data.data.feedbackWithUser)
+      setOrders(data.data.feedbackWithUser.reverse())
       console.log(`orders`, orders)
     }());
   }, [id]);
