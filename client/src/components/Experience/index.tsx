@@ -15,7 +15,7 @@ export default function Experience() {
   }, []);
   const items = posts || [];
   const view = items.map((post) => {
-    console.log('post', post);
+    // console.log('post', post);
     return <PostItem item={post}/>
   });
 

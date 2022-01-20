@@ -40,9 +40,9 @@ exports.addOrder = async (req, res) => {
     console.log('check1')
     masters.forEach(async (master) => {
       await transporter.sendMail({
-        from: '"Мастер готов выполнить ваш заказ"',
+        from: '"Поступил новый заказ для вашего сервиса"',
         to: master['Masters.email'],
-        subject: `Мастер готов выполнить ваш заказ`,
+        subject: `Поступил новый заказ для вашего сервиса`,
         text: `Перейдите в приложение чтобы договориться о встрече`,
       });
     });

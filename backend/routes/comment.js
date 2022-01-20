@@ -17,6 +17,7 @@ router.get('/', async (req, res) => {
       const findUser = await User.findOne({ where: { id : commentId[i] }, row: true });
     //   const findFeedback = await Feedback.findOne({ where: {master_id: id, user_id: feedbackId[i]}});           
       const alreadyFind = {
+        createdAt: comments[i].createdAt,
         comment: comments[i].comment,
         nickName: findUser.nickName,
         photo: findUser.photo
