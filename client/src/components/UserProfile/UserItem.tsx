@@ -16,23 +16,22 @@ export default function UserItem(props: Props) {
   const { photo, orderName, master, masterId } = props.order;
   console.log(`photo`, photo)
   return (
-    <li style={{width: '350px', height:'300px'}}>
-      <small className="font-cond case-u lts-sm fs-80 fg-text-l" >Контора оказавшая услуги:</small>
+    <li className='order-item'>
+      <small className="">Контора оказавшая услуги:</small>
       {master ?
         <div>
-
-          <Link to={`/master/${masterId}`} className="font-cond mgb-5 fg-text-d fs-130" > {master}</Link>
+          <Link to={`/master/${masterId}`} className="" > {master}</Link>
         </div>
         :
-        <h5 className="font-cond mgb-5 fg-text-d fs-130" > мастер не выбран</h5>
+        <h5 className="" > мастер не выбран</h5>
       }
       {photo ?
         <img style={{width: "120px", height: "120px"}} src={`http://localhost:5000/${photo}`} className="wpx-100 img-round mgb-20" title="" alt="" data-edit="false" data-editor="field" data-field="src[Image Path]; title[Image Title]; alt[Image Alternate Text]" /> :
         <img style={{width: "120px", height: "120px"}} src={`http://localhost:5000/images/masterimg.jpg`} className="wpx-100 img-round mgb-20" title="" alt="" data-edit="false" data-editor="field" data-field="src[Image Path]; title[Image Title]; alt[Image Alternate Text]" />
       }
       <br />
-      <small className="font-cond case-u lts-sm fs-80 fg-text-l" >Вид услги:</small>
-      <p className="fs-110 font-cond-l" >{orderName}</p>
+      <small className="" >Вид услги:</small>
+      <p className="" >{orderName}</p>
     </li>
   );
 }

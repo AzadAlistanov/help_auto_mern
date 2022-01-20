@@ -45,7 +45,7 @@ export default function NewOrder() {
 
   return (
     <div className="d-flex justify-content-center new-order">
-      <form onSubmit={addNewOrder} className="form col-12 col-md-9 col-lg-7 col-xl-6 shadow p-5 bg-body rounded">
+      <form onSubmit={addNewOrder} className="form col-12 col-md-9 col-lg-7 col-xl-6 shadow p-5 rounded">
 
         <select
           defaultValue={'DEFAULT'}

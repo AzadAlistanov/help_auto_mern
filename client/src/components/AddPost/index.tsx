@@ -23,7 +23,7 @@ const AddPost = () => {
 
   return (
     <div className="p-5">
-      <h1 className="my-4 text-light text-center">Add post</h1>
+      <h2 className="">Добавить пост</h2>
       <form role="form" className="w-50 mx-auto" onSubmit={onSend}>
         <div className="form-group">
           <input name="title" type="text" className="form-control" placeholder="Имя"/>
@@ -32,7 +32,7 @@ const AddPost = () => {
           <textarea name="post" className="form-control" placeholder="Сообщение"></textarea>
         </div>
         <div className="form-group text-center">
-          <input type="submit" className="btn btn-info" value="Отправить"/>
+        <button type="submit" className="btn btn-dark">Отправить</button>
         </div>
       </form>
       { posts.status !== '' ? <Alert message={posts.status}/> : null }
