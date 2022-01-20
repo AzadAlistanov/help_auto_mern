@@ -1,4 +1,3 @@
-const axios = require('axios');
 
 const nodemailer = require('nodemailer');
 const Vonage = require('@vonage/server-sdk');
