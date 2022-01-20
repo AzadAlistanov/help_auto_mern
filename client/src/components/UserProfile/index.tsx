@@ -19,17 +19,16 @@ export default function UserProfile() {
   const [img, setImg] = useState<any>(null)
   const [avatar, setAvatar] = useState<any>(null)
   const refForm = useRef(null);
-  const [user, setUser] = useState({ name: "", email: "", password: "", nickName: "", firstName: "", lastName: "", city: "", carBrand: "", carModel: "", carYear: "", phone: "", createdAt: "", photo: "" })
-
+  const [user, setUser] = useState({
+    name: "", email: "", password: "",
+    nickName: "", firstName: "",
+    lastName: "", city: "", carBrand: "",
+    carModel: "", carYear: "", phone: "",
+    createdAt: "", photo: "" })
 
   const {authUser} = useSelector((state: State) => state);
-  console.log(`authUser`, authUser.userId)
-  console.log(authUser);
-
-
 
   const id: any = authUser.userId
-  console.log(id);
 
   const check = {
     props: id
@@ -37,12 +36,10 @@ export default function UserProfile() {
 
   useEffect(() => {
     (async function () {
-      console.log(123)
       const { data } = await axios.get(`http://localhost:5000/userprofile/${id}`);
-      console.log(456)
       setUser(data.user[0])
     }());
-  }, []);
+  }, [avatar]);
 
 
   const checkFunction = React.useCallback(async () => {
@@ -56,88 +53,48 @@ export default function UserProfile() {
 
   return (
     <div>
-            <link rel="stylesheet" href="https://bootstraptema.ru/plugins/2015/bootstrap3/bootstrap.min.css" />
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-      <script src="https://bootstraptema.ru/plugins/jquery/jquery-1.11.3.min.js"></script>
-      <script src="https://bootstraptema.ru/plugins/2015/b-v3-3-6/bootstrap.min.js"></script>
-      <div className="container">
-        <div id="main">
-          <div className="row" id="real-estates-detail">
-            <div className="col-lg-4 col-md-4 col-xs-12">
-              <div className="panel panel-default">
-                <div className="panel-heading">
-                  <header className="panel-title">
-                    <div className="profile text-center">
-                      <strong>{user.firstName} {user.lastName}</strong>
+      <div className="profile-wrapper">
+        <div className="info_inner">
+          <div className="info-item info-img">
+            <h3><strong className="label label-warning">{user.nickName}</strong></h3>
+            <img 
+              src={`http://localhost:5000/${user.photo}`}
+              className="image-profile" />
+              <strong>{user.firstName} {user.lastName}</strong>
+              <h3>{user.city}</h3>
+          </div>
+          <div className="info-item info-data">
+            <h4>Данные профиля</h4>
+            <table className="table table-th-block">
+              <tbody>
+                <tr><td className="active">Зарегистрирован: </td><td>{new Date(user.createdAt).toLocaleString()}</td></tr>
+                <tr><td className="active">Марка автомобиля: </td><td>{user.carBrand}</td></tr>
+                <tr><td className="active">Модель автомобиля: </td><td>{user.carModel}</td></tr>
+                <tr><td className="active">Телефон: </td><td>{user.phone}</td></tr>
+                <tr><td className="active">Адрес электронной почты:</td><td>{user.email}</td></tr>
+                <tr><td className="active">Сменить фото профиля:</td><td>
+                  <div className="dropdown">
+                    <button className="btn btn-lite dropdown-toggle"
+                      type="button" id="dropdownMenu1" data-toggle="dropdown"
+                      aria-haspopup="true" aria-expanded="false">
+                    </button>
+                    <div className="dropdown-menu" aria-labelledby="dropdownMenu1">
+                    <input onChange={e => e.target.files !== null && setImg(e.target.files[0])} 
+                      type="file" 
+                      className="form-control"
+                      id="inputGroupFile01" />
+                    <button onClick={checkFunction}>Сохранить</button>
                     </div>
-                  </header>
-                </div>
-                <div className="panel-body">
-                  <div className="text-center " id="author">
-                    {avatar === null ?
-                     <div className="dropdown">
-                     <button className="btn btn-lite dropdown-toggle"
-                       type="button" id="dropdownMenu1" data-toggle="dropdown"
-                       aria-haspopup="true" aria-expanded="false">
-                       <img style={{maxWidth:'100%', maxHeight:'100%'}} src={`http://localhost:5000/${user.photo}`} width="200px" />
-                     </button>
-                     <div className="dropdown-menu" aria-labelledby="dropdownMenu1">
-                     <input onChange={e => e.target.files !== null && setImg(e.target.files[0])} type="file" className="form-control" id="inputGroupFile01" />
-                     <button onClick={checkFunction}>отправить</button>
-                     </div>
-                   </div>                       
-                      :
-                      <div className="dropdown">
-                      <button className="btn btn-lite dropdown-toggle"
-                        type="button" id="dropdownMenu1" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false">
-                        <img style={{maxWidth:'100%', maxHeight:'100%'}} src={`${avatar}`} />
-                      </button>
-                      <div className="dropdown-menu" aria-labelledby="dropdownMenu1">
-                      <input onChange={e => e.target.files !== null && setImg(e.target.files[0])} type="file" className="form-control" id="inputGroupFile01" />
-                      <button onClick={checkFunction}>отправить</button>
-                      </div>
-                    </div>
-                      }
-                    <h3><strong className="label label-warning">{user.nickName}</strong></h3>
-                    <h3>{user.city}</h3>
-                    <p className="sosmed-author">
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="col-lg-8 col-md-8 col-xs-12">
-              <div className="profile panel">
-                <div className="panel-body">
-                  <ul id="myTab" className="nav nav-pills">
-                  </ul>
-                  <div id="myTabContent" className="tab-content">
-                    <hr />
-                    <div className="tab-pane fade active in" id="detail">
-                      <h4>История профиля</h4>
-                      <table className="table table-th-block">
-                        <tbody>
-                          <tr><td className="active">Зарегистрирован: </td><td>{new Date(user.createdAt).toLocaleString()}</td></tr>
-                          <tr><td className="active">carBrand: </td><td>{user.carBrand}</td></tr>
-                          <tr><td className="active">carModel: </td><td>{user.carModel}</td></tr>
-                          <tr><td className="active">phone: </td><td>{user.phone}</td></tr>
-                          <tr><td className="active">email: </td><td>{user.email}</td></tr>
-                        </tbody>
-                      </table>
-                    </div>
-                    <div className="tab-pane fade" id="contact">
-                      <p></p>
-
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+                  </div> 
+                </td></tr>
+              </tbody>
+            </table>
           </div>
         </div>
+        <div className="">
+        </div>
+        <UserOrder id={id} />
       </div>
-      <UserOrder id={id} />
     </div >
   );
 }
