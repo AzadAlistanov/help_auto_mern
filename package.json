@@ -1,0 +1,25 @@
+{
+  "name": "help_auto_mern",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "backend": "node backend/app",
+    "frontend": "npm run start --prefix client",
+    "start": "concurrently \"npm run backend\" \"npm run frontend\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AzadAlistanov/help_auto_mern.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AzadAlistanov/help_auto_mern/issues"
+  },
+  "homepage": "https://github.com/AzadAlistanov/help_auto_mern#readme",
+  "dependencies": {
+    "concurrently": "^7.0.0"
+  }
+}
