@@ -36,38 +36,44 @@ export default function Comment() {
   }
 
   const comment = comments.map((order, i) => {
-    return <CommentItem key={i} order={order} />})    
+    return <CommentItem key={i} order={order} />})
+
     useEffect(() => {
       (async function () {
-        console.log(123)
         const { data:{commentWithUser} } = await axios.get(`http://localhost:5000/comment/${carBrand}/${id}`);
-        console.log(commentWithUser)
         setComments(commentWithUser.reverse());
       }());
     }, [orderState]);
+    
 
   return (
 
     <div style={{ padding: 14 }} className="App">
-      <div className="d-flex">
-        <h1>Comments</h1>
+      <div className="d-flex comment-list">
+        <h1 className='text-center'>Комментарии к посту</h1>
         <div className="form-group mx-3">
           
-        <form onSubmit={addFeedback} role="form" className="w-50 mx-auto d-flex" >
+        <form onSubmit={addFeedback} role="form" className="form-comment w-50 mx-auto d-flex" >
 
-        <div className="form-group">
+        <div className="form-group input-comment">
           <textarea 
           value={orderState.comment}
           onChange={(event) => setOrderState({ ...orderState, comment: event.target.value })}
-          name="post" style={{width:'300px'}} className="form-control" placeholder="Сообщение"></textarea>
+          name="post" style={{maxWidth:'300px'}} className="form-control" placeholder="Сообщение"></textarea>
         </div>
         <div className="form-group text-center">
-          <input type="submit" className="btn btn-info" value="Отправить"/>
+          <input type="submit" className="btn btn-dark" value="Отправить"/>
         </div>
       </form>
         </div>
       </div>
-      <Paper style={{ padding: "40px 20px" }}>
+      <Paper style={{ 
+        background: '#be742c',
+        maxWidth: '555px',
+        padding: "40px 20px",
+        margin: '0 auto',
+        color: 'white',
+        border: '4px solid #c0d1cd' }}>
         {comment}                  
       </Paper>     
     

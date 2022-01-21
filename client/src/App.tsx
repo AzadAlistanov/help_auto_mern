@@ -29,8 +29,6 @@ export default function App() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [])
 
-  console.log(scroll);
-  
   return (
     <>
       <Header />
