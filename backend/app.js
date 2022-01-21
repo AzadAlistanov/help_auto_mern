@@ -36,7 +36,7 @@ const sessionConfig = {
   cookie: {
     httpOnly: false,
     maxAge: 1000 * 60 * 60 * 24,
-    // secure: process.env.NODE_ENV === 'development',
+    secure: process.env.NODE_ENV === 'development',
   },
 };
 

@@ -7,17 +7,19 @@
     "dialect": "postgres"
   },
   "test": {
-    "username": "nvgertiy",
-    "password": 123,
+    "username": "postgres",
+    "password": 1,
     "database": "help_auto",
     "host": "127.0.0.1",
     "dialect": "postgres"
   },
   "production": {
-    "username": "nvgertiy",
-    "password": 123,
-    "database": "help_auto",
-    "host": "127.0.0.1",
-    "dialect": "postgres"
+    "use_env_variable": "DATABASE_URL",
+    "dialect": "postgres",
+    "dialectOptions": {
+      "ssl": {
+        "rejectUnauthorized": false
+      }
+    }
   }
 }
