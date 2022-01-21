@@ -17,16 +17,16 @@ export default function CommentItem(props: Props) {
 
   return <div className="mb-3">
    
-        <Grid container wrap="nowrap" >
+        <Grid style={{ borderBottom: '4px solid #c0d1cd', overflowWrap: 'anywhere'}} container wrap="nowrap" >
           <Grid item>
             <Avatar className="mx-3" alt="Remy Sharp" src={`http://localhost:5000/${photo}`} />
           </Grid>
           <Grid item xs zeroMinWidth>
-            <h4 style={{ margin: 0, textAlign: "left" }}>{nickName}</h4>
-            <p style={{ textAlign: "left" }}>
+            <h4 style={{ margin: 0, textAlign: "left" }}>"{nickName}"</h4>
+            <p className='mt-3 text-center' style={{ textAlign: "left" }}>
               {comment}.{" "}
             </p>
-            <p style={{ textAlign: "left", color: "gray" }}>
+            <p style={{ textAlign: "left", color: "#590404" }}>
             {new Date(createdAt).toLocaleString()}
             </p>
           </Grid>

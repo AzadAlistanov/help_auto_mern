@@ -279,3 +279,12 @@ img {
   width: 0;
   height: 0;
 }
+.comment-list {
+  flex-direction: column;
+}
+.form-comment {
+  flex-direction: column;
+}
+.input-comment {
+  margin: 7px auto;
+}
