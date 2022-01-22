@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const createError = require('http-errors');
 const logger = require('morgan');
@@ -8,7 +9,23 @@ const FileStore = require('session-file-store')(session);
 const cors = require('cors');
 const { app, serverStart } = require('./server');
 const { connect } = require('./db');
-
+const commentRouter = require('./routes/comment.js');
+const signupRouter = require('./routes/user/signup');
+const signinRouter = require('./routes/user/signin');
+const logoutRouter = require('./routes/user/logout');
+const feedbackRouter = require('./routes/user/feedback');
+const mastersignupRouter = require('./routes/master/signup');
+const mastersigninRouter = require('./routes/master/signin');
+const masterlogoutRouter = require('./routes/master/logout');
+const postRouter = require('./routes/posts');
+const newpostcommentRouter = require('./routes/newpostcomment');
+const userprofileRouter = require('./routes/user/userprofile');
+const masterprofileRouter = require('./routes/master/masterprofile');
+const userprofilecomponentsRouter = require('./routes/user/userprofilecomponents');
+const masterprofilecomponentsRouter = require('./routes/master/masterprofilecomponents');
+const useravatarRouter = require('./routes/user/useravatar');
+const masteravatarRouter = require('./routes/master/masteravatar');
+const bodyParser = require('body-parser');
 
 serverStart().then(connect);
 
@@ -19,35 +36,57 @@ const sessionConfig = {
   resave: false,
   saveUninitialized: false,
   cookie: {
-    httpOnly: true,
+    httpOnly: false,
     maxAge: 1000 * 60 * 60 * 24,
     // secure: process.env.NODE_ENV === 'development',
   },
 };
 
+const home = require('./routes/home');
+const serviceList = require('./routes/serviceList');
+const orderList = require('./routes/orderList');
+
+
 app.use(logger('dev'));
 app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
-app.use(cors({ credentials: true, origin: '*' }));
-// app.use(cookieParser());
-// app.use(session(sessionConfig));
+app.use(express.json({extended: true}));
+app.use('/images', express.static(path.join(__dirname, 'images')))
+// app.use(express.json({}));
+app.use(
+  cors({
+    origin: true,
+    credentials: true,
+  }),
+);
 
-// const indexRouter = require('./routes/index');
-// const addTask = require('./routes/addTask');
-// const deleteRouter = require('./routes/delete');
-// const changeRouter = require('./routes/change');
-// const importantRouter = require('./routes/important');
-// const logoutRouter = require('./routes/logout');
+// app.use(cors({ credentials: true, origin: '*' }));
 
-// app.use((req, res, next) => {
-//   res.locals.name = req.session.user;
-//   res.locals.id = req.session.userid;
-//   next();
-// });
+app.use(cookieParser());
+app.use(session(sessionConfig));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded());
+app.use(bodyParser.urlencoded({ extended: true }));
 
-// app.use('/api', indexRouter);
-// app.use('/addTask', addTask);
-// app.use('/delete', deleteRouter);
-// app.use('/change', changeRouter);
-// app.use('/important', importantRouter);
-// // app.use('/logout', logoutRouter);
+
+
+
+app.use('/newpostcomment', newpostcommentRouter);
+app.use('/comment/:carBrand/:id', commentRouter);
+app.use('/signup', signupRouter);
+app.use('/signin', signinRouter);
+app.use('/logout', logoutRouter);
+app.use('/newfeedback', feedbackRouter);
+app.use('/mastersignup', mastersignupRouter);
+app.use('/mastersignin', mastersigninRouter);
+app.use('/userprofile/:id', userprofileRouter);
+app.use('/masterprofile/:id', masterprofileRouter);
+app.use('/userprofilecomponents/:id', userprofilecomponentsRouter);
+app.use('/masterprofilecomponents/:id', masterprofilecomponentsRouter);
+app.use('/useravatarRouter', useravatarRouter);
+app.use('/masteravatarRouter', masteravatarRouter);
+app.use('/', home);
+app.use('/servicelist', serviceList);
+app.use('/orderlist/:id', orderList);
+app.use('/posts', postRouter);
+
+module.exports = app;
