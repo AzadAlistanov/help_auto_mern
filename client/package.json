@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@material-ui/core": "^4.12.3",
     "@types/jest": "^27.4.0",
     "@types/node": "^16.11.19",
     "@types/node-fetch": "^3.0.3",
