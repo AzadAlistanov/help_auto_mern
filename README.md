@@ -10,6 +10,4 @@ backend: npm i
 
 ### start
 
-client: yarn start
-
-backend: npm run dev
+npm start
