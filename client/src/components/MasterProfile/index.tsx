@@ -44,7 +44,6 @@ export default function MasterProfile() {
 
   let id: any
   authMaster.masterId ? id = authMaster.masterId : id = masterid
-  console.log(`id`, id)
   const check = {
     props: id
   }
@@ -59,7 +58,7 @@ export default function MasterProfile() {
         });
       setUser(data.master[0])
     }())
-  }, [id, orderState.comment]);
+  }, [avatar]);
 
 
   const checkFunction = React.useCallback(async () => {

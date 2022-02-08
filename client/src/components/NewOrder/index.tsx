@@ -1,12 +1,14 @@
 import axios from "axios";
 import { useDispatch, useSelector } from 'react-redux';
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import { State } from "../../typeTS/initialState";
 import { addOrderSuccessAC } from "../../store/actions/task";
+import Alert from '../Alert';
 
 export default function NewOrder() {
   const [services, setServices] = useState([]);
+  const [orderStatus, setOrderStatus] = useState(false);
   const navigate = useNavigate();
   const { authUser } = useSelector((state: State) => state);
   const [orderState, setOrderState] = useState({
@@ -33,7 +35,8 @@ export default function NewOrder() {
       console.log(`orderState`, orderState)
     setOrderState({ ...orderState, name: '', location: '' });
     dispatch(addOrderSuccessAC(orderState));
-    navigate('/servicelist');
+    setOrderStatus(true);
+    setTimeout(() => navigate('/servicelist'), 2000);
   }
 
   useEffect(() => {
@@ -44,8 +47,8 @@ export default function NewOrder() {
   }, []);
 
   return (
-    <div className="d-flex justify-content-center new-order">
-      <form onSubmit={addNewOrder} className="form col-12 col-md-9 col-lg-7 col-xl-6 shadow p-5 rounded">
+    <div className="d-flex flex-column align-items-center new-order">
+      <form onSubmit={addNewOrder} className="form col-12 col-md-9 col-lg-7 col-xl-6 shadow p-5 bg-body rounded my-4">
 
         <select
           defaultValue={'DEFAULT'}
@@ -82,6 +85,7 @@ export default function NewOrder() {
           <button type="submit" className="btn btn-dark">Создать</button>
         </div>
       </form>
+      { orderStatus && <Alert message="Заявка принята! Ожидайте ответа исполнителя. Статус отслеживается в списке ваших заказов."/> }
     </div>
   );
 }

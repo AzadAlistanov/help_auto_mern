@@ -1,11 +1,11 @@
-import { useDispatch, useSelector } from 'react-redux';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Link } from 'react-router-dom';
 import Auth from './components/Auth';
 import MasterSignin from './components/Auth/masterSignin';
 import MasterSignup from './components/Auth/masterSignup';
 import UserSignin from './components/Auth/userSignin';
 import UserSignup from './components/Auth/userSignup';
 import Experience from './components/Experience';
+import Comment from './components/Comment';
 import Footer from './components/Footer';
 import Header from './components/Header';
 import Home from './components/Home';
@@ -15,13 +15,19 @@ import OrderList from './components/OrderList';
 import ServiceList from './components/ServiceList';
 import UserProfile from './components/UserProfile';
 import AddPost from './components/AddPost';
-import { State } from './typeTS/initialState';
+import { useEffect, useState } from 'react';
 
 export default function App() {
-  const state = useSelector((state: State) => state);
+  const [scroll, setScroll] = useState(0);
   
-  console.log('state', state);
+  const handleScroll = () => {
+    setScroll(window.scrollY);
+  }
 
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [])
 
   return (
     <>
@@ -38,6 +44,7 @@ export default function App() {
           </Route>
 
           <Route path='/expirience/:carBrand' element={<Experience />} />
+          <Route path='/expirience/:carBrand/:id' element={<Comment />} />
 
           <Route path='/servicelist' element={<ServiceList/>} />
           <Route path='/servicelist/orderslist/:id' element={<OrderList />} />
@@ -48,6 +55,13 @@ export default function App() {
           <Route path='/addPost/:carBrand' element={<AddPost />} />
           <Route path='/userprofile/:id' element={<UserProfile />} />
         </Routes>
+        {scroll > 150
+          ?
+          <div onClick={() => window.scrollTo(0, 0)} className="akeconsa-udaneles rounded-3">
+            <i className="fas fa-caret-up"></i>
+            <i className="fas fa-caret-up"></i>
+          </div>
+          : null}
       </main>
        <Footer />
     </>

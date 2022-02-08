@@ -1,10 +1,16 @@
-import React from 'react';
+import axios from 'axios';
+import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { State } from '../../typeTS/initialState';
 
 type Post = {
   title: string
   post: string
   like: number
   carBrand: string
+  id: any
+  user_id: number
 }
 
 type Props = {
@@ -12,44 +18,36 @@ type Props = {
 }
 
 const PostItem = ({ item }: Props) => {
-  const { title, post, carBrand, like } = item;
-
-  console.log(item);
-  
+  const { title, post, carBrand, like, id, user_id } = item;
+  const [user, setUser] = useState({nickName: '', photo: ''})
+  useEffect(() => {
+    (async function () {
+      const { data } = await axios.get(`http://localhost:5000/userprofile/${user_id}`);
+      setUser(data.user[0])
+    }());
+  }, []);
 
   return (
-    <div className="card mb-5 mx-2" style={{ maxWidth: '540px'}}>
-      <div className="row g-0">
-        <div className="col-md-4">
-          <img
-            src="https://st.depositphotos.com/1432405/5019/v/600/depositphotos_50196171-stock-illustration-new-auto-logo-set.jpg"
-            alt="Trendy Pants and Shoes"
-            className="img-fluid rounded-start"
-          />
-        </div>
-        <div className="col-md-8">
-          <div className="card-body">
-            <h5 className="card-title">{ title }</h5>
-            <p className="card-text">
+    <>
+      <div className="d-flex justify-content-center flex-wrap">
+        <div className="card-post">
+          <div className="">
+            <h3>"{user.nickName.toLocaleUpperCase()}"</h3>
+            <img 
+              src={`http://localhost:5000/${user.photo}`}
+              className="image-profile"
+              style={{ width: '100px', height: '100px'}} />
+            <h5 className="card-title mt-2">"{ title.toLocaleUpperCase() }"</h5>
+            <p style={{overflowWrap: 'anywhere'}} className="card-text">
               {post}
             </p>
-            <h3 className="card-text">
-              <span className="text-muted mx-2">
-                Car Brand: { carBrand }
-              </span>
-              <svg width="1em" height="1em" viewBox="0 0 16 16" className="bi bi-suit-heart-fill" fill="currentColor"
-                   xmlns="http://www.w3.org/2000/svg">
-                <path
-                  d="M4 1c2.21 0 4 1.755 4 3.92C8 2.755 9.79 1 12 1s4 1.755 4 3.92c0 3.263-3.234 4.414-7.608 9.608a.513.513 0 0 1-.784 0C3.234 9.334 0 8.183 0 4.92 0 2.755 1.79 1 4 1z"/>
-              </svg>
-              <span>{ like }</span>
-            </h3>
-            <button type="button" className="btn btn-secondary btn-rounded">Comment<i className="fas fa-feather"></i></button>
-            <button type="button" className="btn btn-secondary btn-rounded">Like<i className="far fa-thumbs-up"></i></button>
+            <Link key={carBrand} to={`/expirience/${carBrand}/${id}`}>
+              <button type="button" className="btn btn-dark btn-rounded">Комментарии <i className="fas fa-feather"></i></button>
+            </Link>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

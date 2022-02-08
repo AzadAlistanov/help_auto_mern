@@ -1,7 +1,6 @@
+
 const nodemailer = require('nodemailer');
 const Vonage = require('@vonage/server-sdk');
-let https = require('follow-redirects').https;
-let fs = require('fs');
 
 const { Service, Order, Master, User } = require('../db/models');
 
@@ -41,9 +40,9 @@ exports.addOrder = async (req, res) => {
     console.log('check1')
     masters.forEach(async (master) => {
       await transporter.sendMail({
-        from: '"Мастер готов выполнить ваш заказ"',
+        from: '"Поступил новый заказ для вашего сервиса"',
         to: master['Masters.email'],
-        subject: `Мастер готов выполнить ваш заказ`,
+        subject: `Поступил новый заказ для вашего сервиса`,
         text: `Перейдите в приложение чтобы договориться о встрече`,
       });
     });
@@ -76,14 +75,14 @@ exports.changeStatus = async (req, res) => {
         pass: process.env.EMAIL_PASSWORD,
       },
     });
-    console.log(123)
+    // console.log(123)
     await transporter.sendMail({
       from: '"Мастер готов выполнить ваш заказ"',
       to: user.email,
       subject: `Мастер готов выполнить ваш заказ`,
       text: `Перейдите в приложение чтобы договориться о встрече`,
     });
-    console.log(456)
+    // console.log(456)
     //VONAGE SERVICE
     // const vonage = new Vonage({
     //   apiKey: process.env.SMS_API_KEY,

@@ -2,6 +2,7 @@
 export interface AuthUserType {
   userId: null | number,
   email: string,
+  nick: '',
   auth: boolean,
 }
 

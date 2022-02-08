@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import { State } from '../../typeTS/initialState';
@@ -9,7 +8,6 @@ const AddPost = () => {
   const posts = useSelector((state: State) => state.post);
   const navigate = useNavigate();
   const { authUser: { userId } } = useSelector((state: State) => state);
-  // const [values, setValues] = useState([]);
   const { carBrand } = useParams();
   const dispatch = useDispatch();
   const onSend = (e: any) => {

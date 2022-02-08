@@ -16,6 +16,7 @@ const initState = () => {
     authUser: {
       userId: null,
       email: '',
+      nick: '',
       auth: false,
     },
     authMaster: {

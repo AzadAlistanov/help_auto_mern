@@ -9,6 +9,7 @@ const FileStore = require('session-file-store')(session);
 const cors = require('cors');
 const { app, serverStart } = require('./server');
 const { connect } = require('./db');
+const commentRouter = require('./routes/comment.js');
 const signupRouter = require('./routes/user/signup');
 const signinRouter = require('./routes/user/signin');
 const logoutRouter = require('./routes/user/logout');
@@ -17,6 +18,7 @@ const mastersignupRouter = require('./routes/master/signup');
 const mastersigninRouter = require('./routes/master/signin');
 const masterlogoutRouter = require('./routes/master/logout');
 const postRouter = require('./routes/posts');
+const newpostcommentRouter = require('./routes/newpostcomment');
 const userprofileRouter = require('./routes/user/userprofile');
 const masterprofileRouter = require('./routes/master/masterprofile');
 const userprofilecomponentsRouter = require('./routes/user/userprofilecomponents');
@@ -68,6 +70,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 
 
+app.use('/newpostcomment', newpostcommentRouter);
+app.use('/comment/:carBrand/:id', commentRouter);
 app.use('/signup', signupRouter);
 app.use('/signin', signinRouter);
 app.use('/logout', logoutRouter);

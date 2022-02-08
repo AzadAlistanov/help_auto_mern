@@ -12,14 +12,12 @@ type Order = { id: any }
 export default function MasterOrder(order: Order) {
   const { id } = order
   const [check, setCheck] = useState(true)
-  // console.log(`id`, id.master_id)
   const [orders, setOrders] = useState([]);
 
   useEffect(() => {
     (async function () {
       const data: any = await axios.get(`http://localhost:5000/masterprofilecomponents/${id.master_id}`);
-      setOrders(data.data.feedbackWithUser)
-      console.log(`orders`, orders)
+      setOrders(data.data.feedbackWithUser.reverse())
     }());
   }, [id]);
 
